@@ -1,0 +1,160 @@
+/*======== Standard Header ========*/
+.tornado-header {
+    $thisHeight:76px;
+    border:1px solid rgba(0,0,0,0.10);
+    padding:0 15px;
+    background: #FFF;
+    @extend %fast-motion;
+    //=== Container Layout ===//
+    .container,.container-fluid,.container-xl {
+        @extend %flexbox;
+        @extend .align-between;
+        @extend .align-center-y;
+        min-height:$thisHeight;
+        &::after{ display: none; }
+    }
+    //=== Logo ===//
+    .logo {
+        h1 {
+            font-size: 24px;
+            font-weight: $medium-weight;
+            color:$primary-color;
+            text-transform: uppercase;
+        }
+    }
+    //=== Navigation Menu ===//
+    .navigation-menu {
+        @include navigation-custom-theme (
+            $height:$thisHeight,// Height
+            $font-size:15px, // Font-size
+            $font-weight:$medium-weight, // Font Weight
+            $color:$gray-color, // Text Color
+            $hvr-color:$black-color, // Hover Color
+            $hvr-bg:transparent, // Hover Background
+            $sub-color:$black-color, // Submenu Color
+            $sub-bg:#FFF,// Submenu Background
+            $sub-font-size:14px, // Submenu Font-size
+            $sub-height:40px, // Submenu Height
+            $sub-hvr-bg:rgba(0, 0, 0, 0.05), // Submenu Hover Background
+            $sub-hvr-color:$black-color // Submenu Hover Color
+        );
+        > ul > li > a { text-transform: uppercase; }
+    }
+    
+    //=== Actions Buttons ===*/
+    .action-btns {
+        .icon-btn {
+            padding:10px;
+            font-size:23px;
+            color:$gray-color;
+            @extend %fast-motion;
+            &:hover { color:$black-color; }
+        }
+    }
+
+    //=== Actions Buttons ===*/
+    .dropdown {
+        .dropdown-list {
+            #{$direction}:auto;
+            #{$directionReverse}:0;
+            &::after,&::before { 
+                #{$direction}:auto;
+                #{$directionReverse}:12px;
+             }
+        }
+
+        @include medium(true){
+            &:hover {
+                .dropdown-list{display: block;}
+            }
+        };
+        
+        @include small(false) {
+            position: static;
+            .dropdown-list {
+                margin-top: -18px;
+                width:100%;
+                &::before{display: none;}
+                &::after{display: none;}
+            }
+        };
+    }
+
+    //=== Search Box ===*/
+    .search-box {
+        display: inline-block;
+        position: relative;
+        @include medium(true) { width:230px; }
+        &.form-ui { input { margin-bottom: 0; } }
+        .search-btn {
+            position: absolute;
+            #{$directionReverse}:0;
+            top:0;
+            bottom: 0;
+            background:transparent;
+            color:$gray-color;
+            width:38px;
+            border:0 none;
+            cursor: pointer;
+        }
+    }
+
+    .btn {
+        margin-#{$direction}: 15px;
+    }
+    
+    //=== Primary Colored ===//
+    &.primary {
+        background:$primary-color;
+        border:0 none;
+        .logo h1,.action-btns .icon-btn{ color:#FFF; }
+        .navigation-menu {
+            @include navigation-custom-theme (
+                $height:$thisHeight,// Height
+                $font-size:15px, // Font-size
+                $font-weight:$medium-weight, // Font Weight
+                $color:#FFF, // Text Color
+                $hvr-color:$primary-color, // Hover Color
+                $hvr-bg:#FFF, // Hover Background
+                $sub-color:$primary-color, // Submenu Color
+                $sub-bg:#FFF,// Submenu Background
+                $sub-font-size:14px, // Submenu Font-size
+                $sub-height:40px, // Submenu Height
+                $sub-hvr-bg:rgba(0, 0, 0, 0.05), // Submenu Hover Background
+                $sub-hvr-color:$black-color // Submenu Hover Color
+            );
+        }
+    }
+    
+    //=== Secondary Colored ===//
+    &.secondary {
+        background:$dark-color;
+        border:0 none;
+        .logo h1,.action-btns .icon-btn{ color:#FFF; }
+        .navigation-menu {
+            @include navigation-custom-theme (
+                $height:$thisHeight,// Height
+                $font-size:15px, // Font-size
+                $font-weight:$medium-weight, // Font Weight
+                $color:#FFF, // Text Color
+                $hvr-color:$dark-color, // Hover Color
+                $hvr-bg:#FFF, // Hover Background
+                $sub-color:$dark-color, // Submenu Color
+                $sub-bg:#FFF,// Submenu Background
+                $sub-font-size:14px, // Submenu Font-size
+                $sub-height:40px, // Submenu Height
+                $sub-hvr-bg:rgba(0, 0, 0, 0.05), // Submenu Hover Background
+                $sub-hvr-color:$black-color // Submenu Hover Color
+            );
+        }
+    }
+
+    //=== Sticky Header ===//
+    &.is-sticky {
+        position: fixed;
+        top:0;
+        right:0;
+        left:0;
+        z-index: 9999;
+    }
+}

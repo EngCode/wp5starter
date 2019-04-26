@@ -1,0 +1,424 @@
+//==== Global SASS Control Selector ====//
+%form-control {
+    display: block;
+    width: 100%;
+    margin-bottom: 25px;
+    font-size: 14px;
+    padding: 0 15px;
+    border: 1px solid rgba(0, 0, 0, .10);
+    background-color: #fefcfc;
+    line-height: 1;
+    height:42px;
+    &::-webkit-input-placeholder {
+        opacity: 1;
+        color:$gray-color;
+    }
+    &:-ms-input-placeholder {
+        opacity: 1;
+        color:$gray-color;
+    }
+    &::-ms-input-placeholder {
+        opacity: 1;
+        color:$gray-color;
+    }
+    &::placeholder {
+        opacity: 1;
+        color:$gray-color;
+    }
+    &.rounded-corner:not(textarea) { border-radius: 80px; }
+    &.rounde-corner { border-radius: 6px; }
+    + .badge{top:-15px;}
+    /*==== Validation ====*/
+    &.success {
+        border-color: $success-color;
+        color: $success-color;
+        &::-webkit-input-placeholder {color: $success-color;}
+        &:-ms-input-placeholder {color: $success-color;}
+        &::-ms-input-placeholder {color: $success-color;}
+        &::placeholder {color: $success-color;}
+    }
+
+    &.error {
+        border-color: $danger-color;
+        color: $danger-color;
+        &::-webkit-input-placeholder {color: $danger-color;}
+        &:-ms-input-placeholder {color: $danger-color;}
+        &::-ms-input-placeholder {color: $danger-color;}
+        &::placeholder {color: $danger-color;}
+    }
+
+    &.warning {
+        border-color: $warning-color;
+        color: $warning-color;
+        &::-webkit-input-placeholder {color: $warning-color;}
+        &:-ms-input-placeholder {color: $warning-color;}
+        &::-ms-input-placeholder {color: $warning-color;}
+        &::placeholder {color: $warning-color;}
+    }
+    &.disable,&[disabled] {
+        color: #c3c3c3;
+        background-color: #ebebeb;
+        &::-webkit-input-placeholder {color: #c3c3c3;}
+        &:-ms-input-placeholder {color: #c3c3c3;}
+        &::-ms-input-placeholder {color: #c3c3c3;}
+        &::placeholder {color: #c3c3c3;}
+    }
+}
+
+%form-tiny {
+    font-size: 11px;
+    padding: 0 10px;
+    height: 27px;
+}
+
+%form-small {
+    font-size: 13px;
+    height: 36px;
+}
+
+%form-large {
+    font-size: 16px;
+    padding: 0 20px;
+    height:50px;
+}
+
+/*==== Standard Form Reset ====*/
+button,input,optgroup,select,textarea {
+    font-family: $secondary-font;
+    font-size: 0.875rem;
+    line-height: 1;
+    margin: 0;
+}
+
+//==== Select Tags ====//
+select,keygen{
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    background-repeat:no-repeat;
+    background-image:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 36 36"><path fill="rgba(0,0,0,0.5)" d="M10.5 15l7.5 7.5 7.5-7.5z"/></svg>');
+    background-position:$directionReverse 15px center;
+    &.chevron-select{
+        background-image:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">\
+            <path fill="rgba(0,0,0,0.5)" d="M14.83 16.42L24 25.59l9.17-9.17L36 19.25l-12 12-12-12z"/><path d="M0-.75h48v48H0z" fill="none"/>\
+        </svg>');
+    }
+}
+
+//==== select reset for firefox ====//
+select option,keygen option{padding:0 15px;}
+select optgroup,keygen optgroup{font-style:normal;padding:15px;}
+select optgroup option,keygen optgroup option{margin:0 -15px;padding:0 15px;}
+
+/*=== Form UI Container Theme ===*/
+.form-ui {
+    // Form Control
+    input:not(.btn),textarea,select,keygen,.tagsinput {@extend %form-control;}
+    textarea{height:110px;padding:15px;}
+
+    /*==== Sizes ====*/
+    &.tiny {
+        input:not(.btn),textarea,select,keygen,.tagsinput {@extend %form-tiny;}
+        textarea{height:50px;}
+    }
+
+    &.small {
+        input:not(.btn),textarea,select,keygen,.tagsinput{@extend %form-small;}
+        textarea{height:90px;}
+    }
+
+    &.large {
+        input:not(.btn),textarea,select,keygen,.tagsinput{@extend %form-large;}
+        textarea{height:140px;}
+    }
+}
+
+/*==== Stand alone Form Control ====*/
+.form-control {
+    @extend %form-control;
+    &.tiny {@extend %form-tiny; }
+    &.small {@extend %form-small; }
+    &.large {@extend %form-large;}
+}
+
+/*==== Checkboxs and Radio Buttons Reset ====*/
+input {
+    &[type="radio"],&[type="checkbox"],&[type="range"],&[type="color"] {
+        display:inline-block;
+        width:auto;
+        margin:auto;
+        padding:0;
+        border:0 none;
+    }
+}
+
+/*==== Form Labels and Icons ====*/
+label {
+    display:block;
+    font-size:15px;
+    font-weight:$strong-weight;
+    margin-bottom:10px;
+    &.success{color: $success-color;}
+    &.error{color: $danger-color;}
+    &.warning{color: $warning-color;}
+    &.disable,&[disabled] {color: #cfcfcf;}
+}
+
+/*==== File Uploade Input ====*/
+.file-input{
+    position:relative;
+    @extend .form-control;
+    line-height: 42px;
+    &.tiny {line-height: 25px;}
+    &.small {line-height: 34px;}
+    &.large {line-height: 50px;}
+    // Text 
+    &::before {content:attr(data-text);}
+    // Button
+    &::after {
+        content:attr(data-btn);
+        position: absolute;
+        #{$directionReverse}:0;
+        top:0;
+        height: 100%;
+        background: $secondary-color;
+        color:#FFF;
+        padding:0 25px;
+    }
+    // Upload Input
+    input[type="file"] {
+        position:absolute;
+        opacity:0;
+        cursor:pointer;
+        margin:0;
+        top:0;
+        $direction:0;
+        width:100%;
+        height: 100%;
+        z-index:1;
+    }
+}
+
+.control-hint {
+    @extend %reset;
+    font-size:12px;
+    position: relative;
+    top:-20px;
+    color:$gray-color;
+    &.success{color: $success-color;}
+    &.error{color: $danger-color;}
+    &.warning{color: $warning-color;}
+    &.disable,&[disabled] {color: #cfcfcf;}
+}
+
+.control-icon {
+    position: relative;
+    &::before {
+        position: absolute;
+        width:35px;
+        font-size:18px;
+        color:rgba(0,0,0,0.50);
+        #{$direction}:0;
+        line-height: 44px;
+        bottom:0;
+        text-align: $directionReverse;
+    }
+    input:not(.btn),textarea,select,keygen,.tagsinput,.form-control { padding-#{$direction}:45px; }
+
+    &.tiny {
+        input:not(.btn),textarea,select,keygen,.tagsinput,.form-control { padding-#{$direction}:37px; }
+        &::before {
+            font-size: 13px;
+            height: 27px;
+            width:27px;
+        }
+    }
+    
+    &.small {
+        input:not(.btn),textarea,select,keygen,.tagsinput,.form-control { padding-#{$direction}:40px; }
+        &::before {
+            font-size: 15px;
+            line-height: 36px;
+            width:30px;
+        }
+    }
+    
+    &.large {
+        input:not(.btn),textarea,select,keygen,.tagsinput,.form-control { padding-#{$direction}:55px; }
+        &::before {
+            font-size: 22px;
+            line-height: 52px;
+            width:45px;
+        }
+    }
+    
+    &.labeled::before { 
+        border-#{$directionReverse}:1px solid rgba(0,0,0,.15);
+        background: rgba(0, 0, 0, 0.05);
+        text-align: center;
+    }
+
+    &.floating-end { 
+        input:not(.btn),textarea,select,keygen,.tagsinput,.form-control { padding-#{$direction}:15px; }
+        &::before {
+            #{$direction}:auto;
+            #{$directionReverse}:0;
+            text-align: $direction;
+        }
+        &.labeled::before {
+            border-#{$directionReverse}:0 none;
+            border-#{$direction}:1px solid rgba(0,0,0,.15);
+        }
+    }
+}
+
+/*==== Checkboxs and Radio Buttons ====*/
+.checkbox,.switch-control,.radio-button,.tag-check{
+    display:inline-block;
+    margin-top:0;
+    margin-bottom:15px;
+    margin-#{$directionReverse}:15px;
+    width:auto;
+    font-weight:$medium-weight;
+    line-height:25px;
+    font-size:15px;
+    cursor:pointer;
+    input{display:none!important;}
+    span:before{
+        position:relative;
+        font-family: $font-icon;
+        display:inline-block;
+        margin-#{$directionReverse}:8px;
+        border:1px solid rgba(0,0,0,.20);
+        vertical-align:middle;
+        text-align:center;
+        @extend %fast-motion;
+    }
+}
+
+/*==== Checkbox ====*/
+.checkbox {
+    span:before{
+        @extend .ti-checkmark-round,:before ;
+        width:22px;
+        height:22px;
+        color:#FFF;
+        line-height:19px;
+        font-size:13px;
+        top:-2px;
+    }
+    input:checked + span:before{
+        border-color:$success-color;
+        color:$success-color;
+    }
+}
+
+/*==== Radio Button ====*/
+.radio-button {
+    span:before{
+        content:'';
+        width:22px;
+        height:22px;
+        -webkit-box-shadow:inset 0 0 0 4px #FFF;
+        box-shadow:inset 0 0 0 4px #FFF;
+        line-height:18px;
+        font-size:14px;
+        top:-2px;
+        border-radius:50%;
+    }
+    input:checked + span:before{
+        border-color:$success-color;
+        background-color:$success-color;
+        color:$success-color;
+    }
+}
+
+/*==== Switch Control ====*/
+.switch-control {
+    .switch {
+        height:6px;
+        width:60px;
+        display:inline-block;
+        vertical-align:middle;
+        border-radius:30px;
+        margin:0 8px;
+        background:#e5e5e5;
+        position: relative;
+        @extend %fast-motion;
+        &:before{
+            content:'';
+            border:0 none;
+            position:absolute;
+            #{$direction}:0;
+            top:50%;
+            @extend %position-center-y;
+            background:#bdbdbd;
+            border-radius:50%;
+            width:20px;
+            height:20px;
+        }
+    }
+
+    // Switch Checked
+    input:checked + .switch{
+        background: $success-color;
+        &:before{
+            #{$direction}:100%;
+            margin-#{$direction}:-15px;
+            background:$success-color;
+        }
+    }
+}
+
+/*======== Lined Form ========*/
+.form-ui.lined {
+    input:not(.btn),textarea,select,keygen,.file-input {
+        border-width: 0;
+        border-bottom-width : 1px;
+        background-color:transparent;
+        margin: 0;
+        position: relative;
+        z-index: 2;
+        padding:0;
+        &:not(.error):not(.warning):not(.success):not(.disable){border-color:rgba(0,0,0,0.20);}
+        + label {
+            font-size:13px;
+            font-weight: normal;
+            line-height: 46px;
+            margin: 0;
+            -webkit-transform: translateY(-100%);
+                    transform: translateY(-100%);
+            @extend %fast-motion;
+        }
+        &:focus + label,&.has-value + label  {
+            -webkit-transform: translateY(-150%);
+                transform: translateY(-150%);
+        }
+    }
+    
+    textarea{
+        height: 66px;
+        + label {
+            -webkit-transform: translateY(-160%);
+                transform: translateY(-160%);
+        }
+
+        &:focus + label,&.has-value + label {
+            -webkit-transform: translateY(-220%);
+                transform: translateY(-220%);
+        }
+    }
+
+    .control-icon {
+        &::before {bottom: auto;top:0;width:20px;}
+        input:not(.btn),textarea,select,keygen,.file-input,&:not(.floating-end) label {padding-#{$direction}: 25px;}
+        &.floating-end {
+            input:not(.btn),textarea,select,keygen,.file-input {padding-#{$direction}: 0;}
+        }
+    }
+}
+
+//==== Form Parts ====//
+@import 'buttons';
+@import 'progress';
+@import 'alerts';

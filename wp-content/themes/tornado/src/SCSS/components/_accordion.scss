@@ -1,0 +1,85 @@
+/*======= Accourdions =======*/
+.accordion {
+    @extend %reset;
+    margin-bottom: 30px;
+    .accordion-item {
+        /*======== Accourdion List ========*/
+        .accordion-title{
+            font-size:1rem;
+            line-height:2.2;
+            cursor: pointer;
+            &::before{
+                font-size:10px;
+                margin-#{$directionReverse}:5px;
+                display: inline-block;
+                @extend %fast-motion;
+                vertical-align: middle;
+                @if ( $page-dir == 'ltr' ) {
+                    -webkit-transform: rotate(-90deg);
+                        transform: rotate(-90deg);
+                } @else {
+                    -webkit-transform: rotate(90deg);
+                        transform: rotate(90deg);
+                }
+            }
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            font-size:14px;
+            -webkit-transition: max-height 0.7s;
+            transition: max-height 0.7s;
+        }
+        /*==== Active ====*/
+        &.active {
+            .accordion-title::before {
+                -webkit-transform: rotate(0);
+                transform: rotate(0);
+            }
+            .accordion-content{
+                overflow: auto;
+                max-height: none;
+            }
+        }
+    }
+
+    /*======== Torando Theme ========*/
+    &.tornado-accordion {
+        border:1px solid rgba(0,0,0,0.10);
+        border-bottom: 0 none;
+        .accordion-item {
+            padding:0 20px;
+            background: #FFF;
+            .accordion-title{
+                margin:0 -20px;
+                margin-bottom: 0;
+                padding:0 20px;
+                font-size:15px;
+                line-height:46px;
+                border-bottom: 1px solid rgba(0,0,0,0.10);
+                &::before{
+                    float:$directionReverse;
+                    line-height:46px;
+                    font-size:14px;
+                    -webkit-transform: rotate(0deg);
+                            transform: rotate(0deg);
+                }
+            }
+
+            &:not(:last-child){border-bottom: 1px solid rgba(0,0,0,0.10);}
+
+            &.active {
+                padding-bottom: 20px;
+                .accordion-title {
+                    background: #f9f9f9;
+                    &::before{
+                        line-height:46px;
+                    }
+                }
+                .accordion-content {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+}
