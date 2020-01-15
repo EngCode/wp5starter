@@ -3,6 +3,7 @@
     defined('ABSPATH') || exit;
     //======== Register CSS Files ========//
     function tornado_css() {
+        wp_enqueue_style('tornado-icon', get_template_directory_uri() . '/dist/css/tornado-icons.css', false , NULL , 'all'); 
         //=== RTL CSS ===//
         if ( is_rtl() ) {
             wp_enqueue_style('tornado-rtl', get_template_directory_uri() . '/dist/css/tornado-rtl.css', false , NULL , 'all'); 

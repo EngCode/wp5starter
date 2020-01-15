@@ -2,6 +2,13 @@
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
 
+    //======== Clean Scripts Attribute ======//
+    add_filter('style_loader_tag', 'remove_type_attr', 10, 2);
+    add_filter('script_loader_tag', 'remove_type_attr', 10, 2);
+    function remove_type_attr($tag, $handle) {
+        return preg_replace( "/type=['\"]text\/(javascript|css)['\"]/", '', $tag );
+    }
+
     //======== Clean Default Head Tag Files for Preformance and Security ========//
     remove_action('wp_head', 'rsd_link'); // Removing (RSD) Link [Remove it if integrate services like flicker exists]
     remove_action('wp_head', 'wlwmanifest_link'); // Removing "Windows Live Writer" link for Editing Shortcut

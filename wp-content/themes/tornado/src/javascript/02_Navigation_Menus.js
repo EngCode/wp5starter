@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /*===> Mobile Menu Submenus Toggle <===*/
-    var dropdownMob = getElements('.mobile-menu .dropdown-toggle');
+    var dropdownMob = getElements('.mobile-menu .dropdown-toggle,.mobile-menu .dropdown-item > a');
     Array.from(dropdownMob).forEach(function (dropdownMob) {
         dropdownMob.addEventListener('click', function (event) {
             event.preventDefault();
@@ -83,38 +83,32 @@ document.addEventListener('DOMContentLoaded', function () {
             var MobileMen = dropdownMob.closest('.mobile-menu');
             if (!MobileMen.matches('.custom-theme')) {
                 //==== Store Playable Elements ====//
-                var nextSib = getNextSibling(dropdownMob, 'ul') || getNextSibling(dropdownMob, '.megamenu'),
+                var nextSib = getNextSibling(dropdownMob, 'ul') || getNextSibling(dropdownMob, '.megamenu') || dropdownMob.parentNode.querySelector('ul'),
                     thisParent = dropdownMob.parentNode,
                     parentSiblings = getSiblings(thisParent);
                 //==== Check if the Clicked Menu is Activated ====//
-                if (thisParent.classList.contains('opened')) {
+                if (thisParent.classList.contains('active')) {
+                    //==== Close Dropdown ====//
+                    slideUp(nextSib,300);
                     //====> Deactivate the Menu <====//
-                    thisParent.classList.remove('opened');
-                    nextSib.classList.remove('active');
-                    //==== Remove Max Height for Transtion ====//
-                    nextSib.style.maxHeight = null;
+                    thisParent.classList.remove('active');
                 } else {
-                    thisParent.classList.add('opened');
-                    //==== Set Max Height for Transtion ====//
-                    var thisHight = nextSib.scrollHeight,
-                        padding = getComputedStyle(nextSib).padding;
-                    nextSib.style.maxHeight = thisHight + padding + "px";
-                    //==== Activate Clicked Accordion if its Not Activated ====//
-                    thisParent.classList.add('active');
                     //==== Deactivate Siblings ====//
                     Array.from(parentSiblings).forEach(function (siblings) {
                         siblings.classList.remove('active');
                         var siblingsChilds = siblings.children;
-                        //==== Remove the Max Height For Transition ====//
+                        //==== Close Dropdown ====//
                         Array.from(siblingsChilds).forEach(function (childs) {
-                            if (childs.matches('ul') || childs.matches('.megamenu')) {
-                                childs.style.maxHeight = null;
-                            }
+                            if (childs.matches('ul') || childs.matches('.megamenu')) slideUp(nextSib,300);
                         });
                     });
+                    //==== Set Max Height for Transtion ====//
+                    slideDown(nextSib,300);
+                    //==== Activate Clicked Accordion if its Not Activated ====//
+                    thisParent.classList.add('active');
                 }
             } else {
-                dropdownMob.parentNode.classList.toggle('opened');
+                dropdownMob.parentNode.classList.toggle('active');
             }
         });
     });

@@ -1,3 +1,94 @@
+/*======== Mobile Menu Mixin ========*/
+@mixin mobile-menu (
+    $menu-width : null, //====> Menu Width
+    $menu-background : null, //====> Menu Background
+    $item-padding : null, //====> Menu Item Padding
+    $item-height : null, //====> Item Height
+    $item-font-size : null, //===> Item Font Size
+    $item-active-bg : null, //====> Activated Item Background
+    $item-active-color : null, //===> Activated Item Color
+    $sub-height : null, //====> Sub Item Height
+    $sub-font-size : null, //====> Sub Item Font Size
+    $sub-bg : null, //===> Sub Item Background
+    $sub-color : null, //===> Sub Item Color
+    $divider-color : null, //====> Menu Item Border Color
+    $icon-size : null, //====> Menu Item Icons Font Size
+    $menu-direction:null, //====> Menu Direction
+) {
+    /*======== Menu Wrapper ========*/
+    .menu-content {
+        width:$menu-width;
+        background:$menu-background;
+        margin-#{$direction}:-$menu-width;
+    }
+
+    /*======== Menu Logo ========*/
+    .logo { border-bottom: 1px solid $divider-color; }
+    
+    //==== Activated Effects =====//
+    &.active .menu-content{margin-#{$menu-direction}:0;}
+
+    /*======== Menu Theme ========*/
+    ul {
+        //======== Menu Icons ========//
+        [class*="ti-"]:not(.dropdown-toggle)::before {
+            margin-#{$direction}:-#{$item-padding};
+            font-size:$icon-size;
+        }
+        /*======== Menu Items ========*/
+        li{
+            padding:0 $item-padding;
+            border-bottom:1px solid $divider-color;
+            line-height: $item-height;
+            //=== Activated Item ===//
+            &.active{
+                background:$item-active-bg;
+                color:$item-active-color;
+                ul,.megamenu{
+                    background:$sub-bg;
+                    color:$sub-color;
+                    margin-top: $item-padding/2;
+                    margin-bottom: -$item-padding/2;
+                    border-top:1px solid $divider-color;
+                    li {
+                        line-height: $sub-height;
+                        font-size:$sub-font-size
+                    }
+                }
+            }
+        }
+
+        //==== Nested Menus Button =====//
+        .dropdown-toggle {
+            height:$item-height;
+            line-height: $item-height;
+        }
+
+        /*======== Nested Menu Core ========*/
+        ul,.megamenu {
+            margin-#{$direction}:-$item-padding;
+            margin-#{$directionReverse}:-$item-padding;
+        }
+    }
+    
+    //==== Overlaps Nested Theme ====//
+    &.overlaps ul {
+        ul,.megamenu { #{$direction}:-100%; }
+        //======== Activated ========//
+        .dropdown-item.active {
+            > ul,.megamenu {
+                #{$direction}:10%;
+                background: $menu-background;
+            }
+            .dropdown-toggle {
+                #{$direction}:0;
+                background: $danger-color;
+                color:$reverse-color;
+            }
+        }
+    }
+}
+
 //==== Mobile Menu =====//
 .mobile-menu {
     position:fixed;
@@ -7,17 +98,7 @@
     height:100vh;
     z-index:999999;
     visibility: hidden;
-    /*======== Theme Assets ========*/
-    $menuWidth : 280px; //====> Menu Width
-    $menuBackground : $reverse-color; //====> Menu Background
-    $itemPadding : 1.25rem; //====> Menu Item Padding
-    $itemActiveBg : $primary-color;
-    $itemActiveColor : $reverse-color;
-    $SubBg : #f1f1f1;
-    $SubColor : $dark-color;
-    $dividerColor : rgba(0, 0, 0, .10); //====> Menu Item Border Color
-    $iconSize : 1.25rem; //====> Menu Item Icons Font Size
-
+    
     /*======== Overlay ========*/
     .overlay-close {
         position:fixed;
@@ -35,25 +116,20 @@
     /*======== Menu Wrapper ========*/
     .menu-content {
         position: relative;
-        width:$menuWidth;
         height:100vh;
-        background:$menuBackground;
         overflow-x:hidden;
         overflow-y:visible;
         @extend %fast-motion;
         z-index:2;
         margin: 0;
-        margin-#{$direction}:-$menuWidth;
     }
 
     /*======== Menu Logo ========*/
     .logo {
         display: block;
         width:100%;
-        line-height: 100px;
-        height: 100px;
+        padding:1.125rem;
         text-align: center;
-        border-bottom: 1px solid $dividerColor;
         img {
             max-width: 80%;
             max-height: 75px;
@@ -64,7 +140,6 @@
     &.active{
         visibility:visible;
         .overlay-close {opacity: 1;}
-        .menu-content{margin-#{$direction}:0;}
     }
 
     /*======== Menu Theme ========*/
@@ -76,14 +151,10 @@
             vertical-align: middle;
             width:2.5rem;
             text-align: center;
-            margin-#{$direction}:-#{$itemPadding};
-            font-size:$iconSize;
         }
         /*======== Menu Items ========*/
         li{
             position: relative;
-            padding:$itemPadding/2 $itemPadding;
-            border-bottom:1px solid $dividerColor;
             //=== List item Link ===//
             a {
                 color:inherit;
@@ -91,17 +162,11 @@
                 font-family: inherit;
             }
             //=== Activated Item ===//
-            &.opened{
-                background:$itemActiveBg;
-                color:$itemActiveColor;
-                border-bottom-width:0;
-                ul,.megamenu{
-                    background:$SubBg;
-                    color:$SubColor;
-                    margin-top: $itemPadding/2;
-                    margin-bottom: -$itemPadding/2;
-                    border-top:1px solid $dividerColor;
-                }
+            &.active { border-bottom-width:0; }
+
+             /*======== Nested Menu Core ========*/
+            &:not(.active) {
+                ul,.megamenu {display: none;}
             }
         }
 
@@ -109,57 +174,32 @@
         .dropdown-toggle {
             position: absolute;
             width:2.813rem;
-            height:2.75rem;
-            font-size:12px;
+            font-size:0.8em;
             text-align: center;
-            line-height: 2.625rem;
             display: block;
             cursor: pointer;
             #{$directionReverse}:0;
             top:0;
             @extend %fast-motion;
         }
-
-        /*======== Nested Menu Core ========*/
-        ul,.megamenu {
-            margin-#{$direction}:-$itemPadding;
-            margin-#{$directionReverse}:-$itemPadding;
-            max-height: 0;
-            overflow: hidden;
-            @extend %fast-motion;
-        }
-    }
-    
-    //==== Overlaps Nested Theme ====//
-    &.overlaps ul li {
-        ul,.megamenu {
-            position: absolute;
-            #{$directionReverse}:-100%;
-            width:90%;
-            top:0;
-            height: 100%;
-            max-height: none;
-            overflow-x:hidden;
-            overflow-y:visible;
-        }
-        //======== Activated ========//
-        &.opened {
-            position: static;
-            > ul,.megamenu {
-                #{$direction}:0;
-                z-index: 100;
-                background: $menuBackground;
-            }
-            .dropdown-toggle {
-                #{$direction}:90%;
-                width:10%;
-                top:0;
-                height: 100%;
-                background: rgba(0,0,0,.80);
-                z-index: 100;
-            }
-        }
     }
 
     *[calss*="col-"],*[calss*="box-"] {width: 100%;}
+
+    @include mobile-menu (
+        $menu-width : 280px, //====> Menu Width
+        $menu-background : $reverse-color, //====> Menu Background
+        $item-padding : 1.25rem, //====> Menu Item Padding
+        $item-height : 2.875rem, //====> Item Height
+        $item-font-size : 1rem, //===> Item Font Size
+        $item-active-bg : $primary-color, //====> Activated Item Background
+        $item-active-color : $reverse-color, //===> Activated Item Color
+        $sub-height : 2.875rem, //====> Sub Item Height
+        $sub-font-size : 0.9rem, //====> Sub Item Font Size
+        $sub-bg : #f1f1f1, //===> Sub Item Background
+        $sub-color : $dark-color, //===> Sub Item Color
+        $divider-color : rgba(0, 0, 0, .10), //====> Menu Item Border Color
+        $icon-size : 1.25rem, //====> Menu Item Icons Font Size
+        $menu-direction: $direction, //====> Menu Direction Position [left,right]
+    );
 }

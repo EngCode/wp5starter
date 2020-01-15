@@ -42,10 +42,10 @@ class PLL_CRUD_Posts {
 	 */
 	public function set_default_language( $post_id ) {
 		if ( ! $this->model->post->get_language( $post_id ) ) {
-			if ( ! empty( $_GET['new_lang'] ) && $lang = $this->model->get_language( $_GET['new_lang'] ) ) {
+			if ( ! empty( $_GET['new_lang'] ) && $lang = $this->model->get_language( sanitize_key( $_GET['new_lang'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				// Defined only on admin.
 				$this->model->post->set_language( $post_id, $lang );
-			} elseif ( ! isset( $this->pref_lang ) && ! empty( $_REQUEST['lang'] ) && $lang = $this->model->get_language( $_REQUEST['lang'] ) ) {
+			} elseif ( ! isset( $this->pref_lang ) && ! empty( $_REQUEST['lang'] ) && $lang = $this->model->get_language( sanitize_key( $_REQUEST['lang'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 				// Testing $this->pref_lang makes this test pass only on admin.
 				$this->model->post->set_language( $post_id, $lang );
 			} elseif ( ( $parent_id = wp_get_post_parent_id( $post_id ) ) && $parent_lang = $this->model->post->get_language( $parent_id ) ) {
@@ -121,6 +121,7 @@ class PLL_CRUD_Posts {
 
 				$term_ids = array_combine( $terms, $terms );
 				$languages = array_map( array( $this->model->term, 'get_language' ), $term_ids );
+				$languages = array_filter( $languages ); // Remove terms without language.
 				$languages = wp_list_pluck( $languages, 'slug' );
 				$wrong_terms = array_diff( $languages, array( $lang->slug ) );
 
@@ -207,8 +208,8 @@ class PLL_CRUD_Posts {
 	 *
 	 * @since 0.9
 	 *
-	 * @param string $file
-	 * @return string unmodified $file
+	 * @param string $file Path to the file to delete.
+	 * @return string Empty or unmodified path.
 	 */
 	public function wp_delete_file( $file ) {
 		global $wpdb;
@@ -224,9 +225,10 @@ class PLL_CRUD_Posts {
 		);
 
 		if ( ! empty( $ids ) ) {
-			// Regenerate intermediate sizes if it's an image ( since we could not prevent WP deleting them before )
+			// Regenerate intermediate sizes if it's an image ( since we could not prevent WP deleting them before ).
+			require_once ABSPATH . 'wp-admin/includes/image.php'; // In case the file is deleted outside admin.
 			wp_update_attachment_metadata( $ids[0], wp_generate_attachment_metadata( $ids[0], $file ) );
-			return ''; // Prevent deleting the main file
+			return ''; // Prevent deleting the main file.
 		}
 
 		return $file;
@@ -259,13 +261,13 @@ class PLL_CRUD_Posts {
 		$post->ID = null; // Will force the creation
 		$post->post_parent = ( $post->post_parent && $tr_parent = $this->model->post->get_translation( $post->post_parent, $lang->slug ) ) ? $tr_parent : 0;
 		$post->tax_input = array( 'language' => array( $lang->slug ) ); // Assigns the language
-		$tr_id = wp_insert_attachment( $post );
+		$tr_id = wp_insert_attachment( wp_slash( (array) $post ) );
 		remove_filter( 'pll_enable_duplicate_media', '__return_false', 99 ); // Restore automatic duplicate at upload
 
 		// Copy metadata, attached file and alternative text
 		foreach ( array( '_wp_attachment_metadata', '_wp_attached_file', '_wp_attachment_image_alt' ) as $key ) {
 			if ( $meta = get_post_meta( $post_id, $key, true ) ) {
-				add_post_meta( $tr_id, $key, $meta );
+				add_post_meta( $tr_id, $key, wp_slash( $meta ) );
 			}
 		}
 

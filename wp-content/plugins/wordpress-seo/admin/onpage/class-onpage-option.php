@@ -11,27 +11,35 @@
 class WPSEO_OnPage_Option {
 
 	/**
+	 * Indicates the data is not fetched.
+	 *
 	 * @var int
 	 */
 	const NOT_FETCHED = 99;
 
 	/**
+	 * Indicates the option is indexable.
+	 *
 	 * @var int
 	 */
 	const IS_INDEXABLE = 1;
 
 	/**
+	 * Indicates the option is not indexable.
+	 *
 	 * @var int
 	 */
 	const IS_NOT_INDEXABLE = 0;
 
 	/**
+	 * Indicates the data could not be fetched.
+	 *
 	 * @var int
 	 */
 	const CANNOT_FETCH = -1;
 
 	/**
-	 *  The name of the option where data will be stored.
+	 * The name of the option where data will be stored.
 	 *
 	 * @var string
 	 */
@@ -59,12 +67,14 @@ class WPSEO_OnPage_Option {
 	const FETCH_LIMIT = 15;
 
 	/**
-	 * @var array The Ryte option stored in the database.
+	 * The Ryte option stored in the database.
+	 *
+	 * @var array
 	 */
 	private $onpage_option;
 
 	/**
-	 * Setting the object by setting the properties
+	 * Setting the object by setting the properties.
 	 */
 	public function __construct() {
 		$this->onpage_option = $this->get_option();
@@ -102,7 +112,7 @@ class WPSEO_OnPage_Option {
 	}
 
 	/**
-	 * Check if the last fetch is within the time of 60 minutes
+	 * Check if the last fetch is within the time of 60 minutes.
 	 *
 	 * @return bool
 	 */
@@ -111,14 +121,14 @@ class WPSEO_OnPage_Option {
 	}
 
 	/**
-	 * Saving the option with the current data
+	 * Saving the option with the current data.
 	 */
 	public function save_option() {
 		update_option( self::OPTION_NAME, $this->onpage_option );
 	}
 
 	/**
-	 * Returns the value of the onpage_enabled status
+	 * Returns the value of the onpage_enabled status.
 	 *
 	 * @return bool
 	 */
@@ -132,10 +142,10 @@ class WPSEO_OnPage_Option {
 	 * @return array
 	 */
 	private function get_option() {
-		$default = array(
+		$default = [
 			self::STATUS     => self::NOT_FETCHED,
 			self::LAST_FETCH => 0,
-		);
+		];
 
 		return get_option( self::OPTION_NAME, $default );
 	}

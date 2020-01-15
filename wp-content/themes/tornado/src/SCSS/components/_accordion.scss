@@ -1,15 +1,17 @@
-/*======= Accourdions =======*/
+/*======= Accordions =======*/
 .accordion {
     @extend %reset;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
     .accordion-item {
-        /*======== Accourdion List ========*/
+        font-size:0.875rem;
+        /*======== Accordion List ========*/
         .accordion-title{
             font-size:1rem;
             line-height:2.2;
             cursor: pointer;
-            &::before{
-                font-size:10px;
+            /*======== Button Arrow || Plus ========*/
+            &::before {
+                font-size:0.6875rem;
                 margin-#{$directionReverse}:5px;
                 display: inline-block;
                 @extend %fast-motion;
@@ -23,22 +25,13 @@
                 }
             }
         }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            font-size:14px;
-            -webkit-transition: max-height 0.7s;
-            transition: max-height 0.7s;
-        }
-        /*==== Active ====*/
+        /*======== Accordion ========*/
+        &:not(.active) .accordion-content {display: none;}
+        /*==== Active Mode ====*/
         &.active {
             .accordion-title::before {
                 -webkit-transform: rotate(0);
                 transform: rotate(0);
-            }
-            .accordion-content{
-                overflow: auto;
-                max-height: none;
             }
         }
     }
@@ -47,38 +40,35 @@
     &.tornado-accordion {
         border:1px solid rgba(0,0,0,0.10);
         border-bottom: 0 none;
+        /*======== Accordion Item ========*/
         .accordion-item {
-            padding:0 20px;
-            background: #FFF;
+            background: $reverse-color;
+            /*======== Accordion Title ========*/
             .accordion-title{
-                margin:0 -20px;
                 margin-bottom: 0;
-                padding:0 20px;
-                font-size:15px;
-                line-height:46px;
+                padding:0 1.25rem;
+                font-size:0.9375rem;
+                line-height:2.875rem;
                 border-bottom: 1px solid rgba(0,0,0,0.10);
+                /*======== Button Arrow || Plus ========*/
                 &::before{
                     float:$directionReverse;
-                    line-height:46px;
-                    font-size:14px;
+                    line-height:2.875rem;
+                    font-size:0.875rem;
                     -webkit-transform: rotate(0deg);
-                            transform: rotate(0deg);
+                        transform: rotate(0deg);
                 }
             }
 
+            .accordion-content {padding:1.25rem;}
+
+            /*======== Items Divider ========*/
             &:not(:last-child){border-bottom: 1px solid rgba(0,0,0,0.10);}
 
-            &.active {
-                padding-bottom: 20px;
-                .accordion-title {
-                    background: #f9f9f9;
-                    &::before{
-                        line-height:46px;
-                    }
-                }
-                .accordion-content {
-                    margin-top: 20px;
-                }
+            /*==== Active Mode ====*/
+            &.active .accordion-title {
+                background: #f9f9f9;
+                &::before{line-height:2.875rem;}
             }
         }
     }

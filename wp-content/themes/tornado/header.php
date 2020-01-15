@@ -5,8 +5,6 @@
  * @subpackage Developing Starter Template
  * @since Tornado UI Starter 1.0
 */
-//======= Exit if Try to Access Directly =======//
-defined('ABSPATH') || exit;
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -44,7 +42,7 @@ defined('ABSPATH') || exit;
         "contactPoint" : [{
             "@type": "ContactPoint",
             "telephone": "<?php echo get_design_options('phone_number');?>",
-            "contactType": "customer service",
+            "contactType": "customer service"
         },{
             "@type": "ContactPoint",
             "telephone": "<?php echo get_design_options('phone_number_2nd');?>",
@@ -52,7 +50,7 @@ defined('ABSPATH') || exit;
         },{
             "@type": "ContactPoint",
             "telephone": "<?php echo get_design_options('phone_number');?>",
-            "contactType": "Sales",
+            "contactType": "Sales"
         }]
     }</script>
     <!-- Website Rating Data -->
@@ -66,7 +64,7 @@ defined('ABSPATH') || exit;
         },
         "description": "<?php if ( !is_home() && !is_front_page() ) { echo wp_title(); } else { echo bloginfo('description'); } ?>",
         "name": "<?php bloginfo('name'); ?>",
-        "image": "<?php echo get_meta_options('og-cover');?>",
+        "image": "<?php echo get_meta_options('og-cover');?>"
     }</script>
 </head>
 <body>

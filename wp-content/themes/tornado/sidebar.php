@@ -5,8 +5,6 @@
  * @subpackage Developing Starter Template
  * @since Tornado UI Starter 1.0
 */
-//======= Exit if Try to Access Directly =======//
-defined('ABSPATH') || exit;
 ?>
 
 <div class="col-12 col-m-4 col-l-3">

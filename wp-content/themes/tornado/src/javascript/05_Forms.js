@@ -63,51 +63,89 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     //======> Validation <======//
-    var FormElement = getElements('form');
-    Array.from(FormElement).forEach(function(formElement) {
-        formElement.addEventListener('submit', function(e) {
-            //===== Select and Loop Throgh Childs =====//
-            let childs = this.children;
-            Array.from(childs).forEach(function(child) {
-                //===== Select All Childs that Matchs =====//
-                let formControls = child.querySelectorAll('[aria-required="true"],.required,[required],.wpcf7-validates-as-required');
-                Array.from(formControls).forEach(function(formControl) {
-                    //===== Grap this Control Value =====//
-                    let controlValue = formControl.value;
-                    //===== if the Value is Empity =====//
-                    if (controlValue === '' || controlValue === null || controlValue === undefined) {
-                        //==== Add Error Class ====//
-                        formControl.classList.add('error');
-                        //==== Create Error Message ====//
-                        var errorMsg = document.createElement('span');
-                        errorMsg.classList.add('badge','danger', 'outline', 'dismiss', 'pointing-top');
-                        errorMsg.innerHTML = 'Error : This Field is Required Please Fulfill this Field.';
-                        insertAfter(errorMsg, formControl);
-                        //===== Error to Fix Submit =====//
-                        e.preventDefault();
-                    } else {
-                        formControl.classList.remove('error');
-                        formControl.classList.add('success');
-                    }
+    var formElement = getElements('form');
+    Array.from(formElement).forEach(function(formElement) {
+        if (!formElement.matches('.no-vali')) {
+            formElement.addEventListener('submit', function(e) {
+                //===== Select and Loop Throgh Childs =====//
+                let childs = this.children;
+                Array.from(childs).forEach(function(child) {
+                    //===== Select All Childs that Matchs =====//
+                    let formControls = child.querySelectorAll('[aria-required="true"],.required,[required],.wpcf7-validates-as-required');
+                    Array.from(formControls).forEach(function(formControl) {
+                        if(!formControl.matches('label')) {
+                            //======== Catch Control With Icon Wraper =======//
+                            var controlWrap = null,
+                                wraperClasses = formControl.parentNode.classList;
+                            if (wraperClasses.contains('control-icon') || wraperClasses.contains('file-input')) controlWrap = formControl.parentNode;
+                            //==== Create Error Message ====//
+                            if (pageDirection == 'ltr') {
+                                var errorMsg = 'Error : This Field is Required Please Fulfill this Field.';
+                            } else {
+                                var errorMsg = 'خطأ : هذا الحقل مطلوب يرجي املاء هذا الحقل.';
+                            }
+                            //===== Grap this Control Value =====//
+                            var controlValue = formControl.value,
+                                controlType = formControl.getAttribute('type'),
+                                errorExist = getNextSibling(controlWrap,'.error-msg') || getNextSibling(formControl,'.error-msg'),
+                                emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                            //===== if the Value is Empity =====//
+                            if (controlValue === '' || controlValue === null || controlValue === undefined) {
+                                //==== Add Error Class ====//
+                                var errorElement = '<span class="badge danger outline dismiss pointing-top error-msg">'+errorMsg+' <a href="#" class="remove-item ti-close"></a></span>';
+                                formControl.classList.add('error');
+                                if (controlWrap) {
+                                    insertAfter(errorElement, controlWrap);
+                                } else if (!errorExist) {
+                                    insertAfter(errorElement, formControl);
+                                }
+                                //===== Error to Fix Submit =====//
+                                e.preventDefault();
+                            } else if (controlType == 'email' && emailCheck.test(String(controlValue).toLowerCase()) == false) {
+                                if (pageDirection == 'rtl') {
+                                    errorMsg = 'يرجي كتابة بريد الكتروني صحيح.'
+                                } else {
+                                    errorMsg = 'The Email Address is not Currect.'
+                                }
+                                var errorElement = '<span class="badge danger outline dismiss pointing-top error-msg">'+errorMsg+' <a href="#" class="remove-item ti-close"></a></span>';
+                                //==== Add Error Class ====//
+                                formControl.classList.add('error');
+                                if (controlWrap) {
+                                    insertAfter(errorElement, controlWrap);
+                                } else if (!errorExist) {
+                                    insertAfter(errorElement, formControl);
+                                }
+                                //===== Error to Fix Submit =====//
+                                e.preventDefault();
+                            } else {
+                                if (errorExist) errorExist.remove();
+                                //==== Clear Error Message and add Success Class ====//
+                                formControl.classList.remove('error');
+                                formControl.classList.add('success');
+                                //==== Redirect to Success Page ====//
+                                if(formElement.hasAttribute('data-success')) {
+                                    var SuccessURL = formElement.getAttribute('data-success'),
+                                        timeOut = formElement.getAttribute('data-timeout') || 500;
+                                    //====> Redirect
+                                    setTimeout(function(){
+                                        window.location = SuccessURL;
+                                    }, timeOut);
+                                } else {
+                                    var rediInput = formControl.querySelector('input[name="success-redirect"]');
+                                    if (rediInput !== null) {
+                                        var SuccessURL = formElement.getAttribute('value'),
+                                        timeOut = formElement.getAttribute('data-timeout') || 500;
+                                        //====> Redirect
+                                        setTimeout(function(){
+                                            window.location = SuccessURL;
+                                        }, timeOut);
+                                    }
+                                }
+                            }
+                        }
+                    });
                 });
             });
-        });
+        }
     });
-
-    //====== Colors Checkbox's ======//
-    // $('.color-checkbox').each(function(){
-    //    var color = $(this).attr('data-color');
-    //    $(this).css('background','#' + color);
-    // });
-
-    // /*====== Quantity Input =======*/
-    // $('body').on('click','.quantity-input .increase',function(){
-    //     var input = $(this).siblings('input');
-    //     input.val( (parseInt(input.val()) + 1) );
-    // });
-
-    // $('body').on('click','.quantity-input .dicrease',function(){
-    //     var input = $(this).siblings('input');
-    //     input.val( (parseInt(input.val()) - 1) );
-    // });
 });

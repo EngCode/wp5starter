@@ -2,17 +2,17 @@
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
 
-    //======== Docementation Post Type ========//
-    function docementation_cpt() {
+    //======== Blog Post Type ========//
+    function blog_cpt() {
         //===== CPT Labels ====//
         $labels = array(
-            'name'                => __( 'docementation', 'tornado'),
-            'singular_name'       => __( 'docementation', 'tornado'),
-            'menu_name'           => __( 'docementation', 'tornado'),
-            'all_items'           => __( 'All Posts', 'tornado'),
+            'name'                => __( 'post', 'tornado'),
+            'singular_name'       => __( 'post', 'tornado'),
+            'menu_name'           => __( 'Blog', 'tornado'),
+            'all_items'           => __( 'All Blogs', 'tornado'),
             'view_item'           => __( 'View', 'tornado'),
-            'add_new_item'        => __( 'Add Docement', 'tornado'),
-            'add_new'             => __( 'Add Docement', 'tornado'),
+            'add_new_item'        => __( 'Add Blog', 'tornado'),
+            'add_new'             => __( 'Add Blog', 'tornado'),
             'edit_item'           => __( 'Edit', 'tornado'),
             'update_item'         => __( 'Update', 'tornado'),
             'search_items'        => __( 'Search in Posts', 'tornado'),
@@ -22,9 +22,9 @@
         //===== CPT Arguments ====//
         $args = array(
             'labels' => $labels,
-            'rewrite' => array('slug' => 'docementation'),
-            'menu_icon' => 'dashicons-sos',
-            'supports' => array( 'title', 'editor' , 'excerpt', 'author', 'thumbnail', 'revisions'),
+            'rewrite' => array('slug' => 'post'),
+            'menu_icon' => 'dashicons-format-aside',
+            'supports' => array( 'title', 'editor' , 'excerpt', 'thumbnail', 'revisions'),
             'public' => true,
             'query_var' => true,
             'has_archive' => true,
@@ -34,16 +34,15 @@
             'show_in_rest'  => true,
             'show_in_nav_menus'  => true,
             'exclude_from_search' => false,
-            'taxonomies' => array('docementation-categories'),
+            'taxonomies' => array('tag','category'),
         );
 
-        register_post_type('docementation', $args);
+        register_post_type('post', $args);
     }
-    //==== Hooking The Custom Post Type ====//
-    add_action( 'init', 'docementation_cpt' );
+    add_action( 'init', 'blog_cpt' );
 
-    //======== docementation Categories ========//
-	function docs_categories() {
+    //======== Custom Taxonomy Example ========//
+	function tax_name() {
 		//===== Taxonomies Labels ====//
 		$labels = array(
 			'label'             => __( 'Categories', 'tornado'),
@@ -73,5 +72,5 @@
 		register_taxonomy( 'docementation-categories', array( 'docementation' ), $args );
 	}
 	//==== Hooking The Custom Taxonomies ====//
-	add_action( 'init', 'docs_categories', 0 );
+	add_action( 'init', 'tax_name', 0 );
 ?>

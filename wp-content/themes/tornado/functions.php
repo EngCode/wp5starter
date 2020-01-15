@@ -59,14 +59,6 @@
         }
     }
 
-    //==== SVG Support ====//
-    function cc_mime_types($mimes) {
-        $mimes['svg'] = 'image/svg+xml';
-        return $mimes;
-    }
-
-    add_filter('upload_mimes', 'cc_mime_types');
-    
     /*======= Get Category Name =======*/
     function get_category_name() {
         foreach((get_the_category()) as $category) { echo $category->cat_name . ' '; }
@@ -167,7 +159,7 @@
     //======== Disable Contact 7 CSS/JS ========//
     add_filter( 'wpcf7_load_js', '__return_false' );
     add_filter( 'wpcf7_load_css', '__return_false' );
-    
+
     //===== Contact 7 Dynamic Data Passing =====//
     add_filter( 'shortcode_atts_wpcf7', 'Order_Service_Input_Attribute', 10, 3 );
     function Order_Service_Input_Attribute( $out, $pairs, $atts ) {
@@ -175,4 +167,52 @@
         if ( isset($atts[$my_attr]) ) { $out[$my_attr] = $atts[$my_attr]; }
         return $out;
     }
+
+    //======== SVG Support ========//
+    function add_file_types_to_uploads($file_types){
+        $new_filetypes = array();
+        $new_filetypes['svg'] = 'image/svg+xml';
+        $file_types = array_merge($file_types, $new_filetypes );
+        return $file_types;
+    }
+    add_action('upload_mimes', 'add_file_types_to_uploads');
+
+    //======== SVG Support Alternative ========//
+    function cc_mime_types($mimes) {
+        $mimes['svg'] = 'image/svg+xml';
+        return $mimes;
+    }
+    add_filter('upload_mimes', 'cc_mime_types');
+
+    //========= Check Polylang ========//
+    if (!function_exists('pll__')) {
+        function pll__($string,$domain) {
+           return __($string,$domain);
+        }
+    }
+
+    //========= Admin Menu Oprimizer ========//
+    function admin_menu_optimizer(){ 
+        //====> Dashboard
+        remove_menu_page( 'index.php' );
+        //====> Posts
+        remove_menu_page( 'edit.php' );
+        //====> Media
+        remove_menu_page( 'upload.php' );
+        //====> Comments
+        remove_menu_page( 'edit-comments.php' );
+        //====> Appearance
+        remove_menu_page( 'themes.php' );
+        //=====> Add Menus
+        add_menu_page(pll__('Menus Settings', 'tornado' ),'Menus Settings','manage_options','nav-menus.php','','dashicons-menu',20);
+        add_menu_page(pll__('Theme Settings', 'tornado' ),'Theme Settings','manage_options','customize.php','','dashicons-admin-appearance',21);
+        //====> Plugins
+        remove_menu_page( 'plugins.php' );
+        //====> Tools
+        remove_menu_page( 'tools.php' );
+        //====> Advanced Custom Fields
+        remove_menu_page('edit.php?post_type=acf-field-group');        
+    }
+
+    add_action( 'admin_menu', 'admin_menu_optimizer' );
 ?>
