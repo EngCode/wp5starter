@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Themes - Twenty Seventeen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-02-03 23:53:45+0000\n"
+"PO-Revision-Date: 2019-04-26 19:47:09+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,6 +11,10 @@ msgstr ""
 "Language: ar\n"
 "Project-Id-Version: Themes - Twenty Seventeen\n"
 
+#. Description of the theme
+msgid "Twenty Seventeen brings your site to life with header video and immersive featured images. With a focus on business sites, it features multiple sections on the front page as well as widgets, navigation and social menus, a logo, and more. Personalize its asymmetrical grid with a custom color scheme and showcase your multimedia content with post formats. Our default theme for 2017 works great in many languages, for any abilities, and on any device."
+msgstr "قالب Twenty Seventeen يضفي الحيوية على موقعك من خلال فيديوهات رأسية وصور مميزة غامرة. من خلال التركيز على مواقع الأعمال، فهي تتميز بأقسام متعددة في الصفحة الأولى بالإضافة إلى عناصر ودجات، والتصفح والقوائم الاجتماعية وشعار والمزيد. قم بإضفاء الطابع الشخصي وأعرض أعمالك باستخدام نظام ألوان مخصص وعرض محتوى الوسائط المتعددة الخاص بك بتنسيقات المقال. يعمل القالب لعام 2017 بشكل رائع مع العديد من اللغات، ولأي قدرات ، وعلى أي جهاز."
+
 #. Theme Name of the theme
 msgid "Twenty Seventeen"
 msgstr "Twenty Seventeen"
@@ -18,6 +22,10 @@ msgstr "Twenty Seventeen"
 #: template-parts/footer/footer-widgets.php:18
 msgid "Footer"
 msgstr "تذييل"
+
+#: functions.php:338
+msgid "Add widgets here to appear in your sidebar on blog posts and archive pages."
+msgstr "إضافة ودجات هنا لتظهر في الشريط الجانبي في مقالات المدونة وصفحات الأرشيف."
 
 #: sidebar.php:18 functions.php:336
 msgid "Blog Sidebar"
@@ -50,6 +58,14 @@ msgstr "إيقاف مؤقت لفيديو الخلفية"
 #: inc/custom-header.php:127
 msgid "Play background video"
 msgstr "تشغيل فيديو الخلفية"
+
+#: inc/template-tags.php:151
+msgid "Front Page Section %1$s Placeholder"
+msgstr "قسم الواجهة الأمامية %1$s تسمية نائبة"
+
+#: inc/customizer.php:109
+msgid "When the two-column layout is assigned, the page title is in one column and content is in the other."
+msgstr "عند تعيين التصميم ذي العمودين، يكون عنوان الصفحة في عمود واحد ويكون المحتوى في العمود الآخر."
 
 #: single.php:34
 msgid "Next Post"
@@ -89,6 +105,15 @@ msgstr "يُرجى تحديد اسم ملف أيقونة SVG."
 #: inc/icon-functions.php:39
 msgid "Please define default parameters in the form of an array."
 msgstr "يُرجى تحديد المعلمات الافتراضية في شكل مصفوفة."
+
+#: inc/customizer.php:143
+msgid "Select pages to feature in each area from the dropdowns. Add an image to a section by setting a featured image in the page editor. Empty sections will not be displayed."
+msgstr "حدد الصفحات المراد عرضها في كل منطقة من القائمة المنسدلة. أضف صورة إلى قسم عن طريق تعيين صورة مميزة في محرر الصفحة. لن يتم عرض الأقسام الفارغة."
+
+#. translators: %d is the front page section number
+#: inc/customizer.php:142
+msgid "Front Page Section %d Content"
+msgstr "قسم الواجهة الأمامية %d محتوى"
 
 #: inc/customizer.php:112 inc/customizer.php:171
 msgid "Two Column"
@@ -230,7 +255,7 @@ msgstr "الصفحات:"
 msgid "Menu"
 msgstr "القائمة"
 
-#: header.php:27
+#: header.php:28
 msgid "Skip to content"
 msgstr "التجاوز إلى المحتوى"
 

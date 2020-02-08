@@ -63,10 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     //======> Validation <======//
-    var formElement = getElements('form');
+    var formElement = getElements('.wpcf7');
     Array.from(formElement).forEach(function(formElement) {
         if (!formElement.matches('.no-vali')) {
-            formElement.addEventListener('submit', function(e) {
+            formElement.addEventListener('wpcf7submit', function(e) {
                 //===== Select and Loop Throgh Childs =====//
                 let childs = this.children;
                 Array.from(childs).forEach(function(child) {
@@ -123,24 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 formControl.classList.remove('error');
                                 formControl.classList.add('success');
                                 //==== Redirect to Success Page ====//
-                                if(formElement.hasAttribute('data-success')) {
-                                    var SuccessURL = formElement.getAttribute('data-success'),
-                                        timeOut = formElement.getAttribute('data-timeout') || 500;
-                                    //====> Redirect
-                                    setTimeout(function(){
-                                        window.location = SuccessURL;
-                                    }, timeOut);
-                                } else {
-                                    var rediInput = formControl.querySelector('input[name="success-redirect"]');
-                                    if (rediInput !== null) {
-                                        var SuccessURL = formElement.getAttribute('value'),
-                                        timeOut = formElement.getAttribute('data-timeout') || 500;
-                                        //====> Redirect
-                                        setTimeout(function(){
-                                            window.location = SuccessURL;
-                                        }, timeOut);
-                                    }
-                                }
+                                thanksRedirect();
                             }
                         }
                     });

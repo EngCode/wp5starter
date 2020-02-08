@@ -39,7 +39,7 @@
 
         register_post_type('post', $args);
     }
-    add_action( 'init', 'blog_cpt' );
+    // add_action( 'init', 'blog_cpt' );
 
     //======== Custom Taxonomy Example ========//
 	function tax_name() {
@@ -72,5 +72,5 @@
 		register_taxonomy( 'docementation-categories', array( 'docementation' ), $args );
 	}
 	//==== Hooking The Custom Taxonomies ====//
-	add_action( 'init', 'tax_name', 0 );
+	// add_action( 'init', 'tax_name', 0 );
 ?>

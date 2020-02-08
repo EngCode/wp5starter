@@ -26,7 +26,7 @@
         update_option('address',__('Company / Agnecy Full Address Goes Here', 'tornado') );
     }
 
-    add_action('after_switch_theme', 'customizer_defaults');
+    // add_action('after_switch_theme', 'customizer_defaults');
 
     //=== Checkbox Validation ===//
     function chkbox_sanitization( $input ) {
