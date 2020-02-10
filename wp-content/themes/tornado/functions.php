@@ -26,7 +26,6 @@
     //==== Editor Register ====//
     include( dirname(__FILE__) . '/src/php/gutenberg.php' );
 
-
     //======== Adding Theme Supports ========//
     function theme_support() {
         add_theme_support( 'post-thumbnails' );
@@ -157,13 +156,20 @@
     });
 
     //======== Disable Contact 7 CSS/JS ========//
-    add_filter( 'wpcf7_load_js', '__return_false' );
+    // add_filter( 'wpcf7_load_js', '__return_false' );
     add_filter( 'wpcf7_load_css', '__return_false' );
 
     //===== Contact 7 Dynamic Data Passing =====//
-    add_filter( 'shortcode_atts_wpcf7', 'Order_Service_Input_Attribute', 10, 3 );
-    function Order_Service_Input_Attribute( $out, $pairs, $atts ) {
-        $my_attr = 'offer-title';
+    add_filter( 'shortcode_atts_wpcf7', 'page_title_input_attribute', 10, 3 );
+    function page_title_input_attribute( $out, $pairs, $atts ) {
+        $my_attr = 'page-title';
+        if ( isset($atts[$my_attr]) ) { $out[$my_attr] = $atts[$my_attr]; }
+        return $out;
+    }
+
+    add_filter( 'shortcode_atts_wpcf7', 'subject_title_input_attribute', 10, 3 );
+    function page_title_input_attribute( $out, $pairs, $atts ) {
+        $my_attr = 'subject-title';
         if ( isset($atts[$my_attr]) ) { $out[$my_attr] = $atts[$my_attr]; }
         return $out;
     }
@@ -207,9 +213,9 @@
         add_menu_page(pll__('Menus Settings', 'tornado' ),'Menus Settings','manage_options','nav-menus.php','','dashicons-menu',20);
         add_menu_page(pll__('Theme Settings', 'tornado' ),'Theme Settings','manage_options','customize.php','','dashicons-admin-appearance',21);
         //====> Plugins
-        remove_menu_page( 'plugins.php' );
+        // remove_menu_page( 'plugins.php' );
         //====> Tools
-        remove_menu_page( 'tools.php' );
+        // remove_menu_page( 'tools.php' );
         //====> Advanced Custom Fields
         remove_menu_page('edit.php?post_type=acf-field-group');        
     }
