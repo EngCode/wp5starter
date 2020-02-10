@@ -15,9 +15,9 @@ class WPSEO_Redirect_Presence_Validation extends WPSEO_Redirect_Abstract_Validat
 	 * - For a 410 and 451 type redirect the target isn't necessary.
 	 * - For all other redirect types the target is required.
 	 *
-	 * @param WPSEO_Redirect $redirect     The redirect to validate.
-	 * @param WPSEO_Redirect $old_redirect The old redirect to compare.
-	 * @param array|null     $redirects    Unused.
+	 * @param WPSEO_Redirect      $redirect     The redirect to validate.
+	 * @param WPSEO_Redirect|null $old_redirect The old redirect to compare.
+	 * @param array|null          $redirects    Unused.
 	 *
 	 * @return bool
 	 */

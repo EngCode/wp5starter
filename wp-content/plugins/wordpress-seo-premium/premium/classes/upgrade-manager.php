@@ -84,6 +84,10 @@ class WPSEO_Upgrade_Manager {
 		if ( version_compare( $version_number, '12.8', '<' ) ) {
 			add_action( 'init', [ 'WPSEO_Premium_Prominent_Words_Recalculation_Notifier', 'upgrade_12_8' ], 12 );
 		}
+
+		if ( version_compare( $version_number, '13.0-RC0', '<' ) ) {
+			add_action( 'init', [ 'WPSEO_Redirect_Upgrade', 'upgrade_13_0' ], 12 );
+		}
 	}
 
 	/**

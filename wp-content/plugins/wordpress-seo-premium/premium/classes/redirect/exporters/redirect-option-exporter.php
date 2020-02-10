@@ -41,7 +41,7 @@ class WPSEO_Redirect_Option_Exporter implements WPSEO_Redirect_Exporter {
 	 *
 	 * @param WPSEO_Redirect $redirect The redirect to format.
 	 *
-	 * @return mixed
+	 * @return array
 	 */
 	public function format( WPSEO_Redirect $redirect ) {
 		return [

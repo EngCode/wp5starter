@@ -28,7 +28,8 @@ final class WPSEO_Premium_Asset_JS_L10n {
 	 * Returns translations necessary for JS files.
 	 *
 	 * @param string $component The component to retrieve the translations for.
-	 * @return object The translations in a Jed format for JS files.
+	 * @return object|null The translations in a Jed format for JS files or null
+	 *                     if the translation file could not be found.
 	 */
 	protected function get_translations( $component ) {
 		$locale = WPSEO_Language_Utils::get_user_locale();

@@ -85,7 +85,7 @@ class WPSEO_Post_Watcher extends WPSEO_Watcher implements WPSEO_WordPress_Integr
 	/**
 	 * Detect if the slug changed, hooked into 'post_updated'.
 	 *
-	 * @param integer $post_id     The ID of the post.
+	 * @param int     $post_id     The ID of the post.
 	 * @param WP_Post $post        The post with the new values.
 	 * @param WP_Post $post_before The post with the previous values.
 	 *
@@ -110,7 +110,7 @@ class WPSEO_Post_Watcher extends WPSEO_Watcher implements WPSEO_WordPress_Integr
 		 * @deprecated 12.9.0. Use the {@see 'Yoast\WP\SEO\post_redirect_slug_change'} filter instead.
 		 *
 		 * @api bool    Determines if a redirect should be created for this post slug change.
-		 * @api integer The ID of the post.
+		 * @api int     The ID of the post.
 		 * @api WP_Post The current post object.
 		 * @api WP_Post The previous post object.
 		 */
@@ -130,7 +130,7 @@ class WPSEO_Post_Watcher extends WPSEO_Watcher implements WPSEO_WordPress_Integr
 		 * @since 12.9.0
 		 *
 		 * @api bool    Determines if a redirect should be created for this post slug change.
-		 * @api integer The ID of the post.
+		 * @api int     The ID of the post.
 		 * @api WP_Post The current post object.
 		 * @api WP_Post The previous post object.
 		 */
@@ -239,7 +239,7 @@ class WPSEO_Post_Watcher extends WPSEO_Watcher implements WPSEO_WordPress_Integr
 	/**
 	 * Checks whether the given post is public or not.
 	 *
-	 * @param integer $post_id The current post ID.
+	 * @param int $post_id The current post ID.
 	 *
 	 * @return bool
 	 */
@@ -285,7 +285,7 @@ class WPSEO_Post_Watcher extends WPSEO_Watcher implements WPSEO_WordPress_Integr
 	/**
 	 * Offer to create a redirect from the post that is about to get trashed.
 	 *
-	 * @param integer $post_id The current post ID.
+	 * @param int $post_id The current post ID.
 	 */
 	public function detect_post_trash( $post_id ) {
 
@@ -312,7 +312,7 @@ class WPSEO_Post_Watcher extends WPSEO_Watcher implements WPSEO_WordPress_Integr
 	/**
 	 * Offer to create a redirect from the post that is about to get  restored from the trash.
 	 *
-	 * @param integer $post_id The current post ID.
+	 * @param int $post_id The current post ID.
 	 */
 	public function detect_post_untrash( $post_id ) {
 		$redirect = $this->check_if_redirect_needed( $post_id, true );
@@ -338,7 +338,7 @@ class WPSEO_Post_Watcher extends WPSEO_Watcher implements WPSEO_WordPress_Integr
 	/**
 	 * Offer to create a redirect from the post that is about to get deleted.
 	 *
-	 * @param integer $post_id The current post ID.
+	 * @param int $post_id The current post ID.
 	 */
 	public function detect_post_delete( $post_id ) {
 
@@ -376,8 +376,8 @@ class WPSEO_Post_Watcher extends WPSEO_Watcher implements WPSEO_WordPress_Integr
 	 *
 	 * This method will check if URL as redirect already exists.
 	 *
-	 * @param integer $post_id      The current post ID.
-	 * @param bool    $should_exist Boolean to determine if the URL should be exist as a redirect.
+	 * @param int  $post_id      The current post ID.
+	 * @param bool $should_exist Boolean to determine if the URL should be exist as a redirect.
 	 *
 	 * @return WPSEO_Redirect|string|bool
 	 */

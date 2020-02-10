@@ -51,7 +51,7 @@ class WPSEO_Redirect_Option {
 	/**
 	 * Constructor.
 	 *
-	 * @param boolean $retrieve_redirects Whether to retrieve the redirects on construction.
+	 * @param bool $retrieve_redirects Whether to retrieve the redirects on construction.
 	 */
 	public function __construct( $retrieve_redirects = true ) {
 		if ( $retrieve_redirects ) {

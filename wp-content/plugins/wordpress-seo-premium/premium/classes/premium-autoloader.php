@@ -109,7 +109,7 @@ class WPSEO_Premium_Autoloader {
 		$file_name = $this->get_file_name( strtolower( $class ) );
 
 		// Full file path.
-		$class_path = dirname( __FILE__ ) . '/' . $this->directory;
+		$class_path = __DIR__ . '/' . $this->directory;
 
 		// Match against suffix patterns, if any are present.
 		if ( ! empty( $this->suffix_patterns_regex ) && preg_match( $this->suffix_patterns_regex, $class, $matches ) ) {

@@ -20,9 +20,9 @@ class WPSEO_Premium_Expose_Shortlinks implements WPSEO_WordPress_Integration {
 	/**
 	 * Filter that adds the keyword synonyms shortlink to the localization object.
 	 *
-	 * @param (array) $input Admin localization object.
+	 * @param array $input Admin localization object.
 	 *
-	 * @return (array) Admin localization object.
+	 * @return array Admin localization object.
 	 */
 	public function expose_shortlinks( $input ) {
 		$input['shortlinks.keyword_synonyms_info'] = WPSEO_Shortlinker::get( 'https://yoa.st/kd1' );

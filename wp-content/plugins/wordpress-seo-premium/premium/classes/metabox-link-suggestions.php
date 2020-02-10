@@ -59,7 +59,7 @@ class WPSEO_Metabox_Link_Suggestions implements WPSEO_WordPress_Integration {
 	 *
 	 * @param string $post_type The post type for which to check if the link suggestions are available.
 	 *
-	 * @return boolean Whether the link suggestions are available for the given post type.
+	 * @return bool Whether the link suggestions are available for the given post type.
 	 */
 	public function is_available( $post_type ) {
 		$allowed_post_types = $this->get_post_types();

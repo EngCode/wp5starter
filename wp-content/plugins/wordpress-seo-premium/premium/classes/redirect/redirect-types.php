@@ -19,7 +19,7 @@ class WPSEO_Redirect_Types {
 	/**
 	 * Returns the redirect types.
 	 *
-	 * @return array Array with the redirect types.
+	 * @return string[] Array with the redirect types.
 	 */
 	public function get() {
 		$redirect_types = [

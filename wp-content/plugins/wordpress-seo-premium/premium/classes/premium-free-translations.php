@@ -39,7 +39,7 @@ class WPSEO_Premium_Free_Translations implements WPSEO_WordPress_Integration {
 		 * The capitalized json data defines the array keys, therefore we need to check and define these as such.
 		 */
 		$plugins = json_decode( $args['body']['plugins'], true );
-		foreach ( $plugins['plugins'] as $slug => $data ) {
+		foreach ( $plugins['plugins'] as $data ) {
 			if ( isset( $data['Name'] ) && $data['Name'] === 'Yoast SEO' ) {
 				return $args;
 			}

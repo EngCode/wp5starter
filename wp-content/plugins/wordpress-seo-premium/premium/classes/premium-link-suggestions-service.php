@@ -9,6 +9,7 @@
  * Handles the actual requests to the prominent words endpoints.
  */
 class WPSEO_Premium_Link_Suggestions_Service {
+
 	const CACHE_PREFIX = 'wpseo_link_suggestions_';
 
 	/**
@@ -89,7 +90,7 @@ class WPSEO_Premium_Link_Suggestions_Service {
 		$results = wp_list_pluck( $results, 'post_id' );
 
 		// Loop through all suggestions and add the isCornerstone flag.
-		foreach ( $suggestions as & $suggestion ) {
+		foreach ( $suggestions as &$suggestion ) {
 			$suggestion['isCornerstone'] = in_array( $suggestion['id'], $results, false );
 		}
 		// Cleanup referenced value.
@@ -159,14 +160,13 @@ class WPSEO_Premium_Link_Suggestions_Service {
 	 * @return WP_Query The query to retrieve the posts for the prominent word.
 	 */
 	private function retrieve_posts( $prominent_word_id ) {
-		$query_args  = [
+		$query_args = [
 			// phpcs:ignore WordPress.DB.SlowDBQuery -- Unavoidable.
 			'tax_query'    => $this->get_tax_query( $prominent_word_id ),
 			'post_status'  => 'publish',
 		];
-		$posts_query = new WP_Query( $query_args );
 
-		return $posts_query;
+		return new WP_Query( $query_args );
 	}
 
 	/**

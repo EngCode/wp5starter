@@ -35,7 +35,7 @@ class WPSEO_Premium {
 	 *
 	 * @var string
 	 */
-	const PLUGIN_VERSION_NAME = '12.9.1';
+	const PLUGIN_VERSION_NAME = '13.0';
 
 	/**
 	 * Machine readable version for determining whether an upgrade is needed.
@@ -429,7 +429,7 @@ class WPSEO_Premium {
 	 *
 	 * @param string[] $classes The current classes for the indicator.
 	 *
-	 * @returns string[] The new classes for the indicator.
+	 * @return string[] The new classes for the indicator.
 	 */
 	public function change_premium_indicator( $classes ) {
 		$class_no = array_search( 'wpseo-premium-indicator--no', $classes, true );

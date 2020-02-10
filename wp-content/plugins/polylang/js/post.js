@@ -1,6 +1,4 @@
-/**
- * Tag suggest in quick edit
- */
+// tag suggest in quick edit
 (function( $ ){
 	$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
 		if ( 'string' === typeof options.data && -1 !== options.data.indexOf( 'action=ajax-tag-search' ) && ( lang = $( ':input[name="inline_lang_choice"]' ).val() ) ) {
@@ -9,9 +7,7 @@
 	});
 })( jQuery );
 
-/**
- * Quick edit
- */
+// quick edit
 (function( $ ) {
 	$( document ).bind( 'DOMNodeInserted', function( e ) {
 		var t = $( e.target );
@@ -65,10 +61,8 @@
 	});
 })( jQuery );
 
-/**
- * Update rows of translated posts when the language is modified in quick edit
- * Acts on ajaxSuccess event
- */
+// update rows of translated posts when the language is modified in quick edit
+// acts on ajaxSuccess event
 (function( $ ) {
 	$( document ).ajaxSuccess(function( event, xhr, settings ) {
 		function update_rows( post_id ) {
@@ -100,7 +94,7 @@
 			});
 		}
 
-		if ( 'string' == typeof( settings.data ) ) { // Need to check the type due to block editor sometime sending FormData objects
+		if ( 'string' == typeof( settings.data ) ) { // Need to check the type due to Gutenberg sometime sending FormData objects
 			var data = wpAjax.unserialize( settings.data ); // what were the data sent by the ajax request?
 			if ( 'undefined' != typeof( data['action'] ) && 'inline-save' == data['action'] ) {
 				update_rows( data['post_ID'] );
@@ -108,67 +102,3 @@
 		}
 	});
 })( jQuery );
-
-/**
- * Media list table
- * When clicking on attach link, filters find post list per media language
- */
-(function( $ ){
-	$.ajaxPrefilter( function ( options, originalOptions, jqXHR ) {
-		if ( 'string' === typeof options.data && -1 !== options.data.indexOf( 'action=find_posts' ) ) {
-			options.data = 'pll_post_id=' + $( '#affected' ).val() + '&' + options.data;
-		}
-	});
-})( jQuery )
-
-
-/**
- * Bulk translate
- */
-jQuery( document ).ready( function( $ ) {
-	var t = this;
-
-	$( '.editinline' ).click( function(){
-		$( '#pll-translate' ).find( '.cancel' ).click(); // Close the form on quick edit
-	} );
-
-	$( '#doaction, #doaction2' ).click( function( e ){
-		t.whichBulkButtonId = $( this ).attr( 'id' );
-		var n = t.whichBulkButtonId.substr( 2 );
-
-		if ( 'pll_translate' === $( 'select[name="' + n + '"]' ).val() ) {
-			e.preventDefault();
-
-			if ( typeof inlineEditPost !== 'undefined' ) { // Not available for media.
-				inlineEditPost.revert(); // Close Bulk edit and Quick edit if open.
-			}
-
-			$( '#pll-translate td' ).attr( 'colspan', $( 'th:visible, td:visible', '.widefat:first thead' ).length );
-			$( 'table.widefat tbody' ).prepend( $( '#pll-translate' ) ).prepend( '<tr class="hidden"></tr>' ); // The hidden tr allows to keep the background color
-		} else {
-			$( '#pll-translate' ).find( '.cancel' ).click(); // Close the form on any other bulk action
-		}
-	} );
-
-	// Cancel
-	$( '#pll-translate' ).on( 'click', '.cancel', function(){
-		$( '#pll-translate' ).siblings( '.hidden' ).remove();
-		$( '#pll-bulk-translate' ).append( $( '#pll-translate' ) );
-
-		// Move focus back to the Bulk Action button that was activated.
-		$( '#' + t.whichBulkButtonId ).focus();
-	} );
-
-	// Act when pressing enter or esc
-	$( '#pll-translate' ).keydown( function( event ){
-		if ( 13 === event.keyCode && ! $( event.target ).hasClass( 'cancel' ) ) {
-			event.preventDefault();
-			$( this ).find( 'input[type=submit]' ).click();
-		}
-
-		if ( 27 === event.keyCode ) {
-			event.preventDefault();
-			$( this ).find( '.cancel' ).click();
-		}
-	} );
-} );

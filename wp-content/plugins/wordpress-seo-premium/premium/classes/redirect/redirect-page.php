@@ -203,8 +203,8 @@ class WPSEO_Redirect_Page {
 	 * The server should always be apache. And the php redirects have to be enabled or in case of a separate
 	 * file it should be disabled.
 	 *
-	 * @param boolean $disable_php_redirect Are the php redirects disabled.
-	 * @param boolean $separate_file        Value of the separate file.
+	 * @param bool $disable_php_redirect Are the php redirects disabled.
+	 * @param bool $separate_file        Value of the separate file.
 	 *
 	 * @return bool
 	 */

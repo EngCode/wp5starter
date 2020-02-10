@@ -112,8 +112,8 @@ class WPSEO_Term_Watcher extends WPSEO_Watcher implements WPSEO_WordPress_Integr
 	/**
 	 * Detect if the slug changed, hooked into 'post_updated'.
 	 *
-	 * @param integer  $term_id  The term id.
-	 * @param integer  $tt_id    The term taxonomy id.
+	 * @param int      $term_id  The term id.
+	 * @param int      $tt_id    The term taxonomy id.
 	 * @param stdClass $taxonomy Object with the values of the taxonomy.
 	 *
 	 * @return bool
@@ -174,7 +174,7 @@ class WPSEO_Term_Watcher extends WPSEO_Watcher implements WPSEO_WordPress_Integr
 	/**
 	 * Offer to create a redirect from the term that is about to get deleted.
 	 *
-	 * @param integer $term_id The term id that will be deleted.
+	 * @param int $term_id The term id that will be deleted.
 	 */
 	public function detect_term_delete( $term_id ) {
 		// When term is a menu don't show the redirect creation notice.

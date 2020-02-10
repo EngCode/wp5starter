@@ -80,7 +80,7 @@ class WPSEO_Custom_Fields_Plugin implements WPSEO_WordPress_Integration {
 	 *
 	 * @codeCoverageIgnore Method relies on dependencies.
 	 *
-	 * @return array|null|WP_Post Returns a post if found, otherwise returns an empty array.
+	 * @return WP_Post|array|null Returns a post if found, otherwise returns an empty array.
 	 */
 	protected function get_post() {
 		$post = filter_input( INPUT_GET, 'post' );
@@ -106,8 +106,7 @@ class WPSEO_Custom_Fields_Plugin implements WPSEO_WordPress_Integration {
 	 */
 	protected function get_titles_from_options() {
 		$option_name = WPSEO_Options::get_option_instance( 'wpseo_titles' )->option_name;
-		$titles      = get_option( $option_name, [] );
 
-		return $titles;
+		return get_option( $option_name, [] );
 	}
 }

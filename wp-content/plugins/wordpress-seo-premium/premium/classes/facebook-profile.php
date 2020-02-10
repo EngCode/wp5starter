@@ -92,7 +92,7 @@ class WPSEO_Facebook_Profile {
 	 *
 	 * @param string $facebook_profile The Facebook profile to look for.
 	 *
-	 * @return string|boolean
+	 * @return string|bool
 	 */
 	private function get_cached_name( $facebook_profile ) {
 		$facebook_profiles = get_transient( self::TRANSIENT_NAME );
@@ -133,11 +133,9 @@ class WPSEO_Facebook_Profile {
 		);
 
 		if ( wp_remote_retrieve_response_code( $response ) === 200 ) {
-			$full_name = $this->extract_name_from_response(
+			return $this->extract_name_from_response(
 				wp_remote_retrieve_body( $response )
 			);
-
-			return $full_name;
 		}
 
 		return '';

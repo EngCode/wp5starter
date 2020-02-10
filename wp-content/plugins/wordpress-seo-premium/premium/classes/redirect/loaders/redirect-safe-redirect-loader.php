@@ -73,7 +73,7 @@ class WPSEO_Redirect_Safe_Redirect_Loader extends WPSEO_Redirect_Abstract_Loader
 	 * @return array A converted redirect.
 	 */
 	protected function convert_wildcards( $item ) {
-		if ( substr( $item['redirect_from'], - 1, 1 ) === '*' ) {
+		if ( substr( $item['redirect_from'], -1, 1 ) === '*' ) {
 			$item['redirect_from'] = preg_replace( '/(\*)$/', '.*', $item['redirect_from'] );
 			$item['enable_regex']  = 1;
 		}

@@ -157,10 +157,8 @@ $new_tab_message         = sprintf(
 
 				<?php if ( $has_valid_premium_subscription ) : ?>
 					<div class="yoast-button yoast-button--noarrow yoast-button--extension yoast-button--extension-activated"><?php esc_html_e( 'Activated', 'wordpress-seo' ); ?></div>
-	
 				<?php else : ?>
 					<div class="yoast-button yoast-button--noarrow yoast-button--extension yoast-button--extension-not-activated"><?php esc_html_e( 'Not activated', 'wordpress-seo' ); ?></div>
-					
 				<?php endif; ?>
 
 			<?php else : ?>
@@ -239,7 +237,6 @@ $new_tab_message         = sprintf(
 
 							<?php if ( $addon_manager->has_valid_subscription( $slug ) ) : ?>
 								<div class="yoast-button yoast-button--noarrow yoast-button--extension yoast-button--extension-activated"><?php esc_html_e( 'Activated', 'wordpress-seo' ); ?></div>
-
 							<?php else : ?>
 								<div class="yoast-button yoast-button--noarrow yoast-button--extension yoast-button--extension-activated"><?php esc_html_e( 'Activated', 'wordpress-seo' ); ?></div>
 							<?php endif; ?>

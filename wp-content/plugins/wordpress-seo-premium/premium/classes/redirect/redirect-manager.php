@@ -37,7 +37,7 @@ class WPSEO_Redirect_Manager {
 	 * @return WPSEO_Redirect_Exporter[]
 	 */
 	public static function default_exporters() {
-		$exporters[] = new WPSEO_Redirect_Option_Exporter();
+		$exporters = [ new WPSEO_Redirect_Option_Exporter() ];
 
 		if ( WPSEO_Options::get( 'disable_php_redirect' ) === 'on' ) {
 			$file_exporter = WPSEO_Redirect_File_Util::get_file_exporter( WPSEO_Options::get( 'separate_file' ) );
@@ -52,9 +52,9 @@ class WPSEO_Redirect_Manager {
 	/**
 	 * Setting the property with the redirects.
 	 *
-	 * @param string                    $redirect_format The format for the redirects.
-	 * @param WPSEO_Redirect_Exporter[] $exporters       The exporters used to save redirects in files.
-	 * @param WPSEO_Redirect_Option     $option          Model object to handle the redirects.
+	 * @param string                         $redirect_format The format for the redirects.
+	 * @param WPSEO_Redirect_Exporter[]|null $exporters       The exporters used to save redirects in files.
+	 * @param WPSEO_Redirect_Option|null     $option          Model object to handle the redirects.
 	 */
 	public function __construct( $redirect_format = WPSEO_Redirect_Formats::PLAIN, $exporters = null, WPSEO_Redirect_Option $option = null ) {
 		if ( $option === null ) {
@@ -63,7 +63,7 @@ class WPSEO_Redirect_Manager {
 
 		$this->redirect_option = $option;
 		$this->redirect_format = $redirect_format;
-		$this->exporters       = ( $exporters ) ? $exporters : self::default_exporters();
+		$this->exporters       = $exporters;
 	}
 
 	/**
@@ -90,8 +90,13 @@ class WPSEO_Redirect_Manager {
 	 */
 	public function export_redirects() {
 		$redirects = $this->redirect_option->get_all();
+		$exporters = $this->exporters;
 
-		foreach ( $this->exporters as $exporter ) {
+		if ( ! $exporters ) {
+			$exporters = self::default_exporters();
+		}
+
+		foreach ( $exporters as $exporter ) {
 			$exporter->export( $redirects );
 		}
 	}

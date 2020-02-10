@@ -51,7 +51,7 @@ class WPSEO_Premium_Prominent_Words_Registration implements WPSEO_WordPress_Inte
 	/**
 	 * Retrieves the labels for the taxonomy.
 	 *
-	 * @return array The labels for the taxonomy.
+	 * @return string[] The labels for the taxonomy.
 	 */
 	private function get_labels() {
 		return [

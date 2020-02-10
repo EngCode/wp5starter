@@ -91,10 +91,18 @@ class WPSEO_Redirect_Upgrade {
 	}
 
 	/**
+	 * Exports the redirects to htaccess or nginx file if needed.
+	 */
+	public static function upgrade_13_0() {
+		$redirect_manager = new WPSEO_Redirect_Manager();
+		$redirect_manager->export_redirects();
+	}
+
+	/**
 	 * Imports an array of redirect objects.
 	 *
 	 * @param WPSEO_Redirect[]               $redirects The redirects.
-	 * @param null|WPSEO_Redirect_Exporter[] $exporters The exporters.
+	 * @param WPSEO_Redirect_Exporter[]|null $exporters The exporters.
 	 */
 	private static function import_redirects( $redirects, $exporters = null ) {
 		if ( empty( $redirects ) ) {

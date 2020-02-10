@@ -105,17 +105,15 @@ class WPSEO_Redirect_Table extends WP_List_Table {
 	/**
 	 * Set the table columns.
 	 *
-	 * @return array The table columns.
+	 * @return string[] The table columns.
 	 */
 	public function get_columns() {
-		$columns = [
+		return [
 			'cb'   => '<input type="checkbox" />',
 			'type' => _x( 'Type', 'noun', 'wordpress-seo-premium' ),
 			'old'  => $this->current_column,
 			'new'  => __( 'New URL', 'wordpress-seo-premium' ),
 		];
-
-		return $columns;
 	}
 
 	/**
@@ -184,16 +182,14 @@ class WPSEO_Redirect_Table extends WP_List_Table {
 	/**
 	 * Returns the columns that are sortable.
 	 *
-	 * @return array An array containing the sortable columns.
+	 * @return array[] An array containing the sortable columns.
 	 */
 	public function get_sortable_columns() {
-		$sortable_columns = [
+		return [
 			'old'  => [ 'old', false ],
 			'new'  => [ 'new', false ],
 			'type' => [ 'type', false ],
 		];
-
-		return $sortable_columns;
 	}
 
 	/**
@@ -235,7 +231,7 @@ class WPSEO_Redirect_Table extends WP_List_Table {
 		$result = strcmp( $a[ $orderby ], $b[ $orderby ] );
 
 		// Send final sort direction to usort.
-		return ( $order === 'asc' ) ? $result : ( - $result );
+		return ( $order === 'asc' ) ? $result : ( -$result );
 	}
 
 	/**
@@ -305,14 +301,12 @@ class WPSEO_Redirect_Table extends WP_List_Table {
 	/**
 	 * Returns the available bulk actions.
 	 *
-	 * @return array Array containing the available bulk actions.
+	 * @return string[] Array containing the available bulk actions.
 	 */
 	public function get_bulk_actions() {
-		$actions = [
+		return [
 			'delete' => __( 'Delete', 'wordpress-seo-premium' ),
 		];
-
-		return $actions;
 	}
 
 	/**
@@ -368,7 +362,7 @@ class WPSEO_Redirect_Table extends WP_List_Table {
 
 		$counter = 1;
 
-		foreach ( $this->items as $old => $redirect ) {
+		foreach ( $this->items as $redirect ) {
 			$formatted_items[] = [
 				'old'        => $redirect->get_origin(),
 				'new'        => $redirect->get_target(),

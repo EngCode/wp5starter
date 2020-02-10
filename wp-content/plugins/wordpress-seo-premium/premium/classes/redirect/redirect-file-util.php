@@ -71,7 +71,7 @@ class WPSEO_Redirect_File_Util {
 	 * @param string $file_path    The path to write the content to.
 	 * @param string $file_content The content that will be saved.
 	 *
-	 * @return int
+	 * @return bool True on successful file write.
 	 */
 	public static function write_file( $file_path, $file_content ) {
 		$has_written = false;
@@ -99,7 +99,7 @@ class WPSEO_Redirect_File_Util {
 	 *
 	 * @param string $separate_file Saving the redirects in an separate apache file.
 	 *
-	 * @return null|WPSEO_Redirect_File_Exporter
+	 * @return WPSEO_Redirect_File_Exporter|null
 	 */
 	public static function get_file_exporter( $separate_file ) {
 		// Create the correct file object.

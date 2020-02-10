@@ -22,9 +22,9 @@ class WPSEO_Redirect_Endpoint_Validation extends WPSEO_Redirect_Abstract_Validat
 	 * - a path that results in a redirection to it's own origin due to other redirects pointing to the current origin.
 	 * - a path that can be shorten by creating a direct redirect.
 	 *
-	 * @param WPSEO_Redirect $redirect     The redirect to validate.
-	 * @param WPSEO_Redirect $old_redirect The old redirect to compare.
-	 * @param array          $redirects    Array with redirect to validate against.
+	 * @param WPSEO_Redirect      $redirect     The redirect to validate.
+	 * @param WPSEO_Redirect|null $old_redirect The old redirect to compare.
+	 * @param array|null          $redirects    Array with redirect to validate against.
 	 *
 	 * @return bool
 	 */

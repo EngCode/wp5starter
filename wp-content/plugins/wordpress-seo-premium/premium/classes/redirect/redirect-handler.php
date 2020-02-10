@@ -130,7 +130,7 @@ class WPSEO_Redirect_Handler {
 	/**
 	 * Replaces the $regex vars with URL matches.
 	 *
-	 * @param array $matches Array with the matches from the matching redirect.
+	 * @param string[] $matches Array with the matches from the matching redirect.
 	 *
 	 * @return string The replaced URL.
 	 */
@@ -416,7 +416,7 @@ class WPSEO_Redirect_Handler {
 	 *
 	 * This will add a slash if there isn't a slash or it will remove a trailing slash when there isn't one.
 	 *
-	 * @discuss: Maybe we should add slashes to all the values we handle instead of using a fallback.
+	 * @todo Discuss: Maybe we should add slashes to all the values we handle instead of using a fallback.
 	 *
 	 * @param string $url The URL that have to be matched.
 	 *

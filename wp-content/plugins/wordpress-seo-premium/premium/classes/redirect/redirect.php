@@ -5,7 +5,7 @@
  * @package WPSEO\Premium\Classes
  */
 
-use Yoast\WP\Free\Helpers\Home_Url_Helper;
+use Yoast\WP\SEO\Helpers\Home_Url_Helper;
 
 /**
  * Represents a single redirect
@@ -165,7 +165,7 @@ class WPSEO_Redirect implements ArrayAccess {
 	 *
 	 * @param string $offset An offset to check for.
 	 *
-	 * @return boolean true on success or false on failure.
+	 * @return bool True on success or false on failure.
 	 *
 	 * The return value will be casted to boolean if non-boolean was returned.
 	 */
@@ -242,7 +242,7 @@ class WPSEO_Redirect implements ArrayAccess {
 	public function origin_is( $url ) {
 		// Sanitize the slash in case of plain redirect.
 		if ( $this->format === WPSEO_Redirect_Formats::PLAIN ) {
-			$url = $this->sanitize_slash( $url, wp_parse_url( $url ) );
+			$url = $this->sanitize_slash( $url, $this->parse_url( $url ) );
 		}
 
 		return (string) $this->origin === (string) $url;
@@ -288,7 +288,7 @@ class WPSEO_Redirect implements ArrayAccess {
 	private function sanitize_origin_url( $url ) {
 		$home_url        = static::$home_url->get();
 		$home_url_pieces = static::$home_url->get_parsed();
-		$url_pieces      = wp_parse_url( $url );
+		$url_pieces      = $this->parse_url( $url );
 
 		if ( $this->match_home_url( $home_url_pieces, $url_pieces ) ) {
 			$url = substr(
@@ -311,7 +311,7 @@ class WPSEO_Redirect implements ArrayAccess {
 	 */
 	private function sanitize_target_url( $url ) {
 		$home_url_pieces = static::$home_url->get_parsed();
-		$url_pieces      = wp_parse_url( $url );
+		$url_pieces      = $this->parse_url( $url );
 
 		if ( $this->match_home_url( $home_url_pieces, $url_pieces ) ) {
 			$url = substr(
@@ -376,5 +376,21 @@ class WPSEO_Redirect implements ArrayAccess {
 		}
 
 		return strpos( trim( $url_path, '/' ), $home_url_path ) === 0;
+	}
+
+	/**
+	 * Parses the URL into separate pieces.
+	 *
+	 * @param string $url The URL string.
+	 *
+	 * @return array Array of URL pieces.
+	 */
+	private function parse_url( $url ) {
+		$parsed_url = wp_parse_url( $url );
+		if ( is_array( $parsed_url ) ) {
+			return $parsed_url;
+		}
+
+		return [];
 	}
 }

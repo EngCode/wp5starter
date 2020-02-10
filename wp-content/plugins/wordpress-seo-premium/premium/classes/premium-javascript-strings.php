@@ -13,7 +13,7 @@ class WPSEO_Premium_Javascript_Strings {
 	/**
 	 * List containing the localized JavaScript translations.
 	 *
-	 * @var array|null
+	 * @var string[]|null
 	 */
 	private static $strings = null;
 
@@ -66,7 +66,7 @@ class WPSEO_Premium_Javascript_Strings {
 	/**
 	 * Returns an array with all the translated strings.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public static function strings() {
 		if ( self::$strings === null ) {

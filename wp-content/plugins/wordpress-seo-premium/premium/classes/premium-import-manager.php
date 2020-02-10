@@ -258,9 +258,9 @@ class WPSEO_Premium_Import_Manager implements WPSEO_WordPress_Integration {
 	 *
 	 * @param array $csv_file The file to upload, from the $_FILES object.
 	 *
-	 * @throws WPSEO_Redirect_Import_Exception When the given file is invalid.
-	 *
 	 * @return void
+	 *
+	 * @throws WPSEO_Redirect_Import_Exception When the given file is invalid.
 	 */
 	protected function validate_uploaded_csv_file( $csv_file ) {
 
@@ -338,7 +338,7 @@ class WPSEO_Premium_Import_Manager implements WPSEO_WordPress_Integration {
 	 *
 	 * @codeCoverageIgnore
 	 *
-	 * @return null|string The posted import plugin.
+	 * @return string|null The posted import plugin.
 	 */
 	protected function get_posted_import_plugin() {
 		$wpseo_post = filter_input( INPUT_POST, 'wpseo', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
@@ -355,7 +355,7 @@ class WPSEO_Premium_Import_Manager implements WPSEO_WordPress_Integration {
 	 *
 	 * @codeCoverageIgnore
 	 *
-	 * @return null|array The posted CSV file.
+	 * @return array|null The posted CSV file.
 	 */
 	protected function get_posted_csv_file() {
 		if ( ! isset( $_FILES['redirects_csv_file'] ) ) {
