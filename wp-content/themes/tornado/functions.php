@@ -168,7 +168,7 @@
     }
 
     add_filter( 'shortcode_atts_wpcf7', 'subject_title_input_attribute', 10, 3 );
-    function page_title_input_attribute( $out, $pairs, $atts ) {
+    function subject_title_input_attribute( $out, $pairs, $atts ) {
         $my_attr = 'subject-title';
         if ( isset($atts[$my_attr]) ) { $out[$my_attr] = $atts[$my_attr]; }
         return $out;
