@@ -19,17 +19,32 @@
         ));
 
         //======== Secondary Phone =======//
-        $wp_customize->add_setting('phone_number_2nd' , array(
+        $wp_customize->add_setting('phone_number_2' , array(
             'default'     => '',
             'transport'   => 'refresh',
             'type'        => 'option',
             'sanitize_callback' => 'sanitize_text_field',
         ));
 
-        $wp_customize->add_control('phone_number_2nd',array(
-            'label'      => __('Secondary Phone Number', 'tornado'),
+        $wp_customize->add_control('phone_number_2',array(
+            'label'      => __('Phone Number #2', 'tornado'),
             'section'    => 'title_tagline',
-            'settings'   => 'phone_number_2nd',
+            'settings'   => 'phone_number_2',
+            'priority'   => 21
+        ));
+
+        //======== Third Phone =======//
+        $wp_customize->add_setting('phone_number_3' , array(
+            'default'     => '',
+            'transport'   => 'refresh',
+            'type'        => 'option',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('phone_number_3',array(
+            'label'      => __('Phone Number #3', 'tornado'),
+            'section'    => 'title_tagline',
+            'settings'   => 'phone_number_3',
             'priority'   => 21
         ));
 
@@ -49,47 +64,32 @@
         ));
 
         //======== Secondary Email =======//
-        $wp_customize->add_setting('email_2nd' , array(
+        $wp_customize->add_setting('email_2' , array(
             'default'     => '',
             'transport'   => 'refresh',
             'type'        => 'option',
             'sanitize_callback' => 'sanitize_text_field',
         ));
 
-        $wp_customize->add_control('email_2nd',array(
-            'label'      => __('Secondary Email Address', 'tornado'),
+        $wp_customize->add_control('email_2',array(
+            'label'      => __('Email Address #2', 'tornado'),
             'section'    => 'title_tagline',
-            'settings'   => 'email_2nd',
+            'settings'   => 'email_2',
             'priority'   => 21
         ));
 
-        //======== Primary Address =======//
-        $wp_customize->add_setting('address' , array(
+        //======== Secondary Email =======//
+        $wp_customize->add_setting('email_3' , array(
             'default'     => '',
             'transport'   => 'refresh',
             'type'        => 'option',
             'sanitize_callback' => 'sanitize_text_field',
         ));
 
-        $wp_customize->add_control('address',array(
-            'label'      => __('Company Address', 'tornado'),
+        $wp_customize->add_control('email_3',array(
+            'label'      => __('Email Address #3', 'tornado'),
             'section'    => 'title_tagline',
-            'settings'   => 'address',
-            'priority'   => 21
-        ));
-
-        //======== English Address =======//
-        $wp_customize->add_setting('address_rtl' , array(
-            'default'     => '',
-            'transport'   => 'refresh',
-            'type'        => 'option',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-
-        $wp_customize->add_control('address_rtl',array(
-            'label'      => __('RTL Company Address', 'tornado'),
-            'section'    => 'title_tagline',
-            'settings'   => 'address_rtl',
+            'settings'   => 'email_3',
             'priority'   => 21
         ));
 
@@ -153,33 +153,33 @@
             'priority'   => 21
         ));
 
-        //===== Meta Options [pinterest] =====//
-        $wp_customize->add_setting('pinterest_url' , array(
+        //===== Meta Options [Whatsapp] =====//
+        $wp_customize->add_setting('whatsapp_number' , array(
             'default'     => '',
             'transport'   => 'refresh',
             'type'        => 'option',
             'sanitize_callback' => 'sanitize_text_field',
         ));
 
-        $wp_customize->add_control('pinterest_url',array(
-            'label'      => __('Pinterest URL', 'tornado'),
+        $wp_customize->add_control('whatsapp_number',array(
+            'label'      => __('WhatsApp Number', 'tornado'),
             'section'    => 'title_tagline',
-            'settings'   => 'pinterest_url',
+            'settings'   => 'whatsapp_number',
             'priority'   => 21
         ));
 
-        //===== Meta Options [youtube] =====//
-        $wp_customize->add_setting('youtube_url' , array(
+        //===== Meta Options [Whatsapp] =====//
+        $wp_customize->add_setting('whatsapp_number_2' , array(
             'default'     => '',
             'transport'   => 'refresh',
             'type'        => 'option',
             'sanitize_callback' => 'sanitize_text_field',
         ));
 
-        $wp_customize->add_control('youtube_url',array(
-            'label'      => __('Youtube URL', 'tornado'),
+        $wp_customize->add_control('whatsapp_number_2',array(
+            'label'      => __('WhatsApp Number #2', 'tornado'),
             'section'    => 'title_tagline',
-            'settings'   => 'youtube_url',
+            'settings'   => 'whatsapp_number_2',
             'priority'   => 21
         ));
 
@@ -230,90 +230,9 @@
                 'priority'   => 22
             )
         ));
-
-        //===== Design Options [Primary Color] =====//
-        $wp_customize->add_setting('primary_color' , array(
-            'default'     => '',
-            'transport'   => 'refresh',
-            'type'        => 'option',
-            'sanitize_callback' => 'sanitize_hex_color',
-        ));
-
-        $wp_customize->add_control(new WP_Customize_Color_Control(
-            $wp_customize,'primary_color',array(
-                'label'      => __( 'Theme Primary Color', 'tornado'),
-                'section'    => 'title_tagline',
-                'settings'   => 'primary_color',
-                'priority'   => 23
-            )
-        ));
-
-        //===== Design Options [Primary Hover Color] =====//
-        $wp_customize->add_setting('primary_hvr_color' , array(
-            'default'     => '',
-            'transport'   => 'refresh',
-            'type'        => 'option',
-            'sanitize_callback' => 'sanitize_hex_color',
-        ));
-
-        $wp_customize->add_control(new WP_Customize_Color_Control(
-            $wp_customize,'primary_hvr_color',array(
-                'label'      => __( 'Theme Primary Hover Color', 'tornado'),
-                'section'    => 'title_tagline',
-                'settings'   => 'primary_hvr_color',
-                'priority'   => 23
-            )
-        ));
-        
-        //===== Design Options [Secondary Color] =====//
-        $wp_customize->add_setting('secondary_color' , array(
-            'default'     => '',
-            'transport'   => 'refresh',
-            'type'        => 'option',
-            'sanitize_callback' => 'sanitize_hex_color',
-        ));
-
-        $wp_customize->add_control(new WP_Customize_Color_Control(
-            $wp_customize,'secondary_color',array(
-                'label'      => __( 'Theme Secondary Color', 'tornado'),
-                'section'    => 'title_tagline',
-                'settings'   => 'secondary_color',
-                'priority'   => 23
-            )
-        ));
-
-        //===== Design Options [Secondary Hover Color] =====//
-        $wp_customize->add_setting('secondary_hvr_color' , array(
-            'default'     => '',
-            'transport'   => 'refresh',
-            'type'        => 'option',
-            'sanitize_callback' => 'sanitize_hex_color',
-        ));
-
-        $wp_customize->add_control(new WP_Customize_Color_Control(
-            $wp_customize,'secondary_hvr_color',array(
-                'label'      => __( 'Theme Secondary Hover Color', 'tornado'),
-                'section'    => 'title_tagline',
-                'settings'   => 'secondary_hvr_color',
-                'priority'   => 23
-            )
-        ));
     }
+
     add_action('customize_register', 'tornado_design_options');
-    
-    //==== Design Options Color Activate =====//
-    add_action( 'wp_head', 'tornado_design_colors');    
-    function tornado_design_colors() {?>
-            <style type="text/css">
-                :root{
-                    --primary-color:<?php echo get_option('primary_color');?>;
-                    --primary-color-hover:<?php echo get_option('primary_hvr_color');?>;
-                    --secondary-color:<?php echo get_option('secondary_color');?>;
-                    --secondary-color-hover:<?php echo get_option('secondary_hvr_color');?>;
-                }
-            </style>
-        <?php
-    }
 
     //===== Design Options Output =====//
     function get_design_options($option) {
@@ -333,24 +252,27 @@
             //===== Contact Informations Output [phone_number] =====//
             return get_option('phone_number');
 
-        } elseif ($option == 'phone_number_2nd') {
-            //===== Contact Informations Output [phone_number_2nd] =====//
-            return get_option('phone_number_2nd');
+        } elseif ($option == 'phone_number_2') {
+            //===== Contact Informations Output [phone_number_3] =====//
+            return get_option('phone_number_2');
 
-        } elseif ($option == 'email') {
+        } elseif ($option == 'phone_number_3') {
+            //===== Contact Informations Output [phone_number_3] =====//
+            return get_option('phone_number_3');
+
+        } 
+        elseif ($option == 'email') {
             //=====Contact Informations Output [email] =====//
             return get_option('email');
 
-        } elseif ($option == 'email_2nd') {
-            //===== Contact Informations Output [email_2nd] =====//
-            return get_option('email_2nd');
+        } elseif ($option == 'email_2') {
+            //===== Contact Informations Output [email_2] =====//
+            return get_option('email_2');
 
-        } elseif ($option == 'address') {
-            //===== Contact Informations Output [address] =====//
-            return get_option('address');
-        } elseif ($option == 'address_rtl') {
-            //===== Contact Informations Output [address] =====//
-            return get_option('address_rtl');
+        } elseif ($option == 'email_3') {
+            //===== Contact Informations Output [email_3] =====//
+            return get_option('email_3');
+
         } elseif ($option == 'facebook_url') {
             //===== Meta Options [Facebook] Output =====//
             return get_option('facebook_url');
@@ -363,12 +285,12 @@
         } elseif ($option == 'linkedin_url') {
             //===== Meta Options [Linked In] Output =====//
             return get_option('linkedin_url');
-        } elseif ($option == 'pinterest_url') {
-            //===== Meta Options [Pinterest] Output =====//
-            return get_option('pinterest_url');
-        } elseif ($option == 'youtube_url') {
-            //===== Meta Options [Youtube] Output =====//
-            return get_option('youtube_url');
+        } elseif ($option == 'whatsapp_number') {
+            //===== Meta Options [Linked In] Output =====//
+            return get_option('whatsapp_number');
+        } elseif ($option == 'whatsapp_number_2') {
+            //===== Meta Options [Linked In] Output =====//
+            return get_option('whatsapp_number_2');
         }
     }
 ?>
