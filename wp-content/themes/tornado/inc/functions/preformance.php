@@ -10,24 +10,32 @@
     }
 
     //======== Clean Default Head Tag Files for Preformance and Security ========//
-    remove_action('wp_head', 'rsd_link'); // Removing (RSD) Link [Remove it if integrate services like flicker exists]
-    remove_action('wp_head', 'wlwmanifest_link'); // Removing "Windows Live Writer" link for Editing Shortcut
-    remove_action('wp_head', 'wp_generator'); // Remove "WordPress version" tag
-    add_filter('the_generator', '__return_false'); // hide WordPress version from RSS
-    add_filter('feed_links_show_comments_feed', '__return_false'); // Remove RSS Feed for Comments
-    add_filter( 'use_default_gallery_style', '__return_false' ); // Remove Gallery Inline Styling
+    function clean_head() {
+        remove_action('wp_head', 'rsd_link'); // Removing (RSD) Link [Remove it if integrate services like flicker exists]
+        remove_action('wp_head', 'wlwmanifest_link'); // Removing "Windows Live Writer" link for Editing Shortcut
+        remove_action('wp_head', 'wp_generator'); // Remove "WordPress version" tag
+        add_filter('the_generator', '__return_false'); // hide WordPress version from RSS
+        add_filter('feed_links_show_comments_feed', '__return_false'); // Remove RSS Feed for Comments
+        add_filter( 'use_default_gallery_style', '__return_false' ); // Remove Gallery Inline Styling
+        //====== Remove Emoji Scripts and Styles ======//
+        remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+        remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+        remove_action( 'wp_print_styles', 'print_emoji_styles' );
+        remove_action( 'admin_print_styles', 'print_emoji_styles' );	
+        remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+        remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );	
+        remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+        // Remove from TinyMCE
+        add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
+        //====== Remove WP Embed Scripts ======// 
+        remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+    }
 
-    //====== Remove Emoji Scripts and Styles ======//
-    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-    remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-    remove_action( 'wp_print_styles', 'print_emoji_styles' );
-    remove_action( 'admin_print_styles', 'print_emoji_styles' );
-
+    add_action( 'init', 'clean_head' );
+    
     //====== Remove WP Embed Scripts ======// 
-    //===> Note : embeding WordPress posts from other people's blogs/websites.
-    remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+    function deregister_wp_embed() {wp_deregister_script( 'wp-embed' );}
     add_action( 'wp_footer','deregister_wp_embed');
-    function deregister_wp_embed() { wp_deregister_script( 'wp-embed' ); }
 
     //====== Remove Gutenberg Default CSS ======// 
     function wps_deregister_blocks() { wp_dequeue_style( 'wp-block-library' ); }
