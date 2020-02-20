@@ -31,7 +31,7 @@
         remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
     }
 
-    add_action( 'init', 'clean_head' );
+    if(!is_admin()) { add_action( 'init', 'clean_head' ); }
     
     //====== Remove WP Embed Scripts ======// 
     function deregister_wp_embed() {wp_deregister_script( 'wp-embed' );}
@@ -74,4 +74,17 @@
     function remove_admin_login_header() {
         remove_action('wp_head', '_admin_bar_bump_cb');
     }
+
+    //======= Remove jQuery Migrate =======//
+    function remove_jquery_migrate( $scripts ) {
+        if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
+             $script = $scripts->registered['jquery'];
+            if ( $script->deps ) { 
+                // Check whether the script has any dependencies
+                $script->deps = array_diff( $script->deps, array( 'jquery-migrate' ) );
+            }
+        }
+    }
+
+    add_action( 'wp_default_scripts', 'remove_jquery_migrate' );
 ?>
