@@ -9,7 +9,6 @@ const {withInstanceId} = wp.compose;
 const {
     PlainText,
     InspectorControls,
-    InnerBlocks,
     RichText,
     Editable,
     MediaUpload,
@@ -18,6 +17,8 @@ const {
     BlockControls,
     ColorPalette
 } = wp.editor;
+
+const {InnerBlocks} = wp.blockEditor;
 /*===== Editor Components =====*/
 const {
     Draggable,

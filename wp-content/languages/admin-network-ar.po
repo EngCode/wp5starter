@@ -1,15 +1,15 @@
-# Translation of WordPress - 5.3.x - Development - Administration - Network Admin in Arabic
-# This file is distributed under the same license as the WordPress - 5.3.x - Development - Administration - Network Admin package.
+# Translation of WordPress - 5.4.x - Development - Administration - Network Admin in Arabic
+# This file is distributed under the same license as the WordPress - 5.4.x - Development - Administration - Network Admin package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-10-04 22:57:33+0000\n"
+"PO-Revision-Date: 2020-03-05 15:27:01+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: ar\n"
-"Project-Id-Version: WordPress - 5.3.x - Development - Administration - Network Admin\n"
+"Project-Id-Version: WordPress - 5.4.x - Development - Administration - Network Admin\n"
 
 #. translators: %s: Number of sites.
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:255
@@ -256,8 +256,8 @@ msgstr "عنوان الإنترنت الخاص بشبكتك سيكون %s."
 
 #. translators: 1: Site URL, 2: Host name, 3: www.
 #: wp-admin/includes/network.php:271
-msgid "We recommend you change your siteurl to %1$s before enabling the network feature. It will still be possible to visit your site using the %3$s prefix with an address like %2$s but any links will not have the %3$s prefix."
-msgstr "ننصحك بتغيير رابط موقعك إلى %1$s قبل البدء بتفعيل ميزة الشبكة. سيكون من الممكن زيارة موقعك باستخدام البادئة %3$s مع العنوان %2$s ولكن لن يبدأ أي رابط بالبادئة %3$s."
+msgid "We recommend you change your site domain to %1$s before enabling the network feature. It will still be possible to visit your site using the %3$s prefix with an address like %2$s but any links will not have the %3$s prefix."
+msgstr "ننصحك بتغيير نطاق موقعك إلى %1$s قبل البدء بتفعيل ميزة الشبكة. سيكون من الممكن زيارة موقعك باستخدام البادئة %3$s مع العنوان %2$s ولكن لن يبدأ أي رابط بالبادئة %3$s."
 
 #: wp-admin/includes/network.php:226
 msgid "You cannot change this later."
@@ -422,12 +422,12 @@ msgstr "يبدو أنه لا توجد قوالب متوفرة لديك حتى ا
 msgid "No themes found."
 msgstr "لم يتّم إيجاد قوالب."
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:704
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:705
 msgctxt "verb; site"
 msgid "Archive"
 msgstr "أرشفة"
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:702
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:703
 msgid "Unarchive"
 msgstr "إلغاء الأرشفة"
 
@@ -452,7 +452,7 @@ msgid "Last Updated"
 msgstr "آخر تحديث"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:294
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:708
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:709
 msgctxt "site"
 msgid "Not Spam"
 msgstr "غير مزعج"
@@ -477,7 +477,7 @@ msgid "Deleted"
 msgstr "محذوف"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:40
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:710
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:711
 #: wp-admin/network/site-info.php:186
 msgctxt "site"
 msgid "Spam"
@@ -811,11 +811,6 @@ msgstr "حذف: سيؤدي إلى نقلك لصفحة جديدة لتأكيد ا
 msgid "Clicking on bold headings can re-sort this table."
 msgstr "النقر على العناوين البارزة يؤدي إلى إعادة عرض محتويات الجدول حسب ترتيب جديد."
 
-#: wp-admin/network/themes.php:272 wp-admin/network/menu.php:81
-msgctxt "theme"
-msgid "Add New"
-msgstr "أضف جديد"
-
 #: wp-admin/network/sites.php:30
 msgid "Add New takes you to the Add New Site screen. You can search for a site by Name, ID number, or IP address. Screen Options allows you to choose how many sites to display on one page."
 msgstr "النقر على زر \\\"أضف جديد\\\" سينقلك إلى صفحة جديدة حيث يمكنك ملء الحقول بالبيانات اللازمة لإضافة موقع جديد. يمكنك البحث عن موقع حسب اسم الموقع، أو حسب رقم ال ID، أو حسب عنوان الآي بي. يمكنك النقر على زر \\\"خيارات الشاشة\\\" الموجود في أعلى اليسار لتحديد عدد المواقع التي تريدها أن تظهر في هذه الصفحة."
@@ -967,7 +962,7 @@ msgid "Once you add this code and refresh your browser, multisite should be enab
 msgstr "بعد أن تقوم بإضافة الأكواد التي ذُكرت سابقاً، ثمّ تقوم بإعادة تحميل الصفحة سيتّم تهيئة الشبكة. هذه الشاشة (لوحة تحكم الشبكة > إعدادات > تهيئة الشبكة) ستبقى تحتوي على الأكواد. يمكنك التنقّل بين \"إدارة الشبكة\" و \"إدارة الموقع\" عن طريق النقر على السهم الموجود بجانب اسمك في لوحة التحكم (في الطرف الأيسر من الجزء العلوي من الشاشة، بجانب كلمة \"مرحباً\")."
 
 #: wp-admin/includes/network.php:157
-msgid "ERROR: The network could not be created."
+msgid "Error: The network could not be created."
 msgstr "خطأ: تعذر إنشاء الشبكة."
 
 #: wp-admin/includes/network.php:243
