@@ -1,6 +1,5 @@
 <?php
 /**
- * Template Name: Blog Category
  * this template for displaying category, tag, taxonomy, author, or date
  * @package Tornado Wordpress
  * @subpackage Developing Starter Template
@@ -11,9 +10,9 @@
 <!-- Head Tag -->
 <?php get_header(); ?>
 <!-- Header -->
-<?php get_template_part('inc/template-parts/custom','header'); ?>
+<?php get_template_part('inc/template-parts/components/header'); ?>
 <!-- Dynamic Page Head & Breadcumbs -->
-<?php get_template_part('inc/template-parts/custom','breadcumb'); ?>
+<?php get_template_part('inc/template-parts/components/breadcumb'); ?>
 
 <!-- Page Content -->
 <div class="container page-content">
@@ -27,7 +26,7 @@
                     //===== Start Loop =====//
                     while (have_posts()) : the_post(); 
                     //=== Get the Design Part ===//
-                    get_template_part('inc/template-parts/blocks/classic','post');
+                    get_template_part('inc/template-parts/blocks/blog','block');
                     //==== End Loop =====//
                     endwhile;
                     //=== Pagination ===//
@@ -40,13 +39,15 @@
             ?>
         </div>
         <!-- Widgets Side -->
-        <?php get_sidebar('blog-sidebar'); ?>
+        <div class="col-12 col-m-4 col-l-3">
+        
+        </div>
     </div>
     <!-- // Grid -->
 </div>
 <!-- // Page Content -->
 
 <!-- Custom Footer --> 
-<?php get_template_part('inc/template-parts/custom','footer'); ?>
+<?php get_template_part('inc/template-parts/components/footer'); ?>
 <!-- Footer -->
 <?php get_footer(); ?> 

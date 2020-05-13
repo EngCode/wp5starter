@@ -38,6 +38,6 @@ const {
 /*===== Editor Elements Components =====*/
 const {Component, Fragment} = wp.element;
 /*===== Editor Dynamic Data =====*/
-const {withSelect, dispatch} = wp.data;
+const {select, withSelect, dispatch} = wp.data;
 /*===== Editor Component Wraper =====*/
 const {createHigherOrderComponent} = wp.compose;

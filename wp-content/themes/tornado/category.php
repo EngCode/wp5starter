@@ -10,9 +10,9 @@
 <!-- Head Tag -->
 <?php get_header(); ?>
 <!-- Header -->
-<?php get_template_part('inc/template-parts/custom','header'); ?>
+<?php get_template_part('inc/template-parts/components/header'); ?>
 <!-- Dynamic Page Head & Breadcumbs -->
-<?php get_template_part('inc/template-parts/custom','breadcumb'); ?>
+<?php get_template_part('inc/template-parts/components/breadcumb'); ?>
 
 <!-- Page Content -->
 <div class="container page-content">
@@ -47,6 +47,6 @@
 <!-- // Page Content -->
 
 <!-- Custom Footer --> 
-<?php get_template_part('inc/template-parts/custom','footer'); ?>
+<?php get_template_part('inc/template-parts/components/footer'); ?>
 <!-- Footer -->
 <?php get_footer(); ?> 

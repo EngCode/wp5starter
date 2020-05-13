@@ -10,7 +10,7 @@
 <!-- Head Tag -->
 <?php get_header(); ?>
 <!-- Header -->
-<?php get_template_part('inc/template-parts/custom','header'); ?>
+<?php get_template_part('inc/template-parts/components/header'); ?>
 
 <!-- Page Content -->
 <div class="container page-content">
@@ -20,7 +20,7 @@
 			echo '<div class="alert"><b>"'. __('Search Resault for ','tornado') . $s .'"</b></div>';
 		while (have_posts()) : the_post(); 
 		//=== Get the Design Part ===//
-		get_template_part('inc/template-parts/blocks/search','block');
+		get_template_part('inc/template-parts/blogs/blog','block');
 		//==== End Loop =====//
 		endwhile;
 	?>
@@ -33,6 +33,6 @@
 <!-- // Page Content -->
 
 <!-- Custom Footer --> 
-<?php get_template_part('inc/template-parts/custom','footer'); ?>
+<?php get_template_part('inc/template-parts/components/footer'); ?>
 <!-- Footer -->
 <?php get_footer(); ?>

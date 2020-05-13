@@ -20,9 +20,6 @@
     //==== Menus Register ====//
     include( dirname(__FILE__) . '/inc/functions/theme-menus.php' );
 
-    //==== Theme Widgets Sidebars ====//
-    include( dirname(__FILE__) . '/inc/template-parts/widgets.php' );
-
     //==== Editor Register ====//
     include( dirname(__FILE__) . '/src/php/gutenberg.php' );
 
@@ -33,6 +30,7 @@
         add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
         add_theme_support( 'customize-selective-refresh-widgets' );
         add_theme_support( 'align-wide' );
+        add_theme_support( 'woocommerce' );
     }
     
     add_action( 'init', 'theme_support' );
@@ -208,17 +206,17 @@
         //====> Comments
         remove_menu_page( 'edit-comments.php' );
         //====> Appearance
-        remove_menu_page( 'themes.php' );
+        // remove_menu_page( 'themes.php' );
         //=====> Add Menus
-        add_menu_page(pll__('Menus Settings', 'tornado' ),'Menus Settings','manage_options','nav-menus.php','','dashicons-menu',20);
-        add_menu_page(pll__('Theme Settings', 'tornado' ),'Theme Settings','manage_options','customize.php','','dashicons-admin-appearance',21);
+        // add_menu_page(pll__('Menus Settings', 'tornado' ),'Menus Settings','manage_options','nav-menus.php','','dashicons-menu',20);
+        // add_menu_page(pll__('Theme Settings', 'tornado' ),'Theme Settings','manage_options','customize.php','','dashicons-admin-appearance',21);
         //====> Plugins
         // remove_menu_page( 'plugins.php' );
         //====> Tools
         // remove_menu_page( 'tools.php' );
         //====> Advanced Custom Fields
-        remove_menu_page('edit.php?post_type=acf-field-group');        
+        // remove_menu_page('edit.php?post_type=acf-field-group');
     }
 
-    // add_action( 'admin_menu', 'admin_menu_optimizer' );
+    add_action( 'admin_menu', 'admin_menu_optimizer' );
 ?>

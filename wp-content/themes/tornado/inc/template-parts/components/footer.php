@@ -8,5 +8,6 @@
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
 ?>
-<!-- Footer -->
-<p><?php echo get_meta_options('theme-copyright');?></p>
+<!-- Copyrights -->
+<?php echo get_meta_options('theme-copyright');?>
+<!-- // Copyrights -->

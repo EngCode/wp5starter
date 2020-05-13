@@ -49,11 +49,7 @@
   "scripts": {
     "tornado-js": "babel --presets @babel/preset-env src/javascript --watch --out-file dist/js/tornado.min.js --minified --no-comments --source-maps --source-type script",
     "tornado-wp": "babel --presets @babel/preset-react src/blocks --watch --out-file dist/js/blocks.min.js --minified --no-comments --source-maps",
-    "tornado-sass": "node-sass --watch src/SCSS -o dist/css --output-style compressed --source-map true",
-    "tornado-js-build": "babel --presets @babel/preset-env src/javascript--out-file dist/js/tornado.min.js --minified --no-comments --source-maps --source-type script",
-    "tornado-wp-build": "babel --presets @babel/preset-react src/blocks --out-file dist/js/blocks.min.js --minified --no-comments --source-maps",
-    "tornado-sass-build": "node-sass src/SCSS -o dist/css --output-style compressed --source-map true",
-    "tornado": "npm-run-all tornado-sass-build & tornado-js-build & tornado-wp-build"
+    "tornado-sass": "node-sass --watch src/SCSS -o dist/css --output-style compressed --source-map true"
   },
   "repository": {
     "type": "git",
