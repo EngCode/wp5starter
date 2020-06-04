@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tornado Starter Theme\n"
-"POT-Creation-Date: 2020-06-04 21:31+0200\n"
-"PO-Revision-Date: 2020-06-04 21:32+0200\n"
+"POT-Creation-Date: 2020-06-04 23:57+0200\n"
+"PO-Revision-Date: 2020-06-05 00:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -63,7 +63,7 @@ msgstr "تم تسجيل دخولك حاليا باسم "
 msgid "Full Name"
 msgstr "الاسم بالكامل"
 
-#: comments.php:76
+#: comments.php:76 inc/functions/admin/options-tabs/02-Contact.php:32
 msgid "Email Address"
 msgstr "عنوان بريد الكتروني"
 
@@ -75,19 +75,19 @@ msgstr "اترك تعليقك هنا"
 msgid "Submit Comment"
 msgstr "إرسال التعليق"
 
-#: functions.php:68
+#: functions.php:67
 msgid "Blog Sidebar"
 msgstr "الشريط الجانبي للمدونة"
 
-#: functions.php:70
+#: functions.php:69
 msgid "Add widgets here."
 msgstr "أضف الحاجيات هنا."
 
-#: functions.php:139
+#: functions.php:138
 msgid "Previous Page"
 msgstr "الصفحة السابقة"
 
-#: functions.php:140
+#: functions.php:139
 msgid "Next Page"
 msgstr "الصفحة التالية"
 
@@ -99,33 +99,147 @@ msgstr "إعدادات القالب"
 msgid "Menus Settings"
 msgstr "إعدادات القوائم"
 
-#: inc/functions/admin/options-tabs/contact.php:12
-#: inc/functions/admin/theme-options.php:33
-msgid "Contact Info"
-msgstr "معلومات التواصل"
-
-#: inc/functions/admin/options-tabs/general.php:12
-#: inc/functions/admin/theme-options.php:32
+#: inc/functions/admin/options-tabs/01-General.php:12
+#: inc/functions/admin/options-tabs/03-Design.php:12
+#: inc/functions/admin/theme-options.php:47
 msgid "General Settings"
 msgstr "الإعدادات العامة"
 
-#: inc/functions/admin/options-tabs/general.php:18
-msgid "إعدادات الميتا"
-msgstr ""
+#: inc/functions/admin/options-tabs/01-General.php:18
+msgid "Meta Options"
+msgstr "إعدادات الميتا"
 
-#: inc/functions/admin/options-tabs/general.php:22
+#: inc/functions/admin/options-tabs/01-General.php:22
+#: inc/functions/admin/options-tabs/01-General.php:23
 msgid "SEO Keywords"
 msgstr "الكلمات المفتاحية Keywords"
 
-#: inc/functions/admin/options-tabs/general.php:27
+#: inc/functions/admin/options-tabs/01-General.php:27
 msgid "Open Graph Cover"
 msgstr "صورة الاوبن جراف للموقع"
 
-#: inc/functions/admin/options-tabs/general.php:32
+#: inc/functions/admin/options-tabs/01-General.php:30
+#: inc/functions/admin/options-tabs/03-Design.php:25
+msgid "Image URL"
+msgstr "رابط الصورة"
+
+#: inc/functions/admin/options-tabs/01-General.php:32
+#: inc/functions/admin/options-tabs/03-Design.php:27
+msgid "Select"
+msgstr "اختيار"
+
+#: inc/functions/admin/options-tabs/01-General.php:34
+#: inc/functions/admin/options-tabs/03-Design.php:29
+msgid "Preview"
+msgstr "معاينة"
+
+#: inc/functions/admin/options-tabs/01-General.php:35
+#: inc/functions/admin/options-tabs/03-Design.php:30
+msgid "Change"
+msgstr "تغيير"
+
+#: inc/functions/admin/options-tabs/01-General.php:41
+#: inc/functions/admin/options-tabs/01-General.php:42
 msgid "Footer Copyrights"
 msgstr "حقوق الموقع"
 
-#: inc/functions/admin/theme-options.php:62
+#: inc/functions/admin/options-tabs/02-Contact.php:12
+#: inc/functions/admin/theme-options.php:48
+msgid "Contact Info"
+msgstr "معلومات التواصل"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:18
+#, fuzzy
+#| msgid "Contact Info"
+msgid "Contact Information"
+msgstr "معلومات التواصل"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:22
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:23
+#: inc/functions/admin/options-tabs/02-Contact.php:28
+#: inc/functions/admin/options-tabs/02-Contact.php:43
+#: inc/functions/admin/options-tabs/02-Contact.php:48
+msgid "xx-xxxx-xxx"
+msgstr ""
+
+#: inc/functions/admin/options-tabs/02-Contact.php:27
+msgid "Phone Number 2nd"
+msgstr "رقم الهاتف الثاني"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:33
+#: inc/functions/admin/options-tabs/02-Contact.php:38
+msgid "example@mail.com"
+msgstr ""
+
+#: inc/functions/admin/options-tabs/02-Contact.php:37
+msgid "Email Address 2nd"
+msgstr "البريد الالكتروني الثاني"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:42
+msgid "Whatsapp Number"
+msgstr "رقم الواتس اب"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:47
+msgid "Whatsapp Number 2nd"
+msgstr "رقم الواتس اب الثاني"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:52
+msgid "Branch Location"
+msgstr "عنوان الشركة"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:53
+msgid "egypt, beni-suef, al-wasta"
+msgstr ""
+
+#: inc/functions/admin/options-tabs/02-Contact.php:63
+msgid "Social Media"
+msgstr "التواصل الاجتماعي"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:67
+msgid "Facebook url"
+msgstr "رابط فيس بوك"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:68
+msgid "https://fb.com/username"
+msgstr ""
+
+#: inc/functions/admin/options-tabs/02-Contact.php:72
+msgid "Twitter url"
+msgstr "رابط تويتر"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:73
+msgid "https://twitter.com/@username"
+msgstr ""
+
+#: inc/functions/admin/options-tabs/02-Contact.php:77
+msgid "Instagram url"
+msgstr "رابط انستاجرام"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:78
+msgid "https://instagram.com/username"
+msgstr ""
+
+#: inc/functions/admin/options-tabs/02-Contact.php:82
+msgid "Linked-in url"
+msgstr "رابط لينكد إن"
+
+#: inc/functions/admin/options-tabs/02-Contact.php:83
+msgid "https://linkedin.com/@username"
+msgstr ""
+
+#: inc/functions/admin/options-tabs/03-Design.php:18
+#: inc/functions/admin/theme-options.php:49
+msgid "Design Options"
+msgstr "إعدادات التصميم"
+
+#: inc/functions/admin/options-tabs/03-Design.php:22
+msgid "Theme Logo"
+msgstr "لوجو الموقع"
+
+#: inc/functions/admin/theme-options.php:82
 msgid "Powered by Tornado UI v2 Framework © 2016 - 2020"
 msgstr "مدعوم من Tornado UI v2 Framework © 2016-2020"
 
