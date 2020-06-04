@@ -51,9 +51,7 @@ class PLL_REST_Request extends PLL_Base {
 
 			// Share term slugs
 			if ( get_option( 'permalink_structure' ) && $this->options['force_lang'] && class_exists( 'PLL_Share_Term_Slug' ) ) {
-				$this->share_term_slug = version_compare( $GLOBALS['wp_version'], '4.8', '<' ) ?
-					new PLL_Frontend_Share_Term_Slug( $this ) :
-					new PLL_Share_Term_Slug( $this );
+				$this->share_term_slug = new PLL_Share_Term_Slug( $this );
 			}
 
 			// Translate slugs, only for pretty permalinks
@@ -61,6 +59,10 @@ class PLL_REST_Request extends PLL_Base {
 				$curlang = null;
 				$slugs_model = new PLL_Translate_Slugs_Model( $this );
 				$this->translate_slugs = new PLL_Translate_Slugs( $slugs_model, $curlang );
+			}
+
+			if ( class_exists( 'PLL_Sync_Post_Model' ) ) {
+				$this->sync_post_model = new PLL_Sync_Post_Model( $this );
 			}
 
 			if ( class_exists( 'PLL_Sync_Post_REST' ) ) {

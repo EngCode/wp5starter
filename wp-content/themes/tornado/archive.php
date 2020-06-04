@@ -1,11 +1,9 @@
 <?php
-/**
- * Template Name: Blog
- * this template for displaying category, tag, taxonomy, author, or date
- * @package Tornado Wordpress
- * @subpackage Developing Starter Template
- * @since Tornado UI Starter 1.0
-*/
+    /**
+     * Template Name: Blog
+     * this template for displaying category, tag, taxonomy, author, or date
+     * @package Tornado Wordpress
+    */
 ?>
 
 <!-- Head Tag -->

@@ -1,11 +1,23 @@
 <?php 
+    /**
+     * Tornado Theme Assets
+     * @package Tornado Wordpress
+     * Including Tornado UI Theme Assets CSS/JS Files
+     * 
+     * ========> Reference by Comments <=======
+     * 00 - Register CSS Files
+     * 02 - Register Javascript Files
+     * 03 - Gutenberg Assets
+    */
+
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
+
     //======== Register CSS Files ========//
     function tornado_css() {
         wp_enqueue_style('tornado-icon', get_template_directory_uri() . '/dist/css/tornado-icons.css', false , NULL , 'all'); 
         //=== RTL CSS ===//
-        if ( is_rtl() ) {
+        if (is_rtl()) {
             wp_enqueue_style('tornado-rtl', get_template_directory_uri() . '/dist/css/tornado-rtl.css', false , NULL , 'all'); 
         } 
         //=== LTR CSS ===//
@@ -18,17 +30,9 @@
         wp_enqueue_script('tornado_js', get_template_directory_uri() . '/dist/js/tornado.min.js', false , NULL , true);
     };
 
-    //==== Run Assets Files By Hooks ====//
+    //==== Run Assets Files By Gutenberg Hooks ====//
     add_action ('enqueue_block_assets','tornado_css');
     add_action ('enqueue_block_assets','tornado_js');
-
-    //===== Customizer Design CSS =====//
-    function tornado_customizer_stylesheet() {
-        wp_register_style( 'my-customizer-css', get_template_directory_uri() . '/dist/css/customizer.css', NULL, NULL, 'all' );
-        wp_enqueue_style( 'my-customizer-css' );
-    }
-
-    add_action('customize_controls_print_styles', 'tornado_customizer_stylesheet' );
 
     //==== Gutenberg Assets ====//
     function gutenberg_tornado() {

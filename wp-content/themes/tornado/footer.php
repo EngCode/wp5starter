@@ -1,3 +1,9 @@
+<?php
+    /**
+     * this template for displaying footer closers
+     * @package Tornado Wordpress
+    */
+?>
     <!-- Thanks Redirect -->
     <?php $homeUrl = home_url(); ?>
     <script>

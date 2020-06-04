@@ -1,11 +1,9 @@
 <?php
-/**
- * Template Name: Error 404
- * this template for displaying 404 pages (not found)
- * @package Tornado Wordpress
- * @subpackage Developing Starter Template
- * @since Tornado UI Starter 1.0
-*/
+    /**
+     * Template Name: Error 404
+     * this template for displaying 404 pages (not found)
+     * @package Tornado Wordpress
+    */
 ?>
 
 <!-- Head Tag -->

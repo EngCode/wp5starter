@@ -1,10 +1,8 @@
 <?php
-/**
- * this template for displaying Search Resault
- * @package Tornado Wordpress
- * @subpackage Developing Starter Template
- * @since Tornado UI Starter 1.0
-*/
+	/**
+	 * this template for displaying Search Resault
+	 * @package Tornado Wordpress
+	*/
 ?>
 
 <!-- Head Tag -->

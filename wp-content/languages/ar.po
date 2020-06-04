@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the WordPress - 5.4.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-03-31 01:52:57+0000\n"
+"PO-Revision-Date: 2020-05-24 21:41:43+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ((n == 1) ? 1 : ((n == 2) ? 2 : ((n % 100 >= 3 && n % 100 <= 10) ? 3 : ((n % 100 >= 11 && n % 100 <= 99) ? 4 : 5))));\n"
+"X-Generator: GlotPress/3.0.0-alpha\n"
 "Language: ar\n"
 "Project-Id-Version: WordPress - 5.4.x - Development\n"
 
@@ -76,6 +76,10 @@ msgstr "٬"
 #: wp-includes/class-wp-locale.php:208
 msgid "number_format_decimal_point"
 msgstr "."
+
+#: wp-includes/rest-api.php:50
+msgid "Namespace must not start or end with a slash."
+msgstr "يجب ألا تبدأ مساحة التسمية (Namespace) أو تنتهي بشرطة مائلة."
 
 #. translators: 1: Type of block (i.e. Text, Image etc)
 #: wp-includes/js/dist/block-editor.js:23760
@@ -1536,12 +1540,12 @@ msgstr[5] "%d تنصيب نشط"
 #: wp-includes/js/dist/block-directory.js:1284
 msgid "This author has %d block, with an average rating of %d."
 msgid_plural "This author has %d blocks, with an average rating of %d."
-msgstr[0] "يحتوي هذا المؤلف على %d مكوّن، بمتوسط تقييم %d."
-msgstr[1] "يحتوي هذا المؤلف على مكوّن واحد (%d)، بمتوسط تقييم %d."
-msgstr[2] "يحتوي هذا المؤلف على %d مكوّن، بمتوسط تقييم %d."
-msgstr[3] "يحتوي هذا المؤلف على %d مكوّنات، بمتوسط تقييم %d."
-msgstr[4] "يحتوي هذا المؤلف على %d مكوّن، بمتوسط تقييم %d."
-msgstr[5] "يحتوي هذا المؤلف على %d مكوّن، بمتوسط تقييم %d."
+msgstr[0] "يمتلك هذا المؤلف على %d مكوّن، بمتوسط تقييم %d."
+msgstr[1] "يمتلك هذا المؤلف على مكوّن واحد (%d)، بمتوسط تقييم %d."
+msgstr[2] "يمتلك هذا المؤلف على %d مكوّن، بمتوسط تقييم %d."
+msgstr[3] "يمتلك هذا المؤلف على %d مكوّنات، بمتوسط تقييم %d."
+msgstr[4] "يمتلك هذا المؤلف على %d مكوّن، بمتوسط تقييم %d."
+msgstr[5] "يمتلك هذا المؤلف على %d مكوّن، بمتوسط تقييم %d."
 
 #: wp-includes/js/dist/block-directory.js:1282
 msgid "Authored by %s"
@@ -2506,7 +2510,7 @@ msgid "Embed Crowdsignal (formerly Polldaddy) content."
 msgstr "تضمين محتوى Crowdsignal (يعرف بـ Polldaddy سابقًا)."
 
 #. translators: %s: rest_api_init
-#: wp-includes/rest-api.php:52
+#: wp-includes/rest-api.php:58
 msgid "REST API routes must be registered on the %s action."
 msgstr "مسارات الـ REST API يجب أن تكون مسجلة عبر الإجراء %s."
 
@@ -5839,7 +5843,7 @@ msgid "Installed"
 msgstr "منصّب"
 
 #. translators: %s: Property of an object.
-#: wp-includes/rest-api.php:1279
+#: wp-includes/rest-api.php:1285
 msgid "%1$s is not a valid property of Object."
 msgstr "%1$s خاصية غير صالحة للكائن."
 
@@ -7236,22 +7240,22 @@ msgid "Updated!"
 msgstr "تم التحديث!"
 
 #. translators: 1: Parameter, 2: Maximum number.
-#: wp-includes/rest-api.php:1365
+#: wp-includes/rest-api.php:1371
 msgid "%1$s must be less than or equal to %2$d"
 msgstr "%1$s يجب أن يكون أقل أو يساوي %2$d"
 
 #. translators: 1: Parameter, 2: Maximum number.
-#: wp-includes/rest-api.php:1362
+#: wp-includes/rest-api.php:1368
 msgid "%1$s must be less than %2$d"
 msgstr "%1$s يجب أن يكون أقل من %2$d"
 
 #. translators: 1: Parameter, 2: Minimum number.
-#: wp-includes/rest-api.php:1357
+#: wp-includes/rest-api.php:1363
 msgid "%1$s must be greater than or equal to %2$d"
 msgstr "%1$s يجب أن يكون أكبر أو يساوي %2$d"
 
 #. translators: 1: Parameter, 2: Minimum number.
-#: wp-includes/rest-api.php:1354
+#: wp-includes/rest-api.php:1360
 msgid "%1$s must be greater than %2$d"
 msgstr "%1$s يجب أن يكون أكبر من %2$d"
 
@@ -7695,7 +7699,7 @@ msgid "Invalid slug."
 msgstr "اسم لطيف غير صالح."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:717
-#: wp-includes/rest-api.php:1338 wp-includes/user.php:3568
+#: wp-includes/rest-api.php:1344 wp-includes/user.php:3568
 msgid "Invalid email address."
 msgstr "عنوان بريد إلكتروني غير صالح."
 
@@ -7712,7 +7716,7 @@ msgstr "دالة JSONP غير صالحة"
 msgid "Invalid page template."
 msgstr "قالب صفحة غير صالح."
 
-#: wp-includes/script-loader.php:1211 wp-includes/rest-api.php:1332
+#: wp-includes/script-loader.php:1211 wp-includes/rest-api.php:1338
 #: wp-includes/post.php:3739
 msgid "Invalid date."
 msgstr "تاريخ غير صالح."
@@ -8188,42 +8192,42 @@ msgid "Item selected."
 msgstr "العنصر تم تحديده."
 
 #. translators: 1: Parameter, 2: Minimum number, 3: Maximum number.
-#: wp-includes/rest-api.php:1386
+#: wp-includes/rest-api.php:1392
 msgid "%1$s must be between %2$d (inclusive) and %3$d (inclusive)"
 msgstr "%1$s يجب أن يكون بين %2$d (ضمنًا) و %3$d (ضمنًا)"
 
 #. translators: 1: Parameter, 2: Minimum number, 3: Maximum number.
-#: wp-includes/rest-api.php:1381
+#: wp-includes/rest-api.php:1387
 msgid "%1$s must be between %2$d (exclusive) and %3$d (inclusive)"
 msgstr "%1$s يجب أن يكون بين %2$d (حصرًا) و %3$d (ضمنًا)"
 
 #. translators: 1: Parameter, 2: Minimum number, 3: Maximum number.
-#: wp-includes/rest-api.php:1376
+#: wp-includes/rest-api.php:1382
 msgid "%1$s must be between %2$d (inclusive) and %3$d (exclusive)"
 msgstr "%1$s يجب أن يكون بين %2$d (ضمنًا) و %3$d (حصرًا)"
 
 #. translators: 1: Parameter, 2: Minimum number, 3: Maximum number.
-#: wp-includes/rest-api.php:1371
+#: wp-includes/rest-api.php:1377
 msgid "%1$s must be between %2$d (exclusive) and %3$d (exclusive)"
 msgstr "%1$s يجب أن يكون بين %2$d (حصرًا) و %3$d (حصرًا)"
 
 #. translators: %s: IP address.
-#: wp-includes/rest-api.php:1344
+#: wp-includes/rest-api.php:1350
 msgid "%s is not a valid IP address."
 msgstr "%s ليس عنوان IP صالح."
 
 #. translators: 1: Parameter, 2: List of types.
 #. translators: 1: Parameter, 2: Type name.
-#: wp-includes/rest-api.php:1231 wp-includes/rest-api.php:1241
-#: wp-includes/rest-api.php:1267 wp-includes/rest-api.php:1295
-#: wp-includes/rest-api.php:1310 wp-includes/rest-api.php:1315
-#: wp-includes/rest-api.php:1320 wp-includes/rest-api.php:1325
+#: wp-includes/rest-api.php:1237 wp-includes/rest-api.php:1247
+#: wp-includes/rest-api.php:1273 wp-includes/rest-api.php:1301
+#: wp-includes/rest-api.php:1316 wp-includes/rest-api.php:1321
+#: wp-includes/rest-api.php:1326 wp-includes/rest-api.php:1331
 msgid "%1$s is not of type %2$s."
 msgstr "%1$s ليس من النوع %2$s."
 
 #. translators: 1: Parameter, 2: List of valid values.
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:1363
-#: wp-includes/rest-api.php:1304
+#: wp-includes/rest-api.php:1310
 msgid "%1$s is not one of %2$s."
 msgstr "%1$s ليس واحدًا %2$s."
 
@@ -10327,24 +10331,24 @@ msgstr "اسم الكود القصير غير صالح: المُعطى اسم ف
 msgid "Permalink saved"
 msgstr "تم حفظ الرابط الدائم"
 
-#: wp-includes/rest-api.php:917
+#: wp-includes/rest-api.php:923
 msgid "Cookie nonce is invalid"
 msgstr "مُناسبية الكعكة غير صالحة"
 
 #. translators: 1: Function name, 2: WordPress version number, 3: Error
 #. message.
-#: wp-includes/rest-api.php:565
+#: wp-includes/rest-api.php:571
 msgid "%1$s (since %2$s; %3$s)"
 msgstr "%1$s (منذ %2$s; %3$s)"
 
 #. translators: 1: Function name, 2: WordPress version number.
-#: wp-includes/rest-api.php:544 wp-includes/rest-api.php:568
+#: wp-includes/rest-api.php:550 wp-includes/rest-api.php:574
 msgid "%1$s (since %2$s; no alternative available)"
 msgstr "%1$s (منذ %2$s; لا بديل متاح)"
 
 #. translators: 1: Function name, 2: WordPress version number, 3: New function
 #. name.
-#: wp-includes/rest-api.php:541
+#: wp-includes/rest-api.php:547
 msgid "%1$s (since %2$s; use %3$s instead)"
 msgstr "%1$s (منذ %2$s; استخدم %3$s بدلاً عنها)"
 

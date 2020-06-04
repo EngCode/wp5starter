@@ -1,11 +1,9 @@
 <?php
-/**
- * Template Name: Default Rich Content
- * this template for displaying Rich Content for any of this pages single.php or page.php
- * @package Tornado Wordpress
- * @subpackage Developing Starter Template
- * @since Tornado UI Starter 1.0
-*/
+    /**
+     * Template Name: Default Rich Content
+     * this template for displaying Rich Content for any of this pages single.php or page.php
+     * @package Tornado Wordpress
+    */
 ?>
 
 <!-- Head Tag -->

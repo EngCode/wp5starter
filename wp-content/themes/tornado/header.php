@@ -1,10 +1,8 @@
 <?php
-/**
- * this template represnt any Page Start for Head/Metatags and Plugins Hook.
- * @package Tornado Wordpress
- * @subpackage Developing Starter Template
- * @since Tornado UI Starter 1.0
-*/
+    /**
+     * this template for displaying Head Tag
+     * @package Tornado Wordpress
+    */
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

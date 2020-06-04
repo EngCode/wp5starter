@@ -1,3 +1,12 @@
+<?php
+    /**
+     * Tornado Theme - Blog Categories List Design Component
+     * @package Tornado Wordpress
+    */
+
+    //======= Exit if Try to Access Directly =======//
+    defined('ABSPATH') || exit;
+?>
 <!-- Widget Block -->
 <div class="widget-block">
     <h3 class="head ti-filing"><?php echo pll__('Blog Categories', 'tornado') ?></h3>

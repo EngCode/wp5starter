@@ -1,4 +1,9 @@
 <?php
+    /**
+     * Tornado Theme - Lateast Blogs Loop Component for Widgets
+     * @package Tornado Wordpress
+    */
+
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
     /*==== Grap Query Data =====*/

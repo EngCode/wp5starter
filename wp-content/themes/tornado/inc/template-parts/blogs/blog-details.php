@@ -1,4 +1,9 @@
 <?php
+    /**
+     * Tornado Theme - Blog Content Design Component
+     * @package Tornado Wordpress
+    */
+
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
     //==== Track the Views Count =====//

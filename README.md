@@ -9,13 +9,17 @@ Tornado Starter Template is a Advanced Wordpress Theme Startup Enviroment With T
 	 -- [new] Custom Options Page in Backend
 	 -- [fix] SVG Support Fix
 	 -- [new] new Plugins Included [ Optional ]
+	 -- [new] User Process Templates
+	 -- [new] Contact US and Success Templates
 	 -- [new] Preformance htaccess file for Production Purpose [_Performance-htaccess.txt].
+	 -- [new] Admin Menu Optimizer Function Remove Useless Items
 	 -- [update] Tornado UI to v2.1.5
 	 -- [update] WordPress Core to v5.4.1
 	 -- [update] Re-Structure Theme Files and Folders
 	 -- [update] improve Functions Code
 	 -- [update] more Powerful Preformance and Cleanups
 	 -- [Deprecated] Remove Theme Customizer Options and Files.
+
 ---------------------
 ##### 03/2019 Changelog
 	Adding new Customizer Options for Social Media and Organize the Meta/Schema Options
@@ -70,9 +74,15 @@ Tornado Starter Template is a Advanced Wordpress Theme Startup Enviroment With T
 --------------------
 ##### Page Post Type Files/Templates
 	# page.php                 [WP Page's Post Type for Creating Custom Pages]
-	# page-empty.php           [Empity Page Template for the WP Page Post Type]
-	# page-no-head.php         [Page Template Without a Page Head or Breadcrumb]
-	# page-with-container.php  [Page Template With Grid System Container]
+	# page-templates/page-empty.php           [Empity Page Template for the WP Page Post Type]
+	# page-templates/page-no-head.php         [Page Template Without a Page Head or Breadcrumb]
+	# page-templates/page-with-container.php  [Page Template With Grid System Container]
+	# page-templates/page-with-container.php  [Page Template With Grid System Container]
+	# page-templates/contact.php              [Contact US Page Template]
+	# page-templates/success.php              [Success Page for Forms Data Send]
+	# page-templates/user-login.php           [User Login Page Template]
+	# page-templates/user-reset.php           [Reset Password Page Template]
+	# page-templates/user-signup.php          [User Register Page Template]
 
 --------------------
 ##### Important Files/Folders
@@ -83,7 +93,7 @@ Tornado Starter Template is a Advanced Wordpress Theme Startup Enviroment With T
 	# inc        [Core PHP Files and Design Template Blocks/Parts ]
 	 -- functions/                  '[Theme Core Functions Goes in functions.php]'
 	  -- admin.php                  '[Theme Custom Options Page]'
-		-- admin (Folder)             '[the Customizer Options Functions Organized]'
+	  -- admin (Folder)             '[the Custom Options Page Functions Organized]'
 	  -- custom-post-types.php      '[Sample for Create Custom Post Types and Taxonomies]'
 	  -- init.php                   '[Theme Setup Process and Registering all Support Features]'
 	  -- preformance.php            '[The Theme Preformance Filters and Clean-up]'

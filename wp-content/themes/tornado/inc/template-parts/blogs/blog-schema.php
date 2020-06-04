@@ -1,7 +1,13 @@
 <?php
+    /**
+     * Tornado Theme - Blog Schema Data Component
+     * @package Tornado Wordpress
+    */
+
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
 ?>
+
 <!-- Schema -->
 <div class="hidden">
     <div class="hidden" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">

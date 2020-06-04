@@ -1,14 +1,13 @@
 <?php
-/**
- * this template repersent Blog Block Design component
- * @package Tornado Wordpress
- * @subpackage Developing Starter Template
- * @since Tornado UI Starter 1.0
-*/
+    /**
+     * Tornado Theme - Blog Small Widget Block Design Component
+     * @package Tornado Wordpress
+    */
+
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
-    $excerpt_msg = __('no Short Discription in [excerpt] Please Write a Short Discription.', 'tornado');
 ?>
+
 <!-- Widget Post -->
 <div class="widget-post">
     <a href="<?php the_permalink(); ?>" data-src="<?php thumbnail_link('https://via.placeholder.com/570x310'); ?>" title="<?php the_title(); ?>"></a>

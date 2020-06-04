@@ -1,10 +1,8 @@
 <?php
-/**
- * this template reprsent the Comments
- * @package Tornado Wordpress
- * @subpackage Developing Starter Template
- * @since Tornado UI Starter 1.0
-*/
+    /**
+     * this template reprsent the Comments
+     * @package Tornado Wordpress
+    */
 ?>
 
 <?php // Security Call

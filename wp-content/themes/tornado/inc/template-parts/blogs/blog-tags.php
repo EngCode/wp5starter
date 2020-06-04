@@ -1,7 +1,12 @@
 <?php
+    /**
+     * Tornado Theme - Blog Tags Links Component
+     * @package Tornado Wordpress
+    */
+
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
-    if ( the_tags() ) :
+    if (the_tags()) :
 ?>
 <!-- Tags -->
 <div class="primary-block">

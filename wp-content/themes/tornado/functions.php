@@ -25,10 +25,13 @@
      * 17 - Contact 7 Dynamic Data Passing
      * 18 - Check Polylang
      * 19 - WP Default Features Filtering
+     * 20 - SVG Files Format Support
      * 
-     */
+    */
+
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
+
     //======== Debug Mode ========//
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
@@ -44,7 +47,6 @@
 
     //==== Setting Page ====//
     include( dirname(__FILE__) . '/inc/functions/admin.php' );
-    include( dirname(__FILE__) . '/inc/functions/theme-customizer.php' );
 
     //==== Custom Post Types ====//
     include( dirname(__FILE__) . '/inc/functions/custom-post-types.php' );
@@ -78,19 +80,16 @@
 
     //========= Admin Menu Optimizer ========//
     function admin_menu_optimizer(){ 
-        //====> Dashboard
-        remove_menu_page( 'index.php' );
         //====> Posts
         remove_menu_page( 'edit.php' );
+        //====> Dashboard
+        // remove_menu_page( 'index.php' );
         //====> Media
         remove_menu_page( 'upload.php' );
         //====> Comments
         remove_menu_page( 'edit-comments.php' );
         //====> Appearance
         // remove_menu_page( 'themes.php' );
-        //=====> Add Menus
-        // add_menu_page(pll__('Menus Settings', 'tornado' ),'Menus Settings','manage_options','nav-menus.php','','dashicons-menu',20);
-        // add_menu_page(pll__('Theme Settings', 'tornado' ),'Theme Settings','manage_options','customize.php','','dashicons-admin-appearance',21);
         //====> Plugins
         // remove_menu_page( 'plugins.php' );
         //====> Tools
@@ -99,7 +98,7 @@
         // remove_menu_page('edit.php?post_type=acf-field-group');
     }
 
-    // add_action( 'admin_menu', 'admin_menu_optimizer' );
+    add_action( 'admin_menu', 'admin_menu_optimizer' );
 
     //==== Stop Generating Image Sizes ====//
     function add_image_insert_override($sizes){
@@ -230,5 +229,32 @@
     remove_filter('the_excerpt', 'wpautop'); //=====> Excrept Return Text Only
     //=====> Remove Adding Extra Views
     remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+
+    //=====> SVG Files Format Support Mimes <======//
+    function svgs_upload_mimes( $mimes = array() ) {
+        $mimes['svg'] = 'image/svg+xml';
+        $mimes['svgz'] = 'image/svg+xml';
+        return $mimes;
+    }
+
+    //=====> SVG Files Format Support Mimes for v4.7.1 and v4.7.2 <======//
+    function svgs_allow_svg_upload( $data, $file, $filename, $mimes ) {
+        global $wp_version;
+
+        if ($wp_version !== '4.7.1' || $wp_version !== '4.7.2') {
+            return $data;
+        }
+
+        $filetype = wp_check_filetype( $filename, $mimes );
     
+        return [
+            'ext'				=> $filetype['ext'],
+            'type'				=> $filetype['type'],
+            'proper_filename'	=> $data['proper_filename']
+        ];
+    
+    }
+
+    add_filter( 'upload_mimes', 'svgs_upload_mimes', 99 );
+    add_filter( 'wp_check_filetype_and_ext', 'bodhi_svgs_allow_svg_upload', 10, 4 );
 ?>

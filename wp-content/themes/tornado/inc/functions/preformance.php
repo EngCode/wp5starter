@@ -1,22 +1,46 @@
 <?php
+    /**
+     * Tornado Theme Preformance Hacks
+     * @package Tornado Wordpress
+     * Disable Useless Wordpress Default Files and Features 
+     * 
+     * ========> Reference by Comments <=======
+     * 00 - Clean JS Scripts Tags Attribute
+     * 01 - Clean Default Head Tag Files for Preformance and Security
+     * 02 - Remove WP Embed Scripts
+     * 03 - Remove Gutenberg Default CSS
+     * 04 - Removing Rich Content inline Styles
+     * 05 - Disable asset versioning
+     * 06 - Remove Admin Bar Inline CSS
+     * 07 - Remove jQuery Migrate
+     * 
+    */
+
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
 
-    //======== Clean Scripts Attribute ======//
+    //======== Clean JS Scripts Tags Attribute ======//
     add_filter('style_loader_tag', 'remove_type_attr', 10, 2);
     add_filter('script_loader_tag', 'remove_type_attr', 10, 2);
+
     function remove_type_attr($tag, $handle) {
         return preg_replace( "/type=['\"]text\/(javascript|css)['\"]/", '', $tag );
     }
 
     //======== Clean Default Head Tag Files for Preformance and Security ========//
     function clean_head() {
-        remove_action('wp_head', 'rsd_link'); // Removing (RSD) Link [Remove it if integrate services like flicker exists]
-        remove_action('wp_head', 'wlwmanifest_link'); // Removing "Windows Live Writer" link for Editing Shortcut
-        remove_action('wp_head', 'wp_generator'); // Remove "WordPress version" tag
-        add_filter('the_generator', '__return_false'); // hide WordPress version from RSS
-        add_filter('feed_links_show_comments_feed', '__return_false'); // Remove RSS Feed for Comments
-        add_filter( 'use_default_gallery_style', '__return_false' ); // Remove Gallery Inline Styling
+        //====> Removing (RSD) Link [Remove it if integrate services like flicker exists]
+        remove_action('wp_head', 'rsd_link');
+        //====> Removing "Windows Live Writer" link for Editing Shortcut
+        remove_action('wp_head', 'wlwmanifest_link');
+        //====> Remove "WordPress version" tag
+        remove_action('wp_head', 'wp_generator');
+        //====> hide WordPress version from RSS
+        add_filter('the_generator', '__return_false');
+        //====> Remove RSS Feed for Comments
+        add_filter('feed_links_show_comments_feed', '__return_false');
+        //====> Remove Gallery Inline Styling
+        add_filter( 'use_default_gallery_style', '__return_false' );
         //====== Remove Emoji Scripts and Styles ======//
         remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
         remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
@@ -25,13 +49,15 @@
         remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
         remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );	
         remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-        // Remove from TinyMCE
+        //====> Remove from TinyMCE
         add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
-        //====== Remove WP Embed Scripts ======// 
+        //====== Remove WP Embed Scripts ======//
         remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
     }
 
-    if(!is_admin()) { add_action( 'init', 'clean_head' ); }
+    if(!is_admin()) {
+        add_action( 'init', 'clean_head' );
+    }
     
     //====== Remove WP Embed Scripts ======// 
     function deregister_wp_embed() {wp_deregister_script( 'wp-embed' );}
@@ -77,9 +103,9 @@
 
     //======= Remove jQuery Migrate =======//
     function remove_jquery_migrate( $scripts ) {
-        if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
+        if (!is_admin() && isset($scripts->registered['jquery'])) {
              $script = $scripts->registered['jquery'];
-            if ( $script->deps ) { 
+            if ($script->deps) { 
                 // Check whether the script has any dependencies
                 $script->deps = array_diff( $script->deps, array( 'jquery-migrate' ) );
             }

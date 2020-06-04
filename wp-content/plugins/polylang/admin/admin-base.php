@@ -48,18 +48,27 @@ class PLL_Admin_Base extends PLL_Base {
 	public function init() {
 		parent::init();
 
+		$this->notices = new PLL_Admin_Notices( $this );
+
+		if ( Polylang::is_wizard() && class_exists( 'PLL_Wizard_Pro' ) ) {
+			// Instantiate PLL_Wizard_Pro class after all PLL_Admin object is all initialized.
+			// After PLL_Admin::maybe_load_sync_post which is hooked on admin_init with priority 20.
+			add_action( 'admin_init', array( $this, 'instantiate_wizard_pro' ), 30 );
+		}
+
+		$this->wizard = new PLL_Wizard( $this );
+
 		if ( ! $this->model->get_languages_list() ) {
 			return;
 		}
 
-		$this->notices = new PLL_Admin_Notices( $this );
 		$this->links = new PLL_Admin_Links( $this ); // FIXME needed here ?
 		$this->static_pages = new PLL_Admin_Static_Pages( $this ); // FIXME needed here ?
 		$this->filters_links = new PLL_Filters_Links( $this ); // FIXME needed here ?
 
 		// Filter admin language for users
 		// We must not call user info before WordPress defines user roles in wp-settings.php
-		add_filter( 'setup_theme', array( $this, 'init_user' ) );
+		add_action( 'setup_theme', array( $this, 'init_user' ) );
 		add_filter( 'request', array( $this, 'request' ) );
 
 		// Adds the languages in admin bar
@@ -78,6 +87,8 @@ class PLL_Admin_Base extends PLL_Base {
 	 * @since 0.1
 	 */
 	public function add_menus() {
+		global $admin_page_hooks;
+
 		// Prepare the list of tabs
 		$tabs = array( 'lang' => __( 'Languages', 'polylang' ) );
 
@@ -97,11 +108,14 @@ class PLL_Admin_Base extends PLL_Base {
 		 */
 		$tabs = apply_filters( 'pll_settings_tabs', $tabs );
 
+		$parent = '';
+
 		foreach ( $tabs as $tab => $title ) {
 			$page = 'lang' === $tab ? 'mlang' : "mlang_$tab";
 			if ( empty( $parent ) ) {
 				$parent = $page;
 				add_menu_page( $title, __( 'Languages', 'polylang' ), 'manage_options', $page, null, 'dashicons-translation' );
+				$admin_page_hooks[ $page ] = 'languages'; // Hack to avoid the localization of the hook name. See: https://core.trac.wordpress.org/ticket/18857
 			}
 
 			add_submenu_page( $parent, $title, $title, 'manage_options', $page, array( $this, 'languages_page' ) );
@@ -121,20 +135,21 @@ class PLL_Admin_Base extends PLL_Base {
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		// For each script:
-		// 0 => the pages on which to load the script
-		// 1 => the scripts it needs to work
-		// 2 => 1 if loaded even if languages have not been defined yet, 0 otherwise
-		// 3 => 1 if loaded in footer
-		// FIXME: check if I can load more scripts in footer
+		/*
+		 * For each script:
+		 * 0 => the pages on which to load the script
+		 * 1 => the scripts it needs to work
+		 * 2 => 1 if loaded even if languages have not been defined yet, 0 otherwise
+		 * 3 => 1 if loaded in footer
+		 */
 		$scripts = array(
-			'post'           => array( array( 'edit', 'upload' ), array( 'jquery', 'wp-ajax-response' ), 0, 1 ),
-			'term'           => array( array( 'edit-tags', 'term' ), array( 'jquery', 'wp-ajax-response', 'jquery-ui-autocomplete' ), 0, 1 ),
-			'user'           => array( array( 'profile', 'user-edit' ), array( 'jquery' ), 0, 0 ),
-			'widgets'        => array( array( 'widgets' ), array( 'jquery' ), 0, 0 ),
+			'user'    => array( array( 'profile', 'user-edit' ), array( 'jquery' ), 0, 0 ),
+			'widgets' => array( array( 'widgets' ), array( 'jquery' ), 0, 0 ),
 		);
 
 		if ( ! empty( $screen->post_type ) && $this->model->is_translated_post_type( $screen->post_type ) ) {
+			$scripts['post'] = array( array( 'edit', 'upload' ), array( 'jquery', 'wp-ajax-response' ), 0, 1 );
+
 			// Classic editor.
 			if ( ! method_exists( $screen, 'is_block_editor' ) || ! $screen->is_block_editor() ) {
 				$scripts['classic-editor'] = array( array( 'post', 'media', 'async-upload' ), array( 'jquery', 'wp-ajax-response', 'post' ), 0, 1 );
@@ -144,6 +159,10 @@ class PLL_Admin_Base extends PLL_Base {
 			if ( method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor() && ! pll_use_block_editor_plugin() ) {
 				$scripts['block-editor'] = array( array( 'post' ), array( 'jquery', 'wp-ajax-response', 'wp-api-fetch' ), 0, 1 );
 			}
+		}
+
+		if ( ! empty( $screen->taxonomy ) && $this->model->is_translated_taxonomy( $screen->taxonomy ) ) {
+			$scripts['term'] = array( array( 'edit-tags', 'term' ), array( 'jquery', 'wp-ajax-response', 'jquery-ui-autocomplete' ), 0, 1 );
 		}
 
 		foreach ( $scripts as $script => $v ) {
@@ -420,5 +439,13 @@ class PLL_Admin_Base extends PLL_Base {
 				)
 			);
 		}
+	}
+	/**
+	 * Instantiate PLL_Wizard_Pro class.
+	 *
+	 * @since 2.7
+	 */
+	public function instantiate_wizard_pro() {
+		$this->wizard_pro = new PLL_Wizard_Pro( $this );
 	}
 }

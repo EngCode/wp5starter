@@ -1,10 +1,9 @@
 <?php
-/**
- * this template repersent Service Block Design component
- * @package Tornado Wordpress
- * @subpackage Developing Starter Template
- * @since Tornado UI Starter 1.0
-*/
+    /**
+     * Tornado Theme - Blog Block Design Component
+     * @package Tornado Wordpress
+    */
+
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
 ?>

@@ -1,10 +1,9 @@
 <?php
-/**
- * this template repersent Footer design component
- * @package Tornado Wordpress
- * @subpackage Developing Starter Template
- * @since Tornado UI Starter 1.0
-*/
+    /**
+     * Tornado Theme - Custom Footer Component
+     * @package Tornado Wordpress
+    */
+
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
 ?>
