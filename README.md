@@ -4,10 +4,10 @@ Tornado Starter Template is a Advanced Wordpress Theme Startup Enviroment With T
 
 ---------------------
 ##### 06/2020 Changelog
+	 -- [new] Advanced Theme and Design Options for Powerful Controls
 	 -- [new] Jetpack Features Support 
 	 -- [fix] Gutenberg JS Helpers to WordPress v5.4.1
 	 -- [new] Custom Options Page in Backend
-	 -- [fix] SVG Support Fix
 	 -- [new] new Plugins Included [ Optional ]
 	 -- [new] User Process Templates
 	 -- [new] Contact US and Success Templates

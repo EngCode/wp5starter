@@ -8,5 +8,5 @@
     defined('ABSPATH') || exit;
 ?>
 <!-- Copyrights -->
-<?php echo get_meta_options('theme-copyright');?>
+<?php echo pll__(get_option('meta_copyrights'),'tornado'); ?>
 <!-- // Copyrights -->

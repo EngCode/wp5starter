@@ -19,7 +19,7 @@
     <span itemprop="datePublished"><?php the_date('d M Y'); ?></span>
     <span itemprop="publisher"><?php the_date('d M Y'); ?></span>
     <span itemprop="dateModified"><?php the_date('d M Y'); ?></span>
-    <span itemprop="mainEntityOfPage"><?php if ( has_excerpt() ) { the_excerpt();  } else { echo __('لا يوجد محتوي فى الوصف القصير [المقتطف] يرجي وضع محتوي ليظهر هنا', 'tornado'); }; ?></span>
-    <span itemprop="description"><?php if ( has_excerpt() ) { the_excerpt();  } else { echo __('لا يوجد محتوي فى الوصف القصير [المقتطف] يرجي وضع محتوي ليظهر هنا', 'tornado'); }; ?></span>
+    <span itemprop="mainEntityOfPage"><?php echo strip_tags(get_the_excerpt()); ?></span>
+    <span itemprop="description"><?php echo strip_tags(get_the_excerpt()); ?></span>
 </div>
 <!-- // Schema -->

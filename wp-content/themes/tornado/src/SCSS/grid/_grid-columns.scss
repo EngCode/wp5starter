@@ -5,10 +5,10 @@
     .box-#{$i}x1{width: 100%;}
     // Masonry Grid
     .masonry-#{$i}x1{
-        -webkit-column-count: $i;
-            column-count: $i;
-        -webkit-column-width: 100%/$i;
-            column-width: 100%/$i;
+        -moz-column-count: $i;
+             column-count: $i;
+        -moz-column-width: 100%/$i;
+             column-width: 100%/$i;
     }
 }
 
@@ -18,10 +18,10 @@
         .col-s-#{$i} {width: percentage($i / $grid-columns);} // Normal Grid Loop
         // Masonry Grid
         .masonry-s-#{$i}x1{
-            -webkit-column-count: $i;
-                column-count: $i;
-            -webkit-column-width: 100%/$i;
-                column-width: 100%/$i;
+            -moz-column-count: $i;
+                 column-count: $i;
+            -moz-column-width: 100%/$i;
+                 column-width: 100%/$i;
         }
     }
     // Dynamic Grid
@@ -36,10 +36,10 @@
         .col-m-#{$i} {width: percentage($i / $grid-columns);} // Normal Grid Loop
         // Masonry Grid
         .masonry-m-#{$i}x1{
-            -webkit-column-count: $i;
-                column-count: $i;
-            -webkit-column-width: 100%/$i;
-                column-width: 100%/$i;
+            -moz-column-count: $i;
+                 column-count: $i;
+            -moz-column-width: 100%/$i;
+                 column-width: 100%/$i;
         }
     }
     // Dynamic Grid
@@ -55,10 +55,10 @@
         .box-#{$i}x1 {width: 100%/$i;} // Dynamic Grid Loop
         // Masonry Grid
         .masonry-l-#{$i}x1 {
-            -webkit-column-count: $i;
-                column-count: $i;
-            -webkit-column-width: 100%/$i;
-                column-width: 100%/$i;
+            -moz-column-count: $i;
+                 column-count: $i;
+            -moz-column-width: 100%/$i;
+                 column-width: 100%/$i;
         }
     }
 }
@@ -69,10 +69,10 @@
         .col-xl-#{$i} { width: percentage($i / $grid-columns);} // Normal Grid Loop
         // Masonry Grid
         .masonry-xl-#{$i}x1{
-            -webkit-column-count: $i;
-                column-count: $i;
-            -webkit-column-width: 100%/$i;
-                column-width: 100%/$i;
+            -moz-column-count: $i;
+                 column-count: $i;
+            -moz-column-width: 100%/$i;
+                 column-width: 100%/$i;
         }
     }
 }

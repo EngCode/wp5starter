@@ -25,7 +25,6 @@
      * 17 - Contact 7 Dynamic Data Passing
      * 18 - Check Polylang
      * 19 - WP Default Features Filtering
-     * 20 - SVG Files Format Support
      * 
     */
 
@@ -136,8 +135,8 @@
             'end_size'     => 2,
             'mid_size'     => 1,
             'prev_next'    => true,
-            'prev_text'    => sprintf( '<i></i> %1$s', __( 'الصفحة السابقة' ) ),
-            'next_text'    => sprintf( '%1$s <i></i>', __( 'الصفحة التالية' ) ),
+            'prev_text'    => sprintf( '<i></i> %1$s', __( 'Previous Page' ) ),
+            'next_text'    => sprintf( '%1$s <i></i>', __( 'Next Page' ) ),
         ));
 
         if( is_array( $pages ) ) {
@@ -229,32 +228,4 @@
     remove_filter('the_excerpt', 'wpautop'); //=====> Excrept Return Text Only
     //=====> Remove Adding Extra Views
     remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
-
-    //=====> SVG Files Format Support Mimes <======//
-    function svgs_upload_mimes( $mimes = array() ) {
-        $mimes['svg'] = 'image/svg+xml';
-        $mimes['svgz'] = 'image/svg+xml';
-        return $mimes;
-    }
-
-    //=====> SVG Files Format Support Mimes for v4.7.1 and v4.7.2 <======//
-    function svgs_allow_svg_upload( $data, $file, $filename, $mimes ) {
-        global $wp_version;
-
-        if ($wp_version !== '4.7.1' || $wp_version !== '4.7.2') {
-            return $data;
-        }
-
-        $filetype = wp_check_filetype( $filename, $mimes );
-    
-        return [
-            'ext'				=> $filetype['ext'],
-            'type'				=> $filetype['type'],
-            'proper_filename'	=> $data['proper_filename']
-        ];
-    
-    }
-
-    add_filter( 'upload_mimes', 'svgs_upload_mimes', 99 );
-    add_filter( 'wp_check_filetype_and_ext', 'bodhi_svgs_allow_svg_upload', 10, 4 );
 ?>

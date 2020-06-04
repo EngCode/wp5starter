@@ -42,7 +42,7 @@
             if (function_exists("pagination")) { pagination($the_query); };
             wp_reset_postdata();
             //==== if have no Posts ====//
-        else : echo '<div class="alert info">' . __( 'مع الاسف : لا يوجد مقالات فى هذا القسم.' ) . '</div>';
+        else : echo '<div class="alert info">' . __( 'Sorry no Posts have been found here.' ) . '</div>';
         //==== End Query =====//
         endif;
     ?>

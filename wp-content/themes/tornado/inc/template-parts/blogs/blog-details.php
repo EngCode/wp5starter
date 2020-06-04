@@ -18,13 +18,13 @@
     <div class="info-head">
         <!-- Post Info -->
         <div class="info">
-            <span class="ti-calendar"><?php echo __('تم نشرة '); the_date('d M Y'); ?></span>
-            <span class="ti-comment-alt-dots"><?php comments_number( __('لا يوجد تعليقات'), __('تعليق واحد'), __('% تعليق') ); ?></span>
-            <span class="ti-eye"><?php echo getPostViews(get_the_ID()) . __('مشاهدة'); ?> </span>
+            <span class="ti-calendar"><?php echo __('Posted on'); the_date('d M Y'); ?></span>
+            <span class="ti-comment-alt-dots"><?php comments_number( __('no comments'), __('one comment'), '% ' . __('comments') ); ?></span>
+            <span class="ti-eye"><?php echo getPostViews(get_the_ID()) . __('view'); ?> </span>
         </div>
         <!-- Share -->
         <div class="social">
-            <span><?php echo __('المشاركة على'); ?></span>
+            <span><?php echo __('share'); ?></span>
             <a href="https://api.whatsapp.com/send?text=<?php the_permalink(); ?>" data-action="share/whatsapp/share" class="icon-btn tooltip ti-whatsapp" target="_blank" title="<?php echo pll__('مشاركة عبر الواتس اب','tornado');?>"></a>
             <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" class="icon-btn tooltip ti-facebook" target="_blank" title="<?php echo pll__('مشاركة على الفيس بوك','tornado');?>"></a>
             <a href="https://twitter.com/intent/tweet?text=<?php the_permalink(); ?>" class="icon-btn tooltip ti-twitter" target="_blank" title="<?php echo pll__('مشاركة على تويتر','tornado');?>" data-size="large"></a>

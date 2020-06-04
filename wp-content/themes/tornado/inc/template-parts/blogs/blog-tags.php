@@ -10,7 +10,7 @@
 ?>
 <!-- Tags -->
 <div class="primary-block">
-    <h3 class="head ti-tag"><?php echo __('الكلمات الدلالية'); ?></h3>
+    <h3 class="head ti-tag"><?php echo pll__('الكلمات الدلالية'); ?></h3>
     <div class="tags clear-after">
         <?php the_tags(' ',' ',' '); ?>
     </div>

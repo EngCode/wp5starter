@@ -7,8 +7,7 @@
  * @since Tornado UI Starter 1.0
 */
     //===============> Get Logo <==============//
-    if(is_rtl()) { $logo = get_design_options('logo_rtl'); } 
-    else { $logo = get_design_options('logo'); }
+    $logo = get_option('theme_logo');
     //==========> if Loged in Go to Home <==========//
     if (is_user_logged_in()) {
         $redirect = site_url();

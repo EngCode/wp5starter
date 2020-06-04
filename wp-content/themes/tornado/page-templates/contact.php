@@ -22,8 +22,8 @@
             <div class="content-box">
                 <i class="ti-mail"></i>
                 <div class="info">
-                    <h4><?php echo get_design_options('email');?></h4>
-                    <h4><?php echo get_design_options('email_2');?></h4>
+                    <h4><?php echo get_option('contact_email');?></h4>
+                    <h4><?php echo get_option('contact_email_2nd');?></h4>
                 </div>
             </div>
         </div>
@@ -32,8 +32,8 @@
             <div class="content-box">
                 <i class="ti-phone"></i>
                 <div class="info">
-                    <h4><?php echo get_design_options('phone_number');?></h4>
-                    <h4><?php echo get_design_options('phone_number_2');?></h4>
+                    <h4><?php echo get_option('phone_number');?></h4>
+                    <h4><?php echo get_option('phone_number_2nd');?></h4>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
             <div class="content-box">
                 <i class="ti-map-marker"></i>
                 <div class="info">
-                    <h4><?php echo get_design_options('address');?></h4>
+                    <h4><?php echo pll__(get_option('branch_address'),'tornado'); ?></h4>
                 </div>
             </div>
         </div>
@@ -61,8 +61,6 @@
         </div>
     </div>
     <!-- // Grid -->
-
-    
 </div>
 <!-- Custom Footer --> 
 <?php get_template_part('inc/template-parts/components/footer'); ?>

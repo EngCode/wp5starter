@@ -15,7 +15,7 @@
     function blog_cpt() {
         //===== CPT Options ====//
         $args = array(
-            'label'         => pll__('Blog', 'tornado'),
+            'label'         => __('Blog', 'tornado'),
             'name'          => 'post',
             'singular_name' => 'post',
             'menu_position' => 3,
@@ -36,7 +36,7 @@
 	function tax_name() {
 		//===== Taxonomies Options ====//
 		$args = array(
-			'label'             => pll__('Categories', 'tornado'),
+			'label'             => __('Categories', 'tornado'),
             'rewrite'           => array('slug' => 'docementation-categories' ),
             'public'            => true,
 			'hierarchical'      => true,
