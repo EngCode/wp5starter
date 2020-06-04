@@ -16,6 +16,120 @@ const dynamicBackgrounds = (selector) => {
     });
 }
 
+//======> Dynamic Backgrounds <======//
+const dynamicBackgroundsLazy = (selector) => {
+    var backgroundElement = getElements(selector || '[data-src]');
+    Array.from(backgroundElement).forEach(function (element) {
+        element.classList.add('lazyloader');
+        //====> get the Target <====//
+        var bgData = element.getAttribute('data-src'),
+            setBackground = ele => {
+                if(bgData === null || bgData === undefined || bgData === '' || bgData === ' ') {
+                    element.style.backgroundImage = '';
+                } else {
+                    bgData = bgData.replace(' ','%20');
+                    bgData = bgData.replace('#','%23');
+                    element.classList.remove('lazyloader');
+                    element.style.backgroundImage = 'url("' + bgData + '")';
+                }
+            },
+            getBounds = ele => {
+                //==== Get the Element Data ====//
+                var scrollPosition = window.scrollY || window.pageYOffset,
+                    boundsTop = element.getBoundingClientRect().top + scrollPosition,
+                    viewport = {top: scrollPosition,bottom: scrollPosition + window.innerHeight},
+                    bounds = {top: boundsTop, bottom: boundsTop + element.clientHeight};
+                //====== if its visible =====//
+                if (bounds.bottom >= viewport.top && bounds.bottom <= viewport.bottom || bounds.top <= viewport.bottom && bounds.top >= viewport.top) return true;
+            },
+            setMedia = () => {
+                //==== Get the Element Data ====//
+                var newResault = getBounds(element);
+                //====== if its visible =====//
+                if (newResault === true) setBackground(element);
+            },
+            sliderDetact = parentsUntil(element,'.tns-outer'),
+            setforSliders = () => {
+                if (sliderDetact) {
+                    //==== Get the Slider Position ====//
+                    var newResault = getBounds(element);
+                    //====== if its visible =====//
+                    if (newResault === true) {                  
+                        var sliderItems = sliderDetact.querySelectorAll('[data-src]');
+                        Array.from(sliderItems).forEach(item => {
+                            setBackground(item);
+                        });
+                    }
+                }
+            }
+        if (bgData === '' || bgData === ' ') element.classList.remove('lazyloader');
+        //====> Scroll Event <====//
+        window.addEventListener('scroll', event => {
+            setMedia();
+            setforSliders();
+        });
+
+        //====> if its in first view <=====//
+        var newResault = getBounds(element);
+        if (newResault === true) {
+            /*======> if not Slider Set Background <====*/
+            if (!sliderDetact) setBackground(element);
+        }
+    });
+}
+
+//======> Dynamic LazyLoad Images <======//
+const lazyLoading = () => {
+    //========> LazyLoading <========//
+    var lazyloadElements = getElements('[data-lazyload]');
+    Array.from(lazyloadElements).forEach(element => {
+        //====> get the Target <====//
+        var getBounds = ele => {
+            //==== Get the Element Data ====//
+            var scrollPosition = window.scrollY || window.pageYOffset,
+                boundsTop = element.getBoundingClientRect().top + scrollPosition,
+                viewport = {top: scrollPosition,bottom: scrollPosition + window.innerHeight},
+                bounds = {top: boundsTop, bottom: boundsTop + element.clientHeight};
+            //====== if its visible =====//
+            if (bounds.bottom >= viewport.top && bounds.bottom <= viewport.bottom || bounds.top <= viewport.bottom && bounds.top >= viewport.top) return true;
+        },
+        setMediaImages = () => {
+            //==== Get the Element Data ====//
+            var newResault = getBounds(element);
+            //====== if its visible =====//
+            if (newResault === true) {
+                var lazydata = element.getAttribute('data-lazyload');
+                element.setAttribute('src',lazydata);
+            };
+        },
+        sliderDetact = parentsUntil(element,'.tns-outer'),
+        setforSliders = () => {
+            if (sliderDetact) {
+                //==== Get the Element Data ====//
+                var newResault = getBounds(element);
+                //====== if its visible =====//
+                if (newResault === true) {                  
+                    var sliderItems = sliderDetact.querySelectorAll('[data-lazyload]');
+                    Array.from(sliderItems).forEach(item => {
+                        var lazydata = element.getAttribute('data-lazyload');
+                            element.setAttribute('src',lazydata);
+                    });
+                }
+            }
+        }
+        //====> Scroll Event <====//
+        window.addEventListener('scroll', event => {
+            setMediaImages();
+            setforSliders();
+        });
+        //====> if its in first view <=====//
+        var newResault = getBounds(element);
+        if (newResault === true) {
+            if (!sliderDetact) setMediaImages();
+        }
+    });
+}
+
 //======> Sticky Elements <======//
 const stickyElements =(selector) => {
     var stickyElement = getElements(selector || '[data-sticky]');
@@ -144,8 +258,7 @@ const smothScroll = (selector) => {
 const animatedCounter = (selector) => {
     var counterElements = getElements(selector || '[data-counter]');
     Array.from(counterElements).forEach(function (counterElement) {
-        //====> Reanimate When its Visible <======//
-        window.addEventListener('scroll', function () {
+        function animateNumbers () {
             scrollPosition = window.scrollY || window.pageYOffset,
             boundsTop = counterElement.getBoundingClientRect().top + scrollPosition,
             viewport = {top: scrollPosition,bottom: scrollPosition + window.innerHeight},
@@ -156,12 +269,16 @@ const animatedCounter = (selector) => {
                     new counter ({
                         elem: counterElement,
                         speed: 10,
-                        duration:5000,
+                        duration:2000,
                     });
                 }
-
                 counterElement.classList.add('counted');
             }
+        }
+        animateNumbers();
+        //====> Reanimate When its Visible <======//
+        window.addEventListener('scroll', function () {
+            animateNumbers();
         });
     });
 }
@@ -191,9 +308,6 @@ const ViewPortDetactor = (selector) => {
                     element.style.animationTimingFunction  = 'linear';
                     element.style.animationDelay = animDelay;
                 }
-            } else {
-                // element.classList.remove('view-active');
-                // if(animName) element.style.animation = null;
             }
         }
 
@@ -203,6 +317,56 @@ const ViewPortDetactor = (selector) => {
         window.addEventListener('scroll', function (){
             activateView();
         });
+    });
+}
+
+//=====> Date Counter Down <=====//
+const dateCounterDown = (selector) => {
+    //====== Get Element and its Data =======//
+    var timerWrapers = getElements(selector || '.timer-container');
+    Array.from(timerWrapers).forEach(timerWraper=>{
+        var timerSeconds = timerWraper.querySelector('.seconds'),
+            timerMinutes = timerWraper.querySelector('.minutes'),
+            timerHours = timerWraper.querySelector('.hours'),
+            timerDays = timerWraper.querySelector('.days'),
+            timerDate = timerWraper.getAttribute('data-date');
+            countDownDate = new Date(timerDate).getTime();
+        //========> Update the count down every 1 second <========//
+        var updateCount = setInterval(function () {
+            //=======> Get today's date and time <========//
+            var now = new Date().getTime();
+            //=======> Find the distance between now and the count down date  <========//
+            var distance = countDownDate - now;
+            //=======> Time calculations for days, hours, minutes and seconds <========//
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            //=======> Display the result in the elements <========//
+            timerSeconds.innerHTML = seconds;
+            timerMinutes.innerHTML = minutes;
+            timerHours.innerHTML = hours;
+            timerDays.innerHTML = days;
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(updateCount);
+                if(pageDirection == 'ltr') {
+                    timerWraper.innerHTML = "<div class='expired'>This Event has been Expired!</div>";
+                } else {
+                    timerWraper.innerHTML = "<div class='expired'>لقد انتهي هذا العرض!</div>";
+                }
+            }
+        }, 1000);
+    });
+
+}
+
+//====> Grid Tiny Slider <====//
+const fixTnsGrid = () => {
+    var gridTns = getElements('.tns-slider.row');
+    Array.from(gridTns).forEach(function (gridTns){
+        gridTns.closest('.tns-outer').classList.add('grid-tns');
     });
 }
 
@@ -251,4 +415,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //======> ViewPort Detactor <======//
     ViewPortDetactor();
+
+    //======> Date Counter Down <======//
+    dateCounterDown();
 });

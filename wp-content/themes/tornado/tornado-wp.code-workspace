@@ -2,9 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "C:\\wamp64\\www\\wordpress\\tornado"
 		}
 	],
 	"settings": {
