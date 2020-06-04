@@ -19,11 +19,10 @@
 </h1>
 
 <!-- Page Content -->
-<div class="page-content container-xl">
-    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-        <?php the_content(); ?>
-    <?php endwhile; endif; ?>
-</div>
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+    <?php the_content(); ?>
+<?php endwhile; endif; ?>
+
 <!-- Custom Footer --> 
 <?php get_template_part('inc/template-parts/components/footer'); ?>
 <!-- Footer -->

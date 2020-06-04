@@ -1,14 +1,27 @@
 ### Tornado UI Starter Template [ قالب لبدأ مشاريع جديدة على الووردبريس ]
 ------------------
-Tornado Starter Template is a Advanced Wordpress Theme Startup Enviroment With Tools and Baisc Structure To Help Your Get Ready and Speed the Development Process Current Wordpress Version 5.1
+Tornado Starter Template is a Advanced Wordpress Theme Startup Enviroment With Tools and Baisc Structure To Help Your Get Ready and Speed the Development Process Current Wordpress Version 5.4.1 and up
 
 ---------------------
-##### 13/03/2019 Changelog
+##### 06/2020 Changelog
+	 -- [new] Jetpack Features Support 
+	 -- [fix] Gutenberg JS Helpers to WordPress v5.4.1
+	 -- [new] Custom Options Page in Backend
+	 -- [fix] SVG Support Fix
+	 -- [new] new Plugins Included [ Optional ]
+	 -- [new] Preformance htaccess file for Production Purpose [_Performance-htaccess.txt].
+	 -- [update] Tornado UI to v2.1.5
+	 -- [update] WordPress Core to v5.4.1
+	 -- [update] Re-Structure Theme Files and Folders
+	 -- [update] improve Functions Code
+	 -- [update] more Powerful Preformance and Cleanups
+	 -- [Deprecated] Remove Theme Customizer Options and Files.
+---------------------
+##### 03/2019 Changelog
 	Adding new Customizer Options for Social Media and Organize the Meta/Schema Options
 	 -- Existen Social URLs [Facebook,Twitter,Instagram]
 	 -- new added [LinkedIn, Whatsapp, Youtube, Google, Dribble, ]
 ---------------------
-##### 11/03/2019 Changelog
 	Cleaning Head Tag and Improving Preformance and Speed By Removing the List Below / Source in [/inc/functions/preformance.php]
 	 -- Removing (RSD) Link [Remove this Line if You Ment to integrate with services like flicker]
 	 -- Removing "Windows Live Writer" link for Editing Shortcut
@@ -21,6 +34,7 @@ Tornado Starter Template is a Advanced Wordpress Theme Startup Enviroment With T
 	 -- Removing Rich Content inline Styles
 	 -- Remove Media Gallery Inline Styling
 	 -- Disable Assets Versioning [Remove CSS/JS Files Versions]
+
 ---------------------
 ##### First Steps Checklist
 	-'Setting up Your Config.php File and Install the CMS'
@@ -35,6 +49,8 @@ Tornado Starter Template is a Advanced Wordpress Theme Startup Enviroment With T
 	-'Create and Customize Your Custom Post Types as the Frontend Provide or Needs'
 	-'Validate and Create Default Values for Any Interactive Part in Your Theme'
 	-'Create and Integrate the Theme Design With Gutenberg Editor'
+
+**Think Smartly and Always Remember the User is Dumb that's why we should think for him it's our job**
 
 ---------------------
 ##### Tornado Theme Structure
@@ -60,33 +76,36 @@ Tornado Starter Template is a Advanced Wordpress Theme Startup Enviroment With T
 
 --------------------
 ##### Important Files/Folders
-
 	# functions.php
-	 --the Most Important File Where all Your Functions and Core Base Code Runs Deal With it
-	   Carefully and Track all the Call Back in There
+	 -- the Most Important File Where all Your Functions and Core Base Code Runs Deal With it
+	    Carefully and Track all the Call Back in There
 	---------------------------------------------------------------------------------------
 	# inc        [Core PHP Files and Design Template Blocks/Parts ]
 	 -- functions/                  '[Theme Core Functions Goes in functions.php]'
+	  -- admin.php                  '[Theme Custom Options Page]'
+		-- admin (Folder)             '[the Customizer Options Functions Organized]'
 	  -- custom-post-types.php      '[Sample for Create Custom Post Types and Taxonomies]'
+	  -- init.php                   '[Theme Setup Process and Registering all Support Features]'
+	  -- preformance.php            '[The Theme Preformance Filters and Clean-up]'
 	  -- theme-assets.php           '[The Theme Frontend/Backend Assets Call Backs]'
-	  -- theme-menus.php            '[Create and Register the Theme Menus Locations]'
-	  -- theme-customizer.php       '[the Theme Settings/Options Page in the Customizer]'
-	  -- theme-customizer (Folder)  '[the Customizer Options Functions Organized]'
 	 ------------------------------------------------------------------------------------
 	 -- template-parts/             '[Theme Frontend Dynamic Parts and Templates]'
-	  -- custom-breadcumb.php       '[Custom Breadcrumb Using Yoast and Core WP Functions]'
-	  -- custom-header.php          '[Custom Designed Header for Keeping header.php Clean]'
-	  -- custom-footer.php          '[Custom Designed Footer or Keeping footer.php Clean]'
-	  ------------------------------------------------------------------------------------
-	  -- widgets.php                '[Create/Register Sidebar Widgets]'
-	  -- widgets (Folder)           '[The Widgets Frontend Templates]'
-	   -- blog-categories.php       '[a Widget for Showing the Category Taxonomy List]'
-	   -- blog-search.php           '[a Widget Template for Showing Search Form]'
-	   -- lateast-blogs.php         '[a Widget Template for Showing Lateast Posts]'
+	  -- Components (Folder)        '[All Global Components Parts]'
+	  -- Blogs (Folder)             '[The Blog Frontend Components]'
 	   ------------------------------------------------------------------------------------
-	  -- blocks (Folder)            '[the Dynamic Theme Design Blocks/Parts Organized]'
-	   -- classic-post.php          '[Classic Post Template for Using it inside Loops]'
-	   -- widget-post.php           '[Small Classic Post Template for Widget Loops]'
+	  -- Components (Folder)            '[the Dynamic Theme Design Blocks/Parts Organized]'
+	   -- breadcumb.php       '[Custom Breadcrumb Using Yoast and Core WP Functions]'
+	   -- header.php          '[Custom Designed Header for Keeping header.php Clean]'
+	   -- footer.php          '[Custom Designed Footer or Keeping footer.php Clean]'
+	  ------------------------------------------------------------------------------------
+	  -- Blogs (Folder)             '[The Widgets Frontend Templates]'
+	   -- blog-block.php            '[Classic Post Template for Using it inside Loops]'
+	   -- blog-categories.php       '[a Widget for Showing the Category Taxonomy List]'
+	   -- blog-details.php          '[Single Blog Details Content]'
+	   -- blog-schema.php           '[Single Blog Schema.org Data]'
+	   -- blog-tags.php             '[Single Blog Tags Loop]'
+	   -- blog-widget.php           '[Small Classic Post Template for Widget Loops]'
+	   -- lateast-blogs.php         '[a Widget Template for Showing Lateast Posts]'
 	 ---------------------------------------------------------------------------------------
 	# src               '[the Source Files for the Frontend and the Gutenberg Editor]'
 	 -- javascript      '[for Frontend Only]'
@@ -151,7 +170,6 @@ Tornado Starter Template is a Advanced Wordpress Theme Startup Enviroment With T
 	]
 
 ---------------------
-
 ##### Wordpress Core Naming Pattern
 	for creating an archive for the Custom Post Type or Taxonomy name the file with core Pattern here is the list
 	----------------------------------
@@ -168,12 +186,19 @@ Tornado Starter Template is a Advanced Wordpress Theme Startup Enviroment With T
 	make your custom module loop list and to be able to use the core main query instead of the Custom Query
 	Witch May Causing Problems in some situations
 ---------------------
-##### Included Plugins and Tools
+##### Included Plugins and Tools [ All Plugins are Optional ]
 	# PolyLang                                   [ Multi Language Manager ]
-	# Yoast SEO                                  [ SEO Manager ]
 	# Contact 7                                  [ Custom Frontend Forms ]
-	# WP Amazon SES SMTP                         [ Email Sending Client for Forms ]
-	# Duplicate Post (Developing Mode Only)      [ Posts Duplicator for Fast Testing ] 
+	# Duplicate Page (Developing Mode Only)      [ Posts Duplicator for Fast Testing ] 
+	# Advance Custom Fields Pro                  [ for Creating Custom Fields ] 
+	# Yoast SEO Pro                              [ SEO Manager ]
+	# Yoast SEO Pro [Local]                      [ SEO Manager for Google Local Business ]
+	# Yoast SEO Pro [News]                       [ SEO Manager for Google News ]
+	# Yoast SEO Pro [Video]                      [ SEO Manager for Videos Search ]
+	# WooCommerce                                [ Advanced Store Manage System ]
+	# WooCommerce Services                       [ for WooCommerce Support ]
+	# WooCommerce Yith Wishlist                  [ add Wishlist to WooCommerce ]
+	# jetpack                                    [ for WooCommerce Support ] 
 ---------------------
 **Developers Note : Alwayes Turn On Debug Mode and Eleminate any Warning/Error or even Notes ,** 
 Standard and Clean / Human... Readable Code Please for Evolving Opportunities.

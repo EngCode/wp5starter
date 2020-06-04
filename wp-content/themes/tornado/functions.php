@@ -1,11 +1,49 @@
 <?php
+    /**
+     * Tornado functions and definitions
+     * @link https://developer.wordpress.org/themes/basics/theme-functions/
+     * @package Tornado Wordpress
+     * 
+     * ========> Reference by Comments <=======
+     * 00 - Theme Initials
+     * 01 - Setting Page
+     * 02 - Custom Post Types
+     * 03 - Assets Register
+     * 04 - Preformance Speed Cleanup
+     * 05 - Editor Register
+     * 06 - Register Widgets Area
+     * 07 - Admin Menu Optimizer
+     * 08 - Stop Generating Image Sizes
+     * 09 - Thumbnails Link
+     * 10 - Get Category Name
+     * 11 - Pagination
+     * 12 - Track Posts Views Counter
+     * 13 - Set Posts Views Counter
+     * 14 - Allow Blank Searchs
+     * 15 - Contact 7 Structure Edits
+     * 16 - Disable Contact 7 CSS/JS
+     * 17 - Contact 7 Dynamic Data Passing
+     * 18 - Check Polylang
+     * 19 - WP Default Features Filtering
+     * 
+     */
     //======= Exit if Try to Access Directly =======//
     defined('ABSPATH') || exit;
     //======== Debug Mode ========//
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
+    //====== Theme Version =======//
+    if (!defined('_S_VERSION')) {
+        //=====> Replace the version number of the theme on each release.
+        define( '_S_VERSION', '1.0.0' );
+    }
+
+    //==== Theme Initials ====//
+    include( dirname(__FILE__) . '/inc/functions/init.php' );
+
     //==== Setting Page ====//
+    include( dirname(__FILE__) . '/inc/functions/admin.php' );
     include( dirname(__FILE__) . '/inc/functions/theme-customizer.php' );
 
     //==== Custom Post Types ====//
@@ -16,27 +54,52 @@
 
     //==== Preformance Speed Cleanup ====//
     include( dirname(__FILE__) . '/inc/functions/preformance.php' );
-    
-    //==== Menus Register ====//
-    include( dirname(__FILE__) . '/inc/functions/theme-menus.php' );
 
     //==== Editor Register ====//
     include( dirname(__FILE__) . '/src/php/gutenberg.php' );
 
-    //======== Adding Theme Supports ========//
-    function theme_support() {
-        add_theme_support( 'post-thumbnails' );
-        add_theme_support( 'automatic-feed-links' );
-        add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
-        add_theme_support( 'customize-selective-refresh-widgets' );
-        add_theme_support( 'align-wide' );
-        add_theme_support( 'woocommerce' );
+    //===== Register Widgets Area =====//
+    function tornado_widgets_init() {
+        //======== Blog Sidebar Widget ==========//
+        register_sidebar(
+            array(
+                'name'          => esc_html__('Blog Sidebar', 'tornado'),
+                'id'            => 'blog-sidebar',
+                'description'   => esc_html__( 'Add widgets here.', 'tornado' ),
+                'before_widget' => '',
+                'after_widget'  => '',
+                'before_title'  => '',
+                'after_title'   => '',
+            )
+        );
     }
-    
-    add_action( 'init', 'theme_support' );
 
-    //===== Excrept Text Only =====//
-    remove_filter( 'the_excerpt', 'wpautop' );
+    add_action( 'widgets_init', 'tornado_widgets_init' );
+
+    //========= Admin Menu Optimizer ========//
+    function admin_menu_optimizer(){ 
+        //====> Dashboard
+        remove_menu_page( 'index.php' );
+        //====> Posts
+        remove_menu_page( 'edit.php' );
+        //====> Media
+        remove_menu_page( 'upload.php' );
+        //====> Comments
+        remove_menu_page( 'edit-comments.php' );
+        //====> Appearance
+        // remove_menu_page( 'themes.php' );
+        //=====> Add Menus
+        // add_menu_page(pll__('Menus Settings', 'tornado' ),'Menus Settings','manage_options','nav-menus.php','','dashicons-menu',20);
+        // add_menu_page(pll__('Theme Settings', 'tornado' ),'Theme Settings','manage_options','customize.php','','dashicons-admin-appearance',21);
+        //====> Plugins
+        // remove_menu_page( 'plugins.php' );
+        //====> Tools
+        // remove_menu_page( 'tools.php' );
+        //====> Advanced Custom Fields
+        // remove_menu_page('edit.php?post_type=acf-field-group');
+    }
+
+    // add_action( 'admin_menu', 'admin_menu_optimizer' );
 
     //==== Stop Generating Image Sizes ====//
     function add_image_insert_override($sizes){
@@ -45,11 +108,12 @@
         unset( $sizes['large']);
         return $sizes;
     }
+
     add_filter('intermediate_image_sizes_advanced', 'add_image_insert_override' );
 
     /*======= Thumbnails Link =======*/
     function thumbnail_link($placholder) {
-        if ( has_post_thumbnail() ) {
+        if (has_post_thumbnail()) {
             return the_post_thumbnail_url();
         } else {
             return $placholder;
@@ -118,9 +182,6 @@
         }
     }
 
-    // Remove issues with prefetching adding extra views
-    remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
-
     //====== Allow Blank Searchs ========//
     function SearchFilter($query) {
         // If 's' request variable is set but empty
@@ -132,20 +193,6 @@
     }
 
     add_filter('pre_get_posts','SearchFilter');
-
-    //====== Languages Path ======//
-    function languages_install() {
-        load_theme_textdomain( 'tornado', get_template_directory() . '/languages' );
-    
-        $locale = get_locale();
-        $locale_file = get_template_directory() . "/languages/$locale.php";
-    
-        if ( is_readable( $locale_file ) ) {
-            require_once( $locale_file );
-        }
-    }
-    
-    add_action( 'after_setup_theme', 'languages_install' );
 
     //===== Contact 7 Structure Edits =====//
     add_filter('wpcf7_form_elements', function($content) {
@@ -172,22 +219,6 @@
         return $out;
     }
 
-    //======== SVG Support ========//
-    function add_file_types_to_uploads($file_types){
-        $new_filetypes = array();
-        $new_filetypes['svg'] = 'image/svg+xml';
-        $file_types = array_merge($file_types, $new_filetypes );
-        return $file_types;
-    }
-    add_action('upload_mimes', 'add_file_types_to_uploads');
-
-    //======== SVG Support Alternative ========//
-    function cc_mime_types($mimes) {
-        $mimes['svg'] = 'image/svg+xml';
-        return $mimes;
-    }
-    add_filter('upload_mimes', 'cc_mime_types');
-
     //========= Check Polylang ========//
     if (!function_exists('pll__')) {
         function pll__($string,$domain) {
@@ -195,28 +226,9 @@
         }
     }
 
-    //========= Admin Menu Oprimizer ========//
-    function admin_menu_optimizer(){ 
-        //====> Dashboard
-        remove_menu_page( 'index.php' );
-        //====> Posts
-        remove_menu_page( 'edit.php' );
-        //====> Media
-        remove_menu_page( 'upload.php' );
-        //====> Comments
-        remove_menu_page( 'edit-comments.php' );
-        //====> Appearance
-        // remove_menu_page( 'themes.php' );
-        //=====> Add Menus
-        // add_menu_page(pll__('Menus Settings', 'tornado' ),'Menus Settings','manage_options','nav-menus.php','','dashicons-menu',20);
-        // add_menu_page(pll__('Theme Settings', 'tornado' ),'Theme Settings','manage_options','customize.php','','dashicons-admin-appearance',21);
-        //====> Plugins
-        // remove_menu_page( 'plugins.php' );
-        //====> Tools
-        // remove_menu_page( 'tools.php' );
-        //====> Advanced Custom Fields
-        // remove_menu_page('edit.php?post_type=acf-field-group');
-    }
-
-    add_action( 'admin_menu', 'admin_menu_optimizer' );
+    //===== WP Default Features Filtering =====//
+    remove_filter('the_excerpt', 'wpautop'); //=====> Excrept Return Text Only
+    //=====> Remove Adding Extra Views
+    remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+    
 ?>

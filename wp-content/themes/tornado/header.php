@@ -15,11 +15,6 @@
     <meta name="language" content="<?php echo bloginfo('language');?>">
     <meta http-equiv="x-ua-compatible" content="IE=edge"> <!-- charset="<?php echo bloginfo('charset');?>" -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!-- Main Information Meta Tags -->
-    <title>
-        <?php bloginfo('name'); ?> | 
-        <?php if ( !is_home() && !is_front_page() ) { echo wp_title(); } else { echo bloginfo('description'); } ?>
-    </title>
     <!-- Keywords in Home Page --> 
     <?php if ( is_home() || is_front_page() ) { ?>
     <meta name="keywords" content="<?php echo get_meta_options('keywords');?>" />
