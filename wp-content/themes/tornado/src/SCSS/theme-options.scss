@@ -188,6 +188,7 @@ $xlarge-query-down:1600px; // Big Desktop Screen Size to start from
         border-radius: 5px;
         // box-shadow: 0 0 10px rgba(#000,0.05);
         border: 1px solid rgba(#000,0.1);
+        border-bottom: 0 none;
         &:not(:last-child) { margin-bottom: 30px; }
         /*==== Panel Title ====*/
         .panel-title {
@@ -202,7 +203,8 @@ $xlarge-query-down:1600px; // Big Desktop Screen Size to start from
         .control-item {
             padding:20px;
             padding-bottom: 0;
-            &.col-l-6:not(:nth-child(1)):not(:nth-child(2)),&.col-l-12:not(:nth-child(1)) {border-top: 1px solid rgba(#000,0.1);}
+            border-bottom: 1px solid rgba(#000,0.1);
+
             &:nth-child(odd):not(.col-l-12) {border-right: 1px solid rgba(#000,0.1);}
 
             &.rtl:nth-child(odd):not(.col-l-12) {
@@ -210,7 +212,7 @@ $xlarge-query-down:1600px; // Big Desktop Screen Size to start from
                 border-right: 0 none;
             }
 
-            @extend %flexbox;
+            .content-box { @extend %flexbox; }
             // @extend .align-start-y;
             /*==== Controls Label ====*/
             label {
@@ -265,10 +267,48 @@ $xlarge-query-down:1600px; // Big Desktop Screen Size to start from
             }
 
             /*==== Input and Selects ====*/
-            input,select,.form-control,textarea,.media-uploader-control,.control-wraper {
+            input,select,.form-control,textarea,.media-uploader-control,.control-wraper,.color-picker {
                 width:calc(100% - 175px);
                 margin: 0;
                 margin-bottom: 15px;
+            }
+
+            .color-picker {
+                direction: ltr;
+                @extend %flexbox;
+                border:1px solid rgba(#000,0.1);
+                border-radius: 5px;
+
+                input {
+                    width:50%;
+                    margin-bottom: 0;
+                    border:0 none;
+                    border-radius: 5px 0 0 5px;
+                }
+
+                .color-prev{
+                    width:50%;
+                    height: 34px;
+                    border-radius: 0 5px 5px 0;
+                }
+                
+                .picker_done,.picker_cancel,.picker_arrow,.picker_sample {display: none;}
+
+                .layout_default .picker_slider, .layout_default .picker_selector{padding: 5px;}
+
+                .picker_editor {
+                    width:100%!important;
+                    display: block;
+                    input{width:100%;border-radius: 5px;}
+                }
+                
+                .popup.popup_right {
+                    top:100%;
+                    left: 0;
+                    margin: 0;
+                    width:230px;
+                    box-shadow: unset;
+                }
             }
 
             .control-wraper {

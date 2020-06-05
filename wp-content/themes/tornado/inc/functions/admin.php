@@ -10,6 +10,7 @@
      * 02 - Theme Menus Options
      * 03 - Admin CSS Include
      * 04 - Admin JS Include
+     * 05 - Design Options Action Output
      * 
     */
 
@@ -77,4 +78,44 @@
     //==== Run Assets Files By Gutenberg Hooks ====//
     add_action ('admin_enqueue_scripts','tornado_admin_css');
     add_action ('admin_enqueue_scripts','tornado_admin_js');
+
+    //==== Design Options Action Output =====//
+    add_action( 'wp_head', 'tornado_design_colors');
+    function tornado_design_colors() {?>
+            <style type="text/css">
+                /*======== Root CSS Variables ========*/
+                :root {
+                    /*======== Primary Color ========*/
+                    --primary-color: <?php echo get_option('primary_color'); ?>;
+                    --primary-color-hover: <?php echo get_option('primary_color_hover'); ?>;
+                    /*======== Secondary Color ========*/
+                    --secondary-color: <?php echo get_option('secondary_color'); ?>;
+                    --secondary-color-hover: <?php echo get_option('secondary_color_hover'); ?>;
+                    /*======== TXT Color ========*/
+                    --typo-color:<?php echo get_option('typo_color'); ?>;
+                    /*========== Typography Font Family ==========*/
+                    /* font family for Head's and Titles */
+                    --primary-font:<?php echo get_option('primary_font'); ?>;
+                    /* font family for Paragraph and Small Text */
+                    --secondary-font:<?php echo get_option('secondary_font'); ?>;
+                    /*========== Typography Base Font Sizes ==========*/
+                    /* Base Font Size For Large Screens */
+                    --base-l-size:<?php echo get_option('base_l_size'); ?>;
+                    /* Base Font Size For Medium Screens */
+                    --base-m-size:<?php echo get_option('base_m_size'); ?>;
+                    /* Base Font Size For Small Screens */
+                    --base-s-size:<?php echo get_option('base_s_size'); ?>;
+                    /* Base Line Height */
+                    --base-line-height:<?php echo get_option('base_line_height'); ?>;
+                    /*========== Typography Font Weight ==========*/
+                    /* Normal Font Weight */
+                    --normal-weight:<?php echo get_option('normal_weight'); ?>;
+                    /* Medium Font Weight */
+                    --medium-weight:<?php echo get_option('medium_weight'); ?>;
+                    /* Bold/Bolder Font Weight */
+                    --strong-weight:<?php echo get_option('strong_weight'); ?>;
+                }
+            </style>
+        <?php
+    }
 ?>
