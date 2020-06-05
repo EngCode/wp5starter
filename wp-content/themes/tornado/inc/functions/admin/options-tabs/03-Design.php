@@ -18,17 +18,20 @@
     <h2 class="panel-title"><?php echo __('Design Options','tornado'); ?></h2>
     <div class="row no-gutter">
         <!-- Control Item -->
-        <div class="control-item col-12 col-m-6 <?php if (is_rtl()) { echo 'rtl'; }?>">
+        <div class="control-item col-12 col-l-6 <?php if (is_rtl()) { echo 'rtl'; }?>">
             <label for="theme_logo"><?php echo __('Theme Logo','tornado'); ?></label>
             <!-- Image Uploader -->  
-            <div class="media-uploader-control">
+            <div class="media-uploader-control iconic">
+                <?php 
+                    if (!get_option('theme_logo')) {
+                        $image_value = 'https://via.placeholder.com/320x50?text=PLACEHOLDER';
+                    } else {
+                        $image_value = get_option('theme_logo');
+                    }
+                ?>
                 <input type="hidden" name="theme_logo" class="uploader-input" placeholder="<?php echo __('Image URL','tornado'); ?>">
-                <?php if (!get_option('theme_logo')) : ?>
-                <input type="button" class="uploader-btn button button-primary" value="<?php echo __('Select', 'tornado'); ?>">
-                <?php else : ?>
-                <a href="<?php echo get_option('theme_logo'); ?>" class="button button-warning button-prev" target="_blank"><?php echo __('Preview', 'tornado'); ?></a>
-                <input type="button" class="uploader-btn button button-primary" value="<?php echo __('Change', 'tornado'); ?>">
-                <?php endif; ?>
+                <img src="<?php echo $image_value; ?>" alt="" class="image-prev">
+                <button type="button" class="uploader-btn button button-primary ti-play-work-up"></button>
             </div>
         </div>
         <!-- // Control Item -->

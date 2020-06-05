@@ -89,5 +89,9 @@
         "name": "<?php bloginfo('name'); ?>",
         "image": "<?php echo get_option('meta_graph_cover'); ?>"
     }</script>
+    <!-- Custom Header Code -->
+    <?php echo get_option('header_code'); ?>
 </head>
 <body>
+    <!-- Custom Body Code -->
+    <?php echo get_option('body_code_start'); ?>

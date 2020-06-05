@@ -15,6 +15,9 @@
         register_setting('tornado-options', 'meta_keywords');
         register_setting('tornado-options', 'meta_graph_cover');
         register_setting('tornado-options', 'meta_copyrights');
+        register_setting('tornado-options', 'header_code');
+        register_setting('tornado-options', 'body_code_start');
+        register_setting('tornado-options', 'footer_code');
         //=========> Contact => Contact Info <=========//
         register_setting('tornado-options', 'phone_number');
         register_setting('tornado-options', 'phone_number_2nd');
@@ -28,7 +31,7 @@
         register_setting('tornado-options', 'twitter_url');
         register_setting('tornado-options', 'instagram_url');
         register_setting('tornado-options', 'linkedin_url');
-        //=========> Design => Logo <=========//
+        //=========> Design => Options <=========//
         register_setting('tornado-options', 'theme_logo');
     }
 
@@ -91,31 +94,54 @@
 
 <!-- Media Uploader Popup -->
 <script type="text/javascript">
-jQuery(document).ready(function ($) {
-    //===== Runs when the image button is clicked =====//
-    $('.uploader-btn').click(function (e) {
-        e.preventDefault();
-        //===== Instantiates the variable that holds the media library =====//
-        var meta_image_frame;
-        //===== Get preview Input =====//
-        var meta_image = $(this).parents('.media-uploader-control').find('.uploader-input');
-        //===== If the media library already exists, re-open it =====//
-        if (meta_image_frame) { meta_image_frame.open(); return; }
-        //===== Sets up the media library =====//
-        meta_image_frame = wp.media.frames.meta_image_frame = wp.media({
-            title: meta_image.title,
-            button: { text: meta_image.button }
+    jQuery(document).ready(function ($) {
+        //===== Runs when the image button is clicked =====//
+        $('.uploader-btn').click(function (e) {
+            e.preventDefault();
+            //===== Instantiates the variable that holds the media library =====//
+            var meta_image_frame;
+            //===== Get preview Input =====//
+            var meta_image = $(this).parents('.media-uploader-control').find('.uploader-input'),
+                imagePrev = $(this).parents('.media-uploader-control').find('.image-prev');
+            //===== If the media library already exists, re-open it =====//
+            if (meta_image_frame) { meta_image_frame.open(); return; }
+            //===== Sets up the media library =====//
+            meta_image_frame = wp.media.frames.meta_image_frame = wp.media({
+                title: meta_image.title,
+                button: { text: meta_image.button }
+            });
+            //===== Runs when an media is selected =====//
+            meta_image_frame.on('select', function () {
+                //===== Grabs the Selection and creates a JSON representation of the model =====//
+                var media_attachment = meta_image_frame.state().get('selection').first().toJSON();
+                //===== Sends the attachment URL to the media input field =====//
+                meta_image.val(media_attachment.url);
+                imagePrev.attr('src',media_attachment.url);
+            });
+            //===== Opens the media library =====//
+            meta_image_frame.open();
         });
-        //===== Runs when an media is selected =====//
-        meta_image_frame.on('select', function () {
-            //===== Grabs the Selection and creates a JSON representation of the model =====//
-            var media_attachment = meta_image_frame.state().get('selection').first().toJSON();
-            //===== Sends the attachment URL to the media input field =====//
-            meta_image.val(media_attachment.url);
-        });
-        //===== Opens the media library =====//
-        meta_image_frame.open();
     });
-});
 </script>
+
+<!-- Color Picker -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        'use strict';
+        /*============ Select Color Picker Elements ==============*/
+        var color_pickers = document.querySelectorAll('.color-picker');
+        Array.from(color_pickers).forEach(element => {
+            var picker = new Picker(element);
+            // You can do what you want with the chosen color using two callbacks: onChange and onDone.
+            picker.onChange = function(color) {
+                element.style.background = color.rgbaString;
+            };
+        });
+    });
+</script>
+
+<!-- Code Mirror -->
+<script src="https://codemirror.net/lib/codemirror.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.0/mode/xml/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/mode/htmlmixed/htmlmixed.min.js"></script>
 <?php } ?>

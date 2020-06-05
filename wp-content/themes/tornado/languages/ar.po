@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tornado Starter Theme\n"
-"POT-Creation-Date: 2020-06-04 23:57+0200\n"
-"PO-Revision-Date: 2020-06-05 00:00+0200\n"
+"POT-Creation-Date: 2020-06-05 14:29+0200\n"
+"PO-Revision-Date: 2020-06-05 14:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -101,7 +101,7 @@ msgstr "إعدادات القوائم"
 
 #: inc/functions/admin/options-tabs/01-General.php:12
 #: inc/functions/admin/options-tabs/03-Design.php:12
-#: inc/functions/admin/theme-options.php:47
+#: inc/functions/admin/theme-options.php:50
 msgid "General Settings"
 msgstr "الإعدادات العامة"
 
@@ -112,45 +112,60 @@ msgstr "إعدادات الميتا"
 #: inc/functions/admin/options-tabs/01-General.php:22
 #: inc/functions/admin/options-tabs/01-General.php:23
 msgid "SEO Keywords"
-msgstr "الكلمات المفتاحية Keywords"
+msgstr "الكلمات المفتاحية"
 
-#: inc/functions/admin/options-tabs/01-General.php:27
-msgid "Open Graph Cover"
-msgstr "صورة الاوبن جراف للموقع"
-
-#: inc/functions/admin/options-tabs/01-General.php:30
-#: inc/functions/admin/options-tabs/03-Design.php:25
-msgid "Image URL"
-msgstr "رابط الصورة"
-
-#: inc/functions/admin/options-tabs/01-General.php:32
-#: inc/functions/admin/options-tabs/03-Design.php:27
-msgid "Select"
-msgstr "اختيار"
-
-#: inc/functions/admin/options-tabs/01-General.php:34
-#: inc/functions/admin/options-tabs/03-Design.php:29
-msgid "Preview"
-msgstr "معاينة"
-
-#: inc/functions/admin/options-tabs/01-General.php:35
-#: inc/functions/admin/options-tabs/03-Design.php:30
-msgid "Change"
-msgstr "تغيير"
-
-#: inc/functions/admin/options-tabs/01-General.php:41
-#: inc/functions/admin/options-tabs/01-General.php:42
+#: inc/functions/admin/options-tabs/01-General.php:25
+#: inc/functions/admin/options-tabs/01-General.php:26
 msgid "Footer Copyrights"
 msgstr "حقوق الموقع"
 
+#: inc/functions/admin/options-tabs/01-General.php:30
+msgid "Open Graph Cover"
+msgstr "صورة OpenGraph للموقع"
+
+#: inc/functions/admin/options-tabs/01-General.php:40
+#: inc/functions/admin/options-tabs/03-Design.php:32
+msgid "Image URL"
+msgstr "رابط الصورة"
+
+#: inc/functions/admin/options-tabs/01-General.php:42
+msgid "Upload Image"
+msgstr "رقع صورة"
+
+#: inc/functions/admin/options-tabs/01-General.php:52
+msgid "Custom Codes"
+msgstr "أكواد مخصصة"
+
+#: inc/functions/admin/options-tabs/01-General.php:57
+msgid "Header Code"
+msgstr "كود الهيدر"
+
+#: inc/functions/admin/options-tabs/01-General.php:58
+msgid "this code will be added before </head> closing tag"
+msgstr "سيتم اضافة هذا الكود قبل اغلاق وسم </head> لاضافة اكواد CSS/JS"
+
+#: inc/functions/admin/options-tabs/01-General.php:67
+msgid "Body Code"
+msgstr "كود جسم الصفحة"
+
+#: inc/functions/admin/options-tabs/01-General.php:68
+msgid "this code will be added after <body> opening tag"
+msgstr "سيتم إضافة هذا الكود بعد فتحة وسم <body> جسم الصفحة"
+
+#: inc/functions/admin/options-tabs/01-General.php:77
+msgid "Footer Code"
+msgstr "كود الفوتر"
+
+#: inc/functions/admin/options-tabs/01-General.php:78
+msgid "this code will be added before </body> closing tag"
+msgstr "سيتم إضافة هذا الكود قبل اغلاق وسم </body> جسم الصفحة"
+
 #: inc/functions/admin/options-tabs/02-Contact.php:12
-#: inc/functions/admin/theme-options.php:48
+#: inc/functions/admin/theme-options.php:51
 msgid "Contact Info"
 msgstr "معلومات التواصل"
 
 #: inc/functions/admin/options-tabs/02-Contact.php:18
-#, fuzzy
-#| msgid "Contact Info"
 msgid "Contact Information"
 msgstr "معلومات التواصل"
 
@@ -231,7 +246,7 @@ msgid "https://linkedin.com/@username"
 msgstr ""
 
 #: inc/functions/admin/options-tabs/03-Design.php:18
-#: inc/functions/admin/theme-options.php:49
+#: inc/functions/admin/theme-options.php:52
 msgid "Design Options"
 msgstr "إعدادات التصميم"
 
@@ -239,7 +254,7 @@ msgstr "إعدادات التصميم"
 msgid "Theme Logo"
 msgstr "لوجو الموقع"
 
-#: inc/functions/admin/theme-options.php:82
+#: inc/functions/admin/theme-options.php:85
 msgid "Powered by Tornado UI v2 Framework © 2016 - 2020"
 msgstr "مدعوم من Tornado UI v2 Framework © 2016-2020"
 
@@ -343,3 +358,12 @@ msgstr ""
 #. Template Name of the plugin/theme
 msgid "Default Rich Content"
 msgstr ""
+
+#~ msgid "Select"
+#~ msgstr "اختيار"
+
+#~ msgid "Preview"
+#~ msgstr "معاينة"
+
+#~ msgid "Change"
+#~ msgstr "تغيير"

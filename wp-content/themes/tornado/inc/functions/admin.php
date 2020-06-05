@@ -58,6 +58,9 @@
         wp_enqueue_style('tornado-icon', get_template_directory_uri() . '/dist/css/tornado-icons.css', false , NULL , 'all'); 
         //=== Admin CSS ===//
         wp_enqueue_style('tornado-admin-css', get_template_directory_uri() . '/dist/css/theme-options.css', false , NULL , 'all');
+        //=== Code Mirror CSS ===//
+        wp_enqueue_style('codemirror-style', 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.35.0/codemirror.css', false , NULL , 'all');
+        wp_enqueue_style('codemirror-theme', 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.54.0/theme/xq-light.min.css', false , NULL , 'all');
     };
 
     //======== Register Javascript Files ========//
@@ -67,8 +70,8 @@
         wp_enqueue_script('media-uploader');
         //=====> Include Tornado JS File <=====//
         wp_enqueue_script('tornado_js', get_template_directory_uri() . '/dist/js/tornado.min.js', false , NULL , true);
-        //=== Admin CSS ===//
-        // wp_enqueue_script('tornado-admin-js', get_template_directory_uri() . '/dist/js/admin.min.js', false , NULL , true);
+        //=== Color Picker ===//
+        wp_enqueue_script('vanilla-picker', 'https://unpkg.com/vanilla-picker@2', false , NULL , true);
     };
 
     //==== Run Assets Files By Gutenberg Hooks ====//
