@@ -71,11 +71,35 @@
 
             //=====> Default Design Fonts Options <=====//
             if(!get_option('primary_font')) {
-                update_option('primary_font', "DIN NEXT");
+                update_option('primary_font', "Roboto");
             }
 
             if(!get_option('secondary_font')) {
-                update_option('secondary_font', "DIN NEXT");
+                update_option('secondary_font', "Roboto");
+            }
+
+            if(!get_option('custom_primary_font')) {
+                update_option('custom_primary_font', "Roboto");
+            }
+
+            if(!get_option('custom_secondary_font')) {
+                update_option('custom_secondary_font', "Roboto");
+            }
+
+            if(!get_option('custom_primary_font_rtl')) {
+                update_option('primary_font_rtl', "DIN NEXT");
+            }
+
+            if(!get_option('custom_secondary_font_rtl')) {
+                update_option('secondary_font_rtl', "DIN NEXT");
+            }
+
+            if(!get_option('primary_font_rtl')) {
+                update_option('primary_font_rtl', "Almarai");
+            }
+
+            if(!get_option('secondary_font_rtl')) {
+                update_option('secondary_font_rtl', "Almarai");
             }
 
             if(!get_option('base_l_size')) {
