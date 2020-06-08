@@ -8,7 +8,6 @@ const {withInstanceId} = wp.compose;
 /*===== Editable Components =====*/
 const {
     PlainText,
-    InspectorControls,
     RichText,
     Editable,
     MediaUpload,
@@ -18,7 +17,12 @@ const {
     ColorPalette
 } = wp.editor;
 
-const {InnerBlocks} = wp.blockEditor;
+
+
+const {
+    InnerBlocks,
+    InspectorControls
+} = wp.blockEditor;
 /*===== Editor Components =====*/
 const {
     Draggable,
@@ -30,11 +34,13 @@ const {
     DropdownMenu,
     withAPIData,
     TextControl,
-    ServerSideRender,
     RangeControl,
     FormFileUpload,
     BaseControl
 } = wp.components;
+
+const ServerSideRender = wp.serverSideRender;
+
 /*===== Editor Elements Components =====*/
 const {Component, Fragment} = wp.element;
 /*===== Editor Dynamic Data =====*/
