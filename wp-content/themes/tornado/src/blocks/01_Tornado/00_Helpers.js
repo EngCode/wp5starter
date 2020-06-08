@@ -15,14 +15,10 @@ const {
     AlignmentToolbar,
     BlockControls,
     ColorPalette
-} = wp.editor;
-
-
-
-const {
     InnerBlocks,
     InspectorControls
 } = wp.blockEditor;
+
 /*===== Editor Components =====*/
 const {
     Draggable,
@@ -39,8 +35,8 @@ const {
     BaseControl
 } = wp.components;
 
+/*===== Editor Server Render =====*/
 const ServerSideRender = wp.serverSideRender;
-
 /*===== Editor Elements Components =====*/
 const {Component, Fragment} = wp.element;
 /*===== Editor Dynamic Data =====*/
