@@ -98,7 +98,7 @@
                     /*======== TXT Color ========*/
                     --typo-color:<?php echo get_option('typo_color'); ?>;
                     /*========== Typography Font Family ==========*/
-                    <?php if (get_option('google_fonts') === 'on') : ?>
+                    <?php if (get_option('google_fonts') === '1') : ?>
                         <?php if (!is_rtl()) : ?>
                         /* font family for Head's and Titles */
                         --primary-font:'<?php echo get_option('primary_font'); ?>';
@@ -145,7 +145,7 @@
     }
 
     //==== Include Google Fonts =====//
-    if (get_option('google_fonts') === 'on') {
+    if (get_option('google_fonts') === '1') {
         add_action( 'wp_enqueue_scripts', 'tornado_google_fonts' );
         function tornado_google_fonts() {
             //========== Get Fonts Names ==========//
