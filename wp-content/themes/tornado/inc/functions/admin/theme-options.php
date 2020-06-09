@@ -201,6 +201,14 @@
             };
         });
 
+        /*============ Select Default Values ==============*/
+        var defaultSelects = document.querySelectorAll('.options-panel select');
+        Array.from(defaultSelects).forEach(element => {
+            var defaultOption = 'option[value="'+element.getAttribute('data-value')+'"]',
+                defaultOptionElement = element.querySelector(defaultOption);
+            if (defaultOptionElement) defaultOptionElement.setAttribute('selected',true);
+        });
+
         /*============ Advanced Select ==============*/
         var advancedSelect = document.querySelectorAll('.advanced-select');
         Array.from(advancedSelect).forEach((element,index) => {
