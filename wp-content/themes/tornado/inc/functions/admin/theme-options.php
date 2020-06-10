@@ -131,7 +131,7 @@
 <!-- // Theme Options -->
 
 <!-- Notifications -->
-<div class="floating-notfications"></div>
+<div class="floating-notfications  <?php if (is_rtl()) { echo 'rtl'; }?>"></div>
 <!-- // Notifications -->
 
 <!-- Code Mirror -->
